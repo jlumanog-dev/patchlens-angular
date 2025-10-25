@@ -1,0 +1,13 @@
+   <div class="login-container">
+        <h2>Login</h2>
+        <form [formGroup]="loginFormGroup" (ngSubmit)="submitHandler()" method="post">
+            <label for="username"></label>
+            <input type="text" id="username" name="username" formControlName="username" placeholder="Enter username" required>
+
+            <label for="password"></label>
+            <input type="password" id="password" name="password" formControlName="password" placeholder="Enter password" required>
+
+            <button type="submit" class="login-btn">Login</button>
+            <button type="button" class="register-btn" onclick="window.location.href='/register'">Register</button>
+        </form>
+    </div>
