@@ -1,1 +1,46 @@
-<p>register works!</p>
+<div class="register-page">
+  <div class="register-container">
+    <h1>PatchProject</h1>
+    <form (ngSubmit)="submitRegistration()" [formGroup]="fieldsFormGroup"  method="POST">
+      <label for="username">Username</label>
+      <input formControlName="username" type="text" id="username" name="username" required />
+      <div class="error-label">
+        <p>
+        @if(isUsernameInvalid()){
+          {{usernameInvalidMessage()}}
+        }&nbsp;
+        </p>
+      </div>
+
+      <label for="email">Email</label>
+      <input formControlName="email" type="email" id="email" name="email" required />
+      <div class="error-label">
+        <p>
+        @if(isEmailInvalid()){
+          {{emailInvalidMessage()}}
+        }&nbsp;
+        </p>
+      </div>
+
+      <label for="password">Password</label>
+      <input formControlName="password" type="password" id="password" name="password" minlength="6" required />
+      <div class="error-label">
+        <p>
+        @if(isPasswordInvalid()){
+          {{passwordInvalidMessage()}}
+        }&nbsp;
+        </p>
+      </div>
+
+      <label for="confirm-password">Confirm Password</label>
+      <input type="password" id="confirm-password" name="confirm-password" minlength="6" required />
+
+      <button type="submit">Create Account</button>
+
+      <div class="login-link">
+        Already have an account? <a href="/login">Log in</a>
+      </div>
+    </form>
+  </div>
+
+</div>

@@ -7,13 +7,13 @@ import { Templatefragement } from './dummy/templatefragement/templatefragement';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
   headerTitle = "patchlense"
-  title = "patchwise";
+  title = "PatchLens";
 
 
 

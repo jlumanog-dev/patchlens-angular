@@ -1,13 +1,27 @@
-   <div class="login-container">
+   <div class="login-page">
+    <div class="login-container">
         <h2>Login</h2>
         <form [formGroup]="loginFormGroup" (ngSubmit)="submitHandler()" method="post">
+          <div>
             <label for="username"></label>
-            <input type="text" id="username" name="username" formControlName="username" placeholder="Enter username" required>
-
+            <input formControlName="username" type="text" id="username" name="username" formControlName="username" placeholder="Enter username" required>
+            <div class="error-label">
+              @if(isUsernameInvalid()){
+                <p>{{usernameInvalidMessage()}}</p>
+              }
+            </div>
             <label for="password"></label>
-            <input type="password" id="password" name="password" formControlName="password" placeholder="Enter password" required>
+            <input formControlName="password" type="password" id="password" name="password" formControlName="password" placeholder="Enter password" required>
+            <div class="error-label">
+              @if(isPasswordInvalid()){
+                <p>{{passwordInvalidMessage()}}</p>
+              }
+            </div>
+          </div>
 
             <button type="submit" class="login-btn">Login</button>
-            <button type="button" class="register-btn" onclick="window.location.href='/register'">Register</button>
+            <button type="button" class="register-btn" (click)="navigateToRegister()">Register</button>
         </form>
+    </div>
+
     </div>
