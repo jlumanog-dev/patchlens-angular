@@ -60,7 +60,8 @@ export class Login {
         this.apiService.authenticate(this.loginFormGroup.value).subscribe({
           next: response =>{
             console.log(response);
-            this.authService.setToken(response.token);
+            this.authService.setToken(response.TOKEN);
+            console.log(localStorage.getItem("TOKEN"));
             this.router.navigate(['..']);
           },
           error: error => {

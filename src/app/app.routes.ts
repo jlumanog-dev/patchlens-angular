@@ -3,7 +3,7 @@ import { Templatefragement } from './dummy/templatefragement/templatefragement';
 import { Displayone } from './dummy/displayone/displayone';
 import { Login } from './auth/login/login';
 import { Register } from './auth/register/register';
-import { Main } from './main/main';
+import { Main } from './shared/components/main/main';
 import { authGuard } from './core/guards/auth-guard';
 import { guestGuard } from './core/guards/guest-guard';
 

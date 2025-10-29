@@ -21,6 +21,10 @@ export class authenticationService{
     localStorage.setItem("TOKEN", token);
   }
 
+  deleteToken(){
+    localStorage.removeItem("TOKEN");
+  }
+
   isAuthenticated(): boolean{
     const TOKEN = localStorage.getItem("TOKEN");
     return TOKEN != undefined ? true : false;
