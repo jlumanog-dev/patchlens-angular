@@ -1,4 +1,40 @@
-<div>
-  <p>Hello {{username()}}</p>
-  <button (click)="logoutMethod()">Logout</button>
+<div class="background-main">
+  <app-navbar [username]="username()" />
+  <br>
+  <div>
+    <mat-tab-group class="tab-container">
+      <mat-tab>
+        <!-- Use ng-template to be able to apply css style on label text -->
+        <ng-template mat-tab-label>
+          <mat-icon class="tab-label-icon" >bolt</mat-icon>
+          <span class="tab-label"> Hero Insights
+          </span>
+        </ng-template>
+
+        <div>
+          <app-top-heroes-view />
+          <app-top-heroes-view />
+          <app-top-heroes-view />
+          <app-top-heroes-view />
+
+        </div>
+
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="tab-label-icon" >analytics</mat-icon>
+          <span class="tab-label">&nbsp;Match Analyzer</span>
+        </ng-template>
+         Content 2
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <span class="tab-label">First</span>
+        </ng-template>
+         Content 3
+      </mat-tab>
+    </mat-tab-group>
+
+  </div>
+
 </div>

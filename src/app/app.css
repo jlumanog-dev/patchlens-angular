@@ -1,5 +1,4 @@
 .root-class{
-  background-color: rgb(3, 3, 40);
-  color: white;
+  background-color: var(--bg-dark);
+  height: 100vh;
 }
-

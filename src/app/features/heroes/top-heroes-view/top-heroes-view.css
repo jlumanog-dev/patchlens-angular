@@ -1,0 +1,31 @@
+.top-heroes-view-container{
+  margin: 10px;
+  padding: 10px 10px;
+  border-radius: 10px;
+}
+.top-heroes-view-container > h3{
+  font-weight: 100;
+  margin: 25px 0px;
+}
+.top-heroes-view-container-flexbox{
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 0px;
+  margin: 10px 0px;
+
+}
+mat-card{
+  /* background-color: var(--bg-dark); */
+  background-image: radial-gradient(3900px, var(--bg-dark), var(--accent-gold) );
+  flex-basis: auto;
+  flex: 1;
+  margin: 0px 5px;
+  backdrop-filter: blur(10px);
+}
+
+mat-card mat-card-subtitle{
+  color: var(--text-secondary);
+  font-size: 15px;
+  font-weight: 100;
+}
+

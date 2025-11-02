@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { throwError, Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 
+
 @Injectable({providedIn: 'root'})
 export class authenticationService{
   private http = inject(HttpClient);
@@ -27,6 +28,7 @@ export class authenticationService{
 
   isAuthenticated(): boolean{
     const TOKEN = localStorage.getItem("TOKEN");
-    return TOKEN != undefined ? true : false;
+    //check if token is not empty or not expired
+    return (TOKEN != undefined)  ? true : false;
   }
 }

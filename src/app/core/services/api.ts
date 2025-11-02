@@ -1,14 +1,15 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { Form, FormControl, FormGroup } from "@angular/forms";
+import { FormGroup } from "@angular/forms";
 import { UserInterface } from "../../shared/UserInterface";
-
+import { catchError } from "rxjs";
+import { authenticationService } from "../../auth/auth.service";
 
 @Injectable({providedIn: 'root'})
 export class ApiService{
 
   private http = inject(HttpClient);
-
+  private authService = inject(authenticationService);
 
   //attempt to register a new user
   registerUser(formData: FormGroup){
@@ -27,7 +28,18 @@ export class ApiService{
   getUserData(){
     //map the response object to the UserInterface defined in shared folder to access dynamic properties
     //without the text editor complaining that no property exist
-    return this.http.get<UserInterface>('http://localhost:8080/api/user', {responseType: 'json'});
+    return this.http.get<UserInterface>('http://localhost:8080/api/user', {responseType: 'json'}).pipe(catchError(error => {
+      console.log("JWT EXPIRED");
+      this.authService.deleteToken();
+      throw error;
+    }));
+  }
+
+  getTopHeroes(){
+    return this.http.get<Array<object>>('http://localhost:8080/api/heroes/top-heroes', {responseType: 'json'}).pipe(catchError(error=>{
+      console.log("FAILED TO RETRIEVE TOP HEROES");
+      throw error;
+    }));
   }
 
 

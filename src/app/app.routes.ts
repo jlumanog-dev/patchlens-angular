@@ -9,6 +9,6 @@ import { guestGuard } from './core/guards/guest-guard';
 
 export const routes: Routes = [
   {path: 'login', component: Login, title: "Login Page", canActivate: [guestGuard]},
-  {path: 'register', component: Register, title: "Register - Welcome", canActivate: [guestGuard]},
+  {path: 'register', component: Register, title: "Register - Welcome",  canActivate: [guestGuard]},
   {path: '', component: Main, title: "See some patch insights", canActivate: [authGuard]}
 ];

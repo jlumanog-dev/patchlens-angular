@@ -1,12 +1,13 @@
 import { Component, inject, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ApiService } from '../../core/services/api';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgZone } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { authenticationService } from '../auth.service';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, FormsModule, MatFormFieldModule],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })

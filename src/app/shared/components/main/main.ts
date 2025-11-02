@@ -1,35 +1,40 @@
-import { Component, computed, inject, Signal, signal, WritableSignal } from '@angular/core';
-import { authenticationService } from '../../../auth/auth.service';
-import { Router } from '@angular/router';
+import { Component, inject, signal } from '@angular/core';
 import { ApiService } from '../../../core/services/api';
 import { UserInterface } from '../../UserInterface';
-
-
+import { Navbar } from '../navbar/navbar';
+import {MatTabsModule} from '@angular/material/tabs';
+import { MatIcon } from "@angular/material/icon";
+import { TopHeroesView } from '../../../features/heroes/top-heroes-view/top-heroes-view';
+import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-main',
-  imports: [],
+  imports: [Navbar, MatTabsModule, MatIcon, TopHeroesView],
   templateUrl: './main.html',
-  styleUrl: './main.css'
+  styleUrls: ['./main.css']
 })
+
 export class Main {
-  authService = inject(authenticationService);
   apiService = inject(ApiService);
   router = inject(Router);
-
   username = signal('');
 
-  logoutMethod(){
-    console.log("delete token");
-    this.authService.deleteToken();
-    this.router.navigate(['login']);
-  }
 
   constructor(){
-    this.apiService.getUserData().subscribe((response : UserInterface) =>{
-      this.username.set(response.username);
-      //this.username.set(response["username"]);
-    })
+    console.log("main component constructor");
+
+    this.apiService.getUserData().subscribe({
+        next: (response : UserInterface) =>{
+          console.log(response);
+          this.username.set(response.username);
+          //this.username.set(response["username"]);
+        },
+        //Usually to check if JWT is expired
+        error: (err)=>{
+          console.log(err);
+          this.router.navigate(['/login']);
+        }
+      });
   }
 }

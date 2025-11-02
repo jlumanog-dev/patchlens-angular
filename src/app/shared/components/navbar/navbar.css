@@ -1,0 +1,10 @@
+.background-navbar{
+  background-color: var(--bg-panel);
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 10px;
+}
+
+.button-menu {
+  color: var(--text-primary);
+}

@@ -1,0 +1,15 @@
+<div class="background-navbar">
+  <button class="button-menu" matButton [matMenuTriggerFor]="menu">
+    {{username()}}
+    <mat-icon >account_circle</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>settings_account_box</mat-icon> Account Settings
+    </button>
+    <button mat-menu-item (click)="logoutMethod()">
+     <mat-icon>logout</mat-icon> Logout
+    </button>
+  </mat-menu>
+
+</div>
