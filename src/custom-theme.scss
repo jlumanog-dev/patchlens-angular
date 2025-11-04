@@ -15,6 +15,40 @@ html {
     typography: Roboto,
     density: 0,
   ));
+
+  @include mat.fab-overrides((
+    container-color: none,
+    container-elevation-shadow: none,
+    focus-container-elevation-shadow: none
+  ));
+  // button with account icon and a menu for account settings and logout
+  @include mat.menu-overrides((
+      container-color: var(--bg-panel),
+      item-label-text-color: var(--text-primary),
+      item-icon-color: var(--text-primary)
+  ));
+
+  /* override color of text & background of forms and autocomplete material components */
+  @include mat.form-field-overrides((
+    filled-container-color: var(--bg-dark),
+    filled-container-shape: 15px,
+
+    //line bottom
+    filled-active-indicator-height: 1px,
+    filled-active-indicator-color: var(--bg-panel),
+    filled-hover-active-indicator-color: var(--text-primary),
+
+    //text
+    filled-input-text-color: var(--text-primary),
+    filled-label-text-color: var(--text-secondary)
+  ));
+  @include mat.autocomplete-overrides((
+    background-color: var(--bg-panel)
+  ));
+  @include mat.select-overrides((
+      enabled-trigger-text-color: green
+  ));
+
 }
 
 body {
@@ -33,6 +67,3 @@ body {
   // Reset the user agent margin.
   margin: 0;
 }
-
-
-

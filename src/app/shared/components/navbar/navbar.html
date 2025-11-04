@@ -1,7 +1,16 @@
-<div class="background-navbar">
-  <button class="button-menu" matButton [matMenuTriggerFor]="menu">
-    {{username()}}
-    <mat-icon >account_circle</mat-icon>
+<div class="background-navbar" >
+  <mat-form-field class="mat-form-field-wrapper">
+    <mat-label>Search a Hero</mat-label>
+    <input type="text" matInput [matAutocomplete]="auto" />
+
+    <mat-autocomplete #auto="matAutocomplete">
+      @for (option of filteredOptions ; track option) {
+        <mat-option class="mat-option-text" [value]="option">{{option}}</mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+  <button matFab [matMenuTriggerFor]="menu">
+    <mat-icon class="account-icon">account_circle</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item>

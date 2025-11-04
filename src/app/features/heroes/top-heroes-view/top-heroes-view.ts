@@ -3,11 +3,11 @@ import {MatCardModule} from '@angular/material/card';
 import { MatAnchor } from "@angular/material/button";
 import { ApiService } from '../../../core/services/api';
 import { topHeroesMappedInterface } from '../../../shared/TopHeroesMappedInterface';
-
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-top-heroes-view',
-  imports: [MatCardModule, MatAnchor],
+  imports: [MatCardModule, MatAnchor, NgStyle],
   templateUrl: './top-heroes-view.html',
   styleUrl: './top-heroes-view.css'
 })
@@ -17,17 +17,33 @@ export class TopHeroesView {
   heroTwo = signal<topHeroesMapped>();
   heroThree = signal<topHeroesMapped>(); */
 
-  heroes = signal<topHeroesMappedInterface[]>([]);
+  heroes = signal<topHeroesMappedInterface[]>([{
+        id: -1,
+        localized_name: "",
+        roles: [],
+        attack_type: "",
+        heroStats: {
+          id : -1,
+          localized_name : "",
+          move_speed : 0,
+          pub_pick : 0,
+          pub_pick_trend : [],
+          pub_win : 0,
+          pub_win_trend : []
+        },
+        winRate: 0,
+        pickGrowthRateChange: 0
+  }]);
 
 
-  ngOnInit(){
+  constructor(){
     this.apiService.getTopHeroes().subscribe({
       next: (response : topHeroesMappedInterface[]) =>{
-        this.heroes.set(response.slice(0, 3));
-        for (let index = 0; index < response.length; index++) {
+        this.heroes.set(response.slice(0, response.length));
+/*         for (let index = 0; index < response.length; index++) {
           console.log(response[index]);
-
-        }
+        } */
+        console.log(this.heroes());
       },
 
       error: error =>{
@@ -35,5 +51,12 @@ export class TopHeroesView {
         throw error;
       }
     })
+  }
+
+  textColor(value: number): string{
+      if(value > 0){
+        return "var(--success)";
+      }
+      return "var(--accent-red)";
   }
 }

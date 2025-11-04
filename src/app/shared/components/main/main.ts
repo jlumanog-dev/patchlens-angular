@@ -5,12 +5,22 @@ import { Navbar } from '../navbar/navbar';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatIcon } from "@angular/material/icon";
 import { TopHeroesView } from '../../../features/heroes/top-heroes-view/top-heroes-view';
-import { Router } from '@angular/router';
-
+import { Router, RouterOutlet } from '@angular/router';
+import { HeroInsightView } from '../../../features/heroes/hero-insight-view/hero-insight-view';
+import { FormControl } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatOption } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @Component({
   selector: 'app-main',
-  imports: [Navbar, MatTabsModule, MatIcon, TopHeroesView],
+  imports: [
+    Navbar,
+    MatTabsModule,
+    MatIcon, TopHeroesView,
+    RouterOutlet
+],
   templateUrl: './main.html',
   styleUrls: ['./main.css']
 })
@@ -19,6 +29,8 @@ export class Main {
   apiService = inject(ApiService);
   router = inject(Router);
   username = signal('');
+
+  initialTabIndex: number = 0;
 
 
   constructor(){

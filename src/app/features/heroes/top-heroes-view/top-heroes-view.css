@@ -5,27 +5,49 @@
 }
 .top-heroes-view-container > h3{
   font-weight: 100;
-  margin: 25px 0px;
+  margin: 15px 0px;
 }
 .top-heroes-view-container-flexbox{
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: space-between;
   padding: 0px 0px;
   margin: 10px 0px;
 
 }
 mat-card{
-  /* background-color: var(--bg-dark); */
-  background-image: radial-gradient(3900px, var(--bg-dark), var(--accent-gold) );
+
+  /* background-image: radial-gradient(3900px, var(--bg-dark), var(--accent-gold) ); */
+  background: linear-gradient(79deg,rgba(201, 161, 74, 0.04) 0%, rgba(27, 27, 27, 1) 54%, rgba(201, 161, 74, 0.04) 100%);
   flex-basis: auto;
   flex: 1;
-  margin: 0px 5px;
-  backdrop-filter: blur(10px);
+  margin: 5px 0px;
+}
+mat-card mat-card-title{
+  font-weight: 100;
+  font-size: 16px;
 }
 
 mat-card mat-card-subtitle{
   color: var(--text-secondary);
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 100;
 }
+mat-card mat-card-content{
+  display: flex;
+}
+mat-card mat-card-content > div{
+  display: inline-block;
+  text-align: center;
+  margin: 0px 10px;
+}
+mat-card mat-card-content > div > h3{
+  color: var(--success);
+}
+mat-card mat-card-content > div > p{
+  color: var(--text-secondary);
+  font-weight: 100;
+  font-size: 12px;
+}
+
 

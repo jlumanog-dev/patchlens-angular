@@ -2,7 +2,7 @@
   <app-navbar [username]="username()" />
   <br>
   <div>
-    <mat-tab-group class="tab-container">
+    <mat-tab-group [selectedIndex]="initialTabIndex" class="tab-container" mat-align-tabs="start" mat-stretch-tabs="false">
       <mat-tab>
         <!-- Use ng-template to be able to apply css style on label text -->
         <ng-template mat-tab-label>
@@ -11,11 +11,11 @@
           </span>
         </ng-template>
 
-        <div>
-          <app-top-heroes-view />
-          <app-top-heroes-view />
-          <app-top-heroes-view />
-          <app-top-heroes-view />
+        <div class="hero-insight-container">
+          <div class="hero-insight-view-box">
+            <router-outlet />
+          </div>
+          <app-top-heroes-view class="top-heroes-view-box" />
 
         </div>
 
@@ -25,8 +25,9 @@
           <mat-icon class="tab-label-icon" >analytics</mat-icon>
           <span class="tab-label">&nbsp;Match Analyzer</span>
         </ng-template>
-         Content 2
+                   <app-top-heroes-view class="top-heroes-view-box" />
       </mat-tab>
+
       <mat-tab>
         <ng-template mat-tab-label>
           <span class="tab-label">First</span>
@@ -34,7 +35,7 @@
          Content 3
       </mat-tab>
     </mat-tab-group>
-
+    <br>
   </div>
 
 </div>

@@ -1,10 +1,27 @@
 .background-navbar{
-  background-color: var(--bg-panel);
+  background: linear-gradient(255deg,rgba(183, 42, 26, 0.136) 0%, rgb(27, 27, 27) 50%, rgba(183, 42, 26, 0.136) 100%);
   display: flex;
-  flex-direction: row-reverse;
-  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+.mat-form-field-wrapper{
+  margin-bottom: -1.25em;
+  border-radius: 200px;
 }
 
-.button-menu {
+.account-icon {
+  font-size: 36px;
+  width: 36px;
+  margin: auto;
+}
+mat-form-field{
+  width: 40%;
+  margin: auto;
+}
+.mat-option-text{
   color: var(--text-primary);
+}
+.mat-label-text{
+  color: var(--text-secondary);
 }
