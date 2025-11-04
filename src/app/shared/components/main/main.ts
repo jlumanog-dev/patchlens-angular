@@ -12,6 +12,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOption } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { BasicHeroDataInterface } from '../../BasicHeroData';
 
 @Component({
   selector: 'app-main',
@@ -32,6 +33,7 @@ export class Main {
 
   initialTabIndex: number = 0;
 
+  heroes = signal<BasicHeroDataInterface[]>([]);
 
   constructor(){
     console.log("main component constructor");
@@ -48,5 +50,14 @@ export class Main {
           this.router.navigate(['/login']);
         }
       });
+
+    this.apiService.getAllBasicHeroesData().subscribe({
+      next: (response : BasicHeroDataInterface[]) =>{
+        this.heroes.set(response.slice(0, response.length));
+      },
+      error: (err)=>{
+        console.log(err);
+      }
+    });
   }
 }

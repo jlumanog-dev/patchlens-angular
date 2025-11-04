@@ -5,6 +5,7 @@ import { UserInterface } from "../../shared/UserInterface";
 import { catchError } from "rxjs";
 import { authenticationService } from "../../auth/auth.service";
 import { topHeroesMappedInterface } from "../../shared/TopHeroesMappedInterface";
+import { BasicHeroDataInterface } from "../../shared/BasicHeroData";
 
 @Injectable({providedIn: 'root'})
 export class ApiService{
@@ -39,6 +40,12 @@ export class ApiService{
   getTopHeroes(){
     return this.http.get<topHeroesMappedInterface[]>('http://localhost:8080/api/heroes/top-heroes', {responseType: 'json'}).pipe(catchError(error=>{
       console.log("FAILED TO RETRIEVE TOP HEROES");
+      throw error;
+    }));
+  }
+
+  getAllBasicHeroesData(){
+    return this.http.get<BasicHeroDataInterface[]>('http://localhost:8080/api/heroes/all-heroes', {responseType: 'json'}).pipe(catchError(error=>{
       throw error;
     }));
   }

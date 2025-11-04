@@ -16,12 +16,13 @@ html {
     density: 0,
   ));
 
+  /* Account mat-icon on top right corner */
   @include mat.fab-overrides((
     container-color: none,
     container-elevation-shadow: none,
     focus-container-elevation-shadow: none
   ));
-  // button with account icon and a menu for account settings and logout
+  /* button with account icon and a menu for account settings and logout */
   @include mat.menu-overrides((
       container-color: var(--bg-panel),
       item-label-text-color: var(--text-primary),
@@ -31,17 +32,19 @@ html {
   /* override color of text & background of forms and autocomplete material components */
   @include mat.form-field-overrides((
     filled-container-color: var(--bg-dark),
-    filled-container-shape: 15px,
+    filled-container-shape: 10px,
 
     //line bottom
     filled-active-indicator-height: 1px,
-    filled-active-indicator-color: var(--bg-panel),
-    filled-hover-active-indicator-color: var(--text-primary),
+    filled-active-indicator-color: var(--bg-dark),
+    filled-hover-active-indicator-color: var(--bg-panel),
 
     //text
     filled-input-text-color: var(--text-primary),
     filled-label-text-color: var(--text-secondary)
   ));
+
+
   @include mat.autocomplete-overrides((
     background-color: var(--bg-panel)
   ));
