@@ -5,6 +5,8 @@ import { Main } from './shared/components/main/main';
 import { authGuard } from './core/guards/auth-guard';
 import { guestGuard } from './core/guards/guest-guard';
 import { HeroInsightView } from './features/heroes/hero-insight-view/hero-insight-view';
+import { TabComponent } from './features/tab-component/tab-component';
+import { HeroDetail } from './features/heroes/hero-detail/hero-detail';
 
 export const routes: Routes = [
   {path: 'login', component: Login, title: "Login Page", canActivate: [guestGuard]},
@@ -16,8 +18,12 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children:[
       {
-        path: 'hero',
-        component: HeroInsightView,
+        path: '',
+        component: TabComponent
+      },
+      {
+        path: 'hero/:id',
+        component: HeroDetail,
       }
     ]
 

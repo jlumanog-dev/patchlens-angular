@@ -13,6 +13,7 @@ import { FormControl } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { filter, map, Observable, startWith } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { MatSelectChange, MatSelect } from '@angular/material/select';
 
 @Component({
   selector: 'app-navbar',
@@ -20,8 +21,9 @@ import { AsyncPipe } from '@angular/common';
     MatButtonModule, MatMenuModule,
     MatIcon, MatAutocompleteModule,
     MatOption, MatInputModule,
-    MatFormFieldModule, ReactiveFormsModule, AsyncPipe
-  ],
+    MatFormFieldModule, ReactiveFormsModule, AsyncPipe,
+    MatSelect
+],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })
@@ -53,10 +55,14 @@ export class Navbar {
     return this.allHeroes().filter(currentList => currentList.localized_name.toLowerCase().includes(input));
   }
 
+  optionSelected(name: any) : void {
+    console.log(name);
+  }
 
-    logoutMethod(){
-      console.log("delete token");
-      this.authService.deleteToken();
-      this.router.navigate(['login']);
-    }
+
+  logoutMethod(){
+    console.log("delete token");
+    this.authService.deleteToken();
+    this.router.navigate(['login']);
+  }
 }

@@ -2,39 +2,7 @@
   <app-navbar [username]="username()" [allHeroes]="heroes()" />
   <br>
   <div>
-    <mat-tab-group [selectedIndex]="initialTabIndex" class="tab-container" mat-align-tabs="start" mat-stretch-tabs="false">
-      <mat-tab>
-        <!-- Use ng-template to be able to apply css style on label text -->
-        <ng-template mat-tab-label>
-          <mat-icon class="tab-label-icon" >bolt</mat-icon>
-          <span class="tab-label"> Hero Insights
-          </span>
-        </ng-template>
-
-        <div class="hero-insight-container">
-          <div class="hero-insight-view-box">
-            <router-outlet />
-          </div>
-          <app-top-heroes-view class="top-heroes-view-box" />
-
-        </div>
-
-      </mat-tab>
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <mat-icon class="tab-label-icon" >analytics</mat-icon>
-          <span class="tab-label">&nbsp;Match Analyzer</span>
-        </ng-template>
-                   <app-top-heroes-view class="top-heroes-view-box" />
-      </mat-tab>
-
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <span class="tab-label">First</span>
-        </ng-template>
-         Content 3
-      </mat-tab>
-    </mat-tab-group>
+      <router-outlet />
     <br>
   </div>
 

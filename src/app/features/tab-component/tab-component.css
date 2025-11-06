@@ -1,0 +1,33 @@
+
+.tab-container{
+  color: var(--text-primary);
+  width: 90%;
+  border-radius: 20px;
+  padding: 15px;
+  margin: 5px auto;
+  height: 100%;
+  background-color: var(--bg-dark);
+}
+
+.tab-label{
+  color: var(--text-primary);
+  font-size: 15px;
+}
+.tab-label-icon{
+    color: var(--text-primary);
+}
+
+.hero-insight-container{
+  display: grid;
+  grid-template-areas: "box1 box2";
+  grid-template-columns: 3fr 1fr;
+}
+
+.hero-insight-container > .hero-insight-view-box{
+  grid-area: box1;
+  padding: 20px;
+}
+
+.hero-insight-container > .top-heroes-view-box{
+  grid-area: box2;
+}

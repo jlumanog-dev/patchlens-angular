@@ -18,8 +18,6 @@ import { BasicHeroDataInterface } from '../../BasicHeroData';
   selector: 'app-main',
   imports: [
     Navbar,
-    MatTabsModule,
-    MatIcon, TopHeroesView,
     RouterOutlet
 ],
   templateUrl: './main.html',
@@ -30,9 +28,6 @@ export class Main {
   apiService = inject(ApiService);
   router = inject(Router);
   username = signal('');
-
-  initialTabIndex: number = 0;
-
   heroes = signal<BasicHeroDataInterface[]>([]);
 
   constructor(){
