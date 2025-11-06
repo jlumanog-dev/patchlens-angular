@@ -25,7 +25,6 @@
 
 .hero-insight-container > .hero-insight-view-box{
   grid-area: box1;
-  padding: 20px;
 }
 
 .hero-insight-container > .top-heroes-view-box{

@@ -29,7 +29,9 @@ export class TopHeroesView {
           pub_pick : 0,
           pub_pick_trend : [],
           pub_win : 0,
-          pub_win_trend : []
+          pub_win_trend : [],
+          img: "",
+          icon: ""
         },
         winRate: 0,
         pickGrowthRateChange: 0

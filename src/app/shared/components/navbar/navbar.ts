@@ -22,7 +22,6 @@ import { MatSelectChange, MatSelect } from '@angular/material/select';
     MatIcon, MatAutocompleteModule,
     MatOption, MatInputModule,
     MatFormFieldModule, ReactiveFormsModule, AsyncPipe,
-    MatSelect
 ],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
@@ -57,6 +56,7 @@ export class Navbar {
 
   optionSelected(name: any) : void {
     console.log(name);
+    this.router.navigate(["/hero", name.localized_name]);
   }
 
 

@@ -7,7 +7,7 @@
 
     <mat-autocomplete #auto="matAutocomplete">
       @for (option of filteredHeroes | async; track option) {
-          <mat-option class="mat-option-text" (click)="optionSelected(option.localized_name)" [value]="option.localized_name">{{option.localized_name}}</mat-option>
+          <mat-option class="mat-option-text" (click)="optionSelected(option)" [value]="option.localized_name">{{option.localized_name}}</mat-option>
       }
     </mat-autocomplete>
   </mat-form-field>

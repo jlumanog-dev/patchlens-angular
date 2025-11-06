@@ -10,7 +10,9 @@ export interface topHeroesMappedInterface{
     pub_pick : number,
     pub_pick_trend : Array<number>,
     pub_win : number,
-    pub_win_trend : Array<number>
+    pub_win_trend : Array<number>,
+    img: string,
+    icon: string
   },
   winRate: number,
   pickGrowthRateChange: number
