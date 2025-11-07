@@ -4,7 +4,7 @@ import { FormGroup } from "@angular/forms";
 import { UserInterface } from "../../shared/UserInterface";
 import { catchError } from "rxjs";
 import { authenticationService } from "../../auth/auth.service";
-import { topHeroesMappedInterface } from "../../shared/TopHeroesMappedInterface";
+import { HeroMappedInterface } from "../../shared/HeroMappedInterface";
 import { BasicHeroDataInterface } from "../../shared/BasicHeroData";
 
 @Injectable({providedIn: 'root'})
@@ -38,8 +38,15 @@ export class ApiService{
   }
 
   getTopHeroes(){
-    return this.http.get<topHeroesMappedInterface[]>('http://localhost:8080/api/heroes/top-heroes', {responseType: 'json'}).pipe(catchError(error=>{
+    return this.http.get<HeroMappedInterface[]>('http://localhost:8080/api/heroes/top-heroes', {responseType: 'json'}).pipe(catchError(error=>{
       console.log("FAILED TO RETRIEVE TOP HEROES");
+      throw error;
+    }));
+  }
+
+  getHeroData(heroId : number){
+    return this.http.get<HeroMappedInterface>(`http://localhost:8080/api/heroes/${heroId}`, {responseType: 'json'}).pipe(catchError(error =>{
+      console.log("FAILED TO RETRIEVE A HERO");
       throw error;
     }));
   }
@@ -50,7 +57,7 @@ export class ApiService{
     }));
   }
 
-  
+
 
 
 

@@ -1,7 +1,5 @@
 .background-main{
-  /* background-color: var(--bg-dark); */
-/*   background: linear-gradient(169deg,rgba(183, 42, 26, 0.08) 0%, rgba(46, 46, 46, 0.293) 40%, rgba(183, 42, 26, 0.08) 150%);
- */
+
 background: linear-gradient(28deg,rgba(177, 41, 26, 0.13) 0%, rgba(27, 27, 27, 1) 49%, rgba(183, 42, 26, 0.13) 100%);
 
 }

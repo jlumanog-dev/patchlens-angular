@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 import { MatAnchor } from "@angular/material/button";
 import { ApiService } from '../../../core/services/api';
-import { topHeroesMappedInterface } from '../../../shared/TopHeroesMappedInterface';
+import { HeroMappedInterface } from '../../../shared/HeroMappedInterface';
 import { NgStyle } from '@angular/common';
 
 @Component({
@@ -17,7 +17,7 @@ export class TopHeroesView {
   heroTwo = signal<topHeroesMapped>();
   heroThree = signal<topHeroesMapped>(); */
 
-  heroes = signal<topHeroesMappedInterface[]>([{
+  heroes = signal<HeroMappedInterface[]>([{
         id: -1,
         localized_name: "",
         roles: [],
@@ -31,7 +31,10 @@ export class TopHeroesView {
           pub_win : 0,
           pub_win_trend : [],
           img: "",
-          icon: ""
+          icon: "",
+          base_str: 0,
+          base_agi: 0,
+          base_int: 0
         },
         winRate: 0,
         pickGrowthRateChange: 0
@@ -40,7 +43,7 @@ export class TopHeroesView {
 
   constructor(){
     this.apiService.getTopHeroes().subscribe({
-      next: (response : topHeroesMappedInterface[]) =>{
+      next: (response : HeroMappedInterface[]) =>{
         this.heroes.set(response.slice(0, response.length));
 /*         for (let index = 0; index < response.length; index++) {
           console.log(response[index]);

@@ -46,6 +46,9 @@ export class Navbar {
     */
     this.filteredHeroes = this.SearchFormControl.valueChanges.pipe(startWith(''), map(input => this.filterHandler(input || '')))
   }
+  ngOnChanges(){
+    this.SearchFormControl.reset();
+  }
 
   //this handler will return a new filtered array of type BasicHeroDataInterface,
   //based on how close the user input is to a hero's localized_name
@@ -55,8 +58,7 @@ export class Navbar {
   }
 
   optionSelected(name: any) : void {
-    console.log(name);
-    this.router.navigate(["/hero", name.localized_name]);
+    this.router.navigate(["/hero", name.id]);
   }
 
 

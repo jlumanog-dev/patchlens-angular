@@ -1,4 +1,4 @@
-export interface topHeroesMappedInterface{
+export interface HeroMappedInterface{
   id: number,
   localized_name: string,
   roles: Array<string>,
@@ -12,7 +12,10 @@ export interface topHeroesMappedInterface{
     pub_win : number,
     pub_win_trend : Array<number>,
     img: string,
-    icon: string
+    icon: string,
+    base_str: number,
+    base_agi: number,
+    base_int: number
   },
   winRate: number,
   pickGrowthRateChange: number

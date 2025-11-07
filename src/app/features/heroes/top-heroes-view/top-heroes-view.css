@@ -1,7 +1,6 @@
 .top-heroes-view-container{
   margin: 10px;
   padding: 10px 10px;
-  border-radius: 10px;
 }
 .top-heroes-view-container > h3{
   font-weight: 100;
@@ -15,14 +14,10 @@
   margin: 10px 0px;
 }
 mat-card{
-
-  /* background-image: radial-gradient(3900px, var(--bg-dark), var(--accent-gold) ); */
-  background: linear-gradient(79deg,rgba(201, 161, 74, 0.04) 0%, rgba(27, 27, 27, 1) 54%, rgba(201, 161, 74, 0.04) 100%);
+  background: linear-gradient(255deg,rgba(183, 42, 26, 0.078) 0%, rgb(27, 27, 27) 50%, rgba(183, 42, 26, 0.048) 100%);
   flex-basis: auto;
   flex: 1;
   margin: 5px 0px;
-}
-mat-card mat-card-header{
 }
 
 mat-card .header-image{
@@ -30,7 +25,7 @@ mat-card .header-image{
   height: 100%;
   object-fit: cover;
   object-position: center;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 mat-card mat-card-title{

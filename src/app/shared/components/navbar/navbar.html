@@ -1,13 +1,16 @@
 <div class="background-navbar" >
+  <div class="logo-box">
+    <img src="/logo.png" alt="">
+  </div>
   <mat-form-field class="mat-form-field-wrapper">
     <mat-label>Search a Hero</mat-label>
 
-    <input type="text" matInput [formControl]="SearchFormControl"  [matAutocomplete]="auto" />
+    <input type="text" matInput [formControl]="SearchFormControl" [matAutocomplete]="auto" />
 
 
     <mat-autocomplete #auto="matAutocomplete">
       @for (option of filteredHeroes | async; track option) {
-          <mat-option class="mat-option-text" (click)="optionSelected(option)" [value]="option.localized_name">{{option.localized_name}}</mat-option>
+          <mat-option class="mat-option-text" (onSelectionChange)="optionSelected(option)" [value]="option.localized_name">{{option.localized_name}}</mat-option>
       }
     </mat-autocomplete>
   </mat-form-field>

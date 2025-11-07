@@ -1,38 +1,38 @@
 .hero-detail-component-one{
   color: var(--text-primary);
   width: 70%;
-  border-radius: 20px;
   padding: 15px;
   margin: 5px auto;
-  height: 100%;
-  background-color: var(--bg-dark);
+  /* background-color: var(--bg-dark); */
+  background: linear-gradient(79deg,rgba(201, 161, 74, 0.04) 0%, rgba(27, 27, 27, 1) 54%, rgba(201, 161, 74, 0.04) 100%);
+
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
 .hero-detail-component-one > .hero-detail-component-one-box1{
- display: flex;
+  width: 80%;
+  margin: auto;
 }
-.hero-detail-component-one > .hero-detail-component-one-box1 > .hero-detail-component-one-box1-avatar{
-  width: 40%;
-  background-color: var(--bg-panel);
-  margin: 10px 10px;
+.hero-detail-component-one > .hero-detail-component-one-box1 > .hero-detail-component-one-box1-avatar > img{
+  border-radius: 20px;
 }
 .hero-detail-component-one > .hero-detail-component-one-box1 > .hero-detail-component-one-box1-hero-stats{
-  margin: 10px auto;
   width: 80%;
 }
-.hero-detail-component-one > .hero-detail-component-one-box1 > div > table{
-  width: 60%;
-  font-weight: 100;
+.hero-detail-component-one > .hero-detail-component-one-box1 > .hero-detail-component-one-box1-hero-stats > .name-role-box > h1, p{
+  margin: 7px 0px;
 }
-.hero-detail-component-one > .hero-detail-component-one-box1 > div > table > tr > td{
-  padding: 10px;
+.hero-detail-component-one > .hero-detail-component-one-box1 > .hero-detail-component-one-box1-hero-stats > .table-box p{
+  font-size: 18px;
+}
+.hero-detail-component-one > .hero-detail-component-one-box1 > .hero-detail-component-one-box1-hero-stats > .table-box > table {
+  width: 80%;
 }
 
-.hero-detail-component-one > .hero-detail-component-box2{
+/* .hero-detail-component-one > .hero-detail-component-box2{
 
-}
+} */
 .hero-detail-component-one > .hero-detail-component-one-box2 > div{
 
   display: block;
@@ -50,11 +50,15 @@
 .hero-detail-component-two > .hero-detail-component-two-metrics-container{
   display: flex;
   justify-content: space-around;
-  background-color: red;
 }
-.hero-detail-component-two > .hero-detail-component-two-metrics-container > .hero-detail-component-two-metrics-box{
-  background: linear-gradient(79deg,rgba(201, 161, 74, 0.04) 0%, rgba(27, 27, 27, 1) 54%, rgba(201, 161, 74, 0.04) 100%);
-  padding: 20px;
-  flex-basis: 100%;
-  margin: 10px;
+mat-card{
+    background: linear-gradient(79deg,rgba(201, 161, 74, 0.04) 0%, rgba(27, 27, 27, 1) 54%, rgba(201, 161, 74, 0.04) 100%);
+    padding: 20px;
+    flex-basis: 100%;
+    margin: 10px;
+    border-radius: 20px;
 }
+/* .hero-detail-component-two > .hero-detail-component-two-metrics-container > .hero-detail-component-two-metrics-box{
+
+
+} */

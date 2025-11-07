@@ -1,19 +1,30 @@
 .background-navbar{
   background: linear-gradient(255deg,rgba(183, 42, 26, 0.136) 0%, rgb(27, 27, 27) 50%, rgba(183, 42, 26, 0.048) 100%);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 5px;
   border-bottom: 1px solid var(--bg-panel);
-
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 55px;
+}
+.logo-box{
+  height: 80%;
+  margin-left: 20px;
+}
+.logo-box > img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 .mat-form-field-wrapper{
   margin-bottom: -1.25em;
 }
 
 .account-icon {
-  font-size: 36px;
   width: 36px;
+  height: 36px;
+  font-size: 36px;
   margin: auto;
 }
 mat-form-field{
