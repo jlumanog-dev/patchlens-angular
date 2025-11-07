@@ -53,12 +53,11 @@
 }
 mat-card{
     background: linear-gradient(79deg,rgba(201, 161, 74, 0.04) 0%, rgba(27, 27, 27, 1) 54%, rgba(201, 161, 74, 0.04) 100%);
-    padding: 20px;
+    padding: 17px;
     flex-basis: 100%;
-    margin: 10px;
+    margin: 10px 5px;
     border-radius: 20px;
 }
-/* .hero-detail-component-two > .hero-detail-component-two-metrics-container > .hero-detail-component-two-metrics-box{
-
-
-} */
+.hero-detail-component-two > .hero-detail-component-two-metrics-container .hero-detail-component-two-metrics-box{
+  text-align: center;
+}

@@ -18,5 +18,8 @@ export interface HeroMappedInterface{
     base_int: number
   },
   winRate: number,
-  pickGrowthRateChange: number
+  pickGrowthRateChange: number,
+  winGrowthRateChange: number,
+  trendStdDev: number
+
 }

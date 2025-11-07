@@ -37,7 +37,9 @@ export class TopHeroesView {
           base_int: 0
         },
         winRate: 0,
-        pickGrowthRateChange: 0
+        pickGrowthRateChange: 0,
+        winGrowthRateChange: 0,
+        trendStdDev: 0
   }]);
 
 

@@ -33,10 +33,13 @@ export class HeroDetail {
           icon: "",
           base_str: 0,
           base_agi: 0,
-          base_int: 0
+          base_int: 0,
+
         },
         winRate: 0,
-        pickGrowthRateChange: 0
+        pickGrowthRateChange: 0,
+        winGrowthRateChange: 0,
+        trendStdDev: 0
   });
 
   baseUrl = signal("http://cdn.dota2.com/");
