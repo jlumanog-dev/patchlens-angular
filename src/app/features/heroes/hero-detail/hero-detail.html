@@ -107,13 +107,9 @@
     <h2>Trend Chart</h2>
     <div class="hero-detail-component-three-trendbox">
       <mat-card>
-        <h3>Pick Trend</h3>
         @if(heroData().id != -1){
-          <app-line-chart-component [pub_pick_trend]="heroData().heroStats.pub_pick_trend" [pub_win_trend]="heroData().heroStats.pub_pick_trend"/>
+          <app-line-chart-component [pub_pick_trend]="heroData().heroStats.pub_pick_trend" [pub_win_trend]="heroData().heroStats.pub_win_trend"/>
         }
-      </mat-card>
-      <mat-card>
-        <h3>Win Trend</h3>
       </mat-card>
     </div>
   </div>

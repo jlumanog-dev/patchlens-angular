@@ -37,7 +37,6 @@
 
 } */
 .hero-detail-component-one > .hero-detail-component-one-box2 > div{
-
   display: block;
   margin: 10px auto;
   width: 50%;
@@ -73,9 +72,8 @@ mat-card{
   color: var(--text-primary);
 }
 
-.hero-detail-component-three > .hero-detail-component-three-trendbox{
-  display: flex;
-}
+/* .hero-detail-component-three > .hero-detail-component-three-trendbox{
+} */
 
 .hero-detail-component-four {
   width: 70%;

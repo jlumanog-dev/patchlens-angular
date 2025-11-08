@@ -1,6 +1,6 @@
-import { Component, input } from '@angular/core';
-import { ChartConfiguration } from 'chart.js';
-import { BaseChartDirective } from "ng2-charts";
+import { Component, input, signal, ViewChild } from '@angular/core';
+import { ChartConfiguration, ChartType } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
   selector: 'app-line-chart-component',
@@ -9,31 +9,54 @@ import { BaseChartDirective } from "ng2-charts";
   styleUrl: './line-chart-component.css'
 })
 export class LineChartComponent {
-  pub_win_trend = input<number[]>([0,0,0,0,0,0]);
+  pub_win_trend = input<number[]>([]);
+  pub_win_trend_array = signal<number[]>([]);
+
   pub_pick_trend = input<number[]>([]);
+  pub_pick_trend_array = signal<number[]>([]);
 
-  //unwrapping value from an angular signal to a standard JS array to assign it to a property.
-  pub_win_trend_array: number[] = this.pub_win_trend();
-  pub_pick_trend_array: number[] = this.pub_pick_trend();
 
-  ngOnInit(){
-    console.log(this.pub_pick_trend_array);
+  //definite assign operator (!) tells angular the 'chart' will get assigned later
+  @ViewChild(BaseChartDirective) chart!: BaseChartDirective;
+
+  ngOnChanges(){
+    //unwrapping value from an angular signal to a standard JS array to assign it to a property.
+    this.pub_pick_trend_array.set(this.pub_pick_trend());
+    this.pub_win_trend_array.set(this.pub_win_trend());
+    console.log(this.pub_win_trend_array());
+    this.lineChartData.datasets[0].data = this.pub_win_trend_array();
+    this.lineChartData.datasets[1].data = this.pub_pick_trend_array();
+    this.chart?.update();
   }
 
-  lineChartData: ChartConfiguration<'line'>['data'] = {
-    labels: ['1','2','3','4','5','6'],   // match array length
+
+  lineChartData: ChartConfiguration['data'] = {
+    labels: ['1','2','3','4','5','6', '7'],   // match array length
     datasets: [
       {
-        data: this.pub_win_trend_array,
+        data: this.pub_win_trend_array(),
         label: 'Win Trend',
-        fill: true,
+        fill: false,
+      },
+      {
+        data: this.pub_pick_trend_array(),
+        label: 'Pick Trend',
+        fill: false,
       },
     ]
   };
 
-  lineChartOptions: ChartConfiguration<'line'>['options'] = {
-    responsive: true
+  lineChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    maintainAspectRatio: true,
+    scales:{
+      y:{
+        
+      }
+    }
   };
+
+  chartType: ChartType = 'line';
 
 
 }
