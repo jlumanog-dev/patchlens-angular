@@ -4,6 +4,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { AuthInterceptor } from './core/interceptor/AuthInterceptor';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,6 +16,6 @@ export const appConfig: ApplicationConfig = {
       withInterceptors([
         AuthInterceptor
       ])
-    ),
+    ), provideCharts(withDefaultRegisterables()),
   ]
 };

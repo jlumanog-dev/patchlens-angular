@@ -1,5 +1,4 @@
-<br>
-<div>
+<div class="hero-detail-container">
   <mat-card class="hero-detail-component-one">
     <div class="hero-detail-component-one-box1">
       <div class="hero-detail-component-one-box1-avatar">
@@ -65,7 +64,6 @@
 
   <div class="hero-detail-component-two">
     <h2>Performance Metrics</h2>
-    <br>
     <div class="hero-detail-component-two-metrics-container">
       <mat-card>
         <mat-card-content>
@@ -84,7 +82,7 @@
           </div>
         </mat-card-content>
       </mat-card>
-      
+
       <mat-card>
         <mat-card-content>
           <div class="hero-detail-component-two-metrics-box">
@@ -104,5 +102,29 @@
       </mat-card>
     </div>
   </div>
+
+  <div class="hero-detail-component-three">
+    <h2>Trend Chart</h2>
+    <div class="hero-detail-component-three-trendbox">
+      <mat-card>
+        <h3>Pick Trend</h3>
+        @if(heroData().id != -1){
+          <app-line-chart-component [pub_pick_trend]="heroData().heroStats.pub_pick_trend" [pub_win_trend]="heroData().heroStats.pub_pick_trend"/>
+        }
+      </mat-card>
+      <mat-card>
+        <h3>Win Trend</h3>
+      </mat-card>
+    </div>
+  </div>
+
+    <div class="hero-detail-component-four">
+      <h2>AI Summary</h2>
+      <div class="hero-detail-component-four-trendbox">
+        <mat-card>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque consequuntur facere itaque aut, enim repellat cum quas eveniet in est repellendus dicta odit molestias. Molestias quod suscipit eligendi placeat magnam.</p>
+        </mat-card>
+      </div>
+    </div>
 </div>
 

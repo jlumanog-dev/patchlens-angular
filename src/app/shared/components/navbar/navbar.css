@@ -1,5 +1,5 @@
 .background-navbar{
-  background: linear-gradient(255deg,rgba(183, 42, 26, 0.136) 0%, rgb(27, 27, 27) 50%, rgba(183, 42, 26, 0.048) 100%);
+  background: linear-gradient(255deg,rgba(183, 42, 26, 0.059) 0%, rgb(27, 27, 27) 50%, rgba(183, 42, 26, 0.048) 100%);
   display: flex;
   padding: 5px;
   border-bottom: 1px solid var(--bg-panel);

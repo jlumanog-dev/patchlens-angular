@@ -4,10 +4,11 @@ import { MatCardModule } from '@angular/material/card';
 import { ApiService } from '../../../core/services/api';
 import { HeroMappedInterface } from '../../../shared/HeroMappedInterface';
 import { NgStyle } from '@angular/common';
+import { LineChartComponent } from '../../../shared/components/charts/line-chart-component/line-chart-component';
 
 @Component({
   selector: 'app-hero-detail',
-  imports: [MatCardModule, NgStyle],
+  imports: [MatCardModule, NgStyle, LineChartComponent],
   templateUrl: './hero-detail.html',
   styleUrl: './hero-detail.css'
 })
