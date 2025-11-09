@@ -9,7 +9,7 @@ import { DoughnutChartComponent } from '../../../shared/components/charts/doughn
 import { ChangeDetectionStrategy } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from "@angular/material/icon";
-import { interval, take } from 'rxjs';
+import { interval, Observable, Subscription, take } from 'rxjs';
 
 @Component({
   selector: 'app-hero-detail',
@@ -56,12 +56,21 @@ export class HeroDetail {
   fullText: string = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt cum unde veniam eos perspiciatis! Odit atque tenetur ipsa nam non?';
   displayText = '';
 
+/*   this is for the typing effect to have control over the interval async process
+  so that typing can stop and reset the text when the user
+  click the expansion-panel again to close it */
+  typingEffectAsync?: Subscription;
+
   ngOnInit(){
     this.getHeroMethod();
   }
 
   expansionMethod(){
-    interval(30).pipe(take(this.fullText.length)).subscribe(index => this.displayText += this.fullText[index])
+    this.typingEffectAsync?.unsubscribe(); // unsubscribe just in case the
+    this.displayText = '';
+    this.typingEffectAsync = interval(10).pipe(take(this.fullText.length)).subscribe(index => {
+      this.displayText += this.fullText[index];
+    });
   }
 
   getHeroMethod(){
