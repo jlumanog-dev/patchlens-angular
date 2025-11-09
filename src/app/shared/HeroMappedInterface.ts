@@ -11,6 +11,8 @@ export interface HeroMappedInterface{
     pub_pick_trend : Array<number>,
     pub_win : number,
     pub_win_trend : Array<number>,
+    pro_pick: number,
+    pro_win: number,
     img: string,
     icon: string,
     base_str: number,

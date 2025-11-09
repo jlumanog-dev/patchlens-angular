@@ -5,10 +5,15 @@ import { ApiService } from '../../../core/services/api';
 import { HeroMappedInterface } from '../../../shared/HeroMappedInterface';
 import { NgStyle } from '@angular/common';
 import { LineChartComponent } from '../../../shared/components/charts/line-chart-component/line-chart-component';
+import { DoughnutChartComponent } from '../../../shared/components/charts/doughnut-chart-component/doughnut-chart-component';
+import { ChangeDetectionStrategy } from '@angular/core';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from "@angular/material/icon";
+import { interval, take } from 'rxjs';
 
 @Component({
   selector: 'app-hero-detail',
-  imports: [MatCardModule, NgStyle, LineChartComponent],
+  imports: [MatCardModule, NgStyle, LineChartComponent, DoughnutChartComponent, MatExpansionModule, MatIconModule],
   templateUrl: './hero-detail.html',
   styleUrl: './hero-detail.css'
 })
@@ -30,6 +35,8 @@ export class HeroDetail {
           pub_pick_trend : [],
           pub_win : 0,
           pub_win_trend : [],
+          pro_pick: 0,
+          pro_win: 0,
           img: "",
           icon: "",
           base_str: 0,
@@ -46,8 +53,15 @@ export class HeroDetail {
   baseUrl = signal("http://cdn.dota2.com/");
   fullPath = computed(() => this.baseUrl() + this.heroData().heroStats.img);
 
+  fullText: string = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt cum unde veniam eos perspiciatis! Odit atque tenetur ipsa nam non?';
+  displayText = '';
+
   ngOnInit(){
     this.getHeroMethod();
+  }
+
+  expansionMethod(){
+    interval(30).pipe(take(this.fullText.length)).subscribe(index => this.displayText += this.fullText[index])
   }
 
   getHeroMethod(){
@@ -61,7 +75,17 @@ export class HeroDetail {
     }))
 
   }
-  textColor(value: number): string{
+
+  overallWinRateColorSet(value: number){
+    if(value >= 50){
+      return "var(--success)";
+    }else if(value >= 46){
+      return "var(--accent-gold)";
+    }else{
+      return "var(--accent-red)";
+    }
+  }
+  growthRateColorSet(value: number): string{
     if(value > 0){
       return "var(--success)";
     }

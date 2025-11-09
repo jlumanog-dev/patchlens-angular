@@ -1,4 +1,22 @@
 <div class="hero-detail-container">
+  <!-- using mat-accordion to apply space between
+   header description and mat-icon via
+   .mat-expansion-panel-header-description CSS class -->
+  <mat-accordion>
+    <mat-expansion-panel (click)="expansionMethod()" hideToggle class="hero-detail-component-ai-summary-container">
+      <mat-expansion-panel-header >
+        <mat-panel-title>AI Summary</mat-panel-title>
+        <mat-panel-description>
+          Click to view a summary of {{heroData().localized_name}}'s Performance and Trend metrics
+          <mat-icon>expand_circle_down</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="hero-detail-component-ai-summary-content-box">
+        <p>{{displayText}}</p>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <br>
   <mat-card class="hero-detail-component-one">
     <div class="hero-detail-component-one-box1">
       <div class="hero-detail-component-one-box1-avatar">
@@ -14,50 +32,69 @@
           <table>
             <tr>
               <td>
-                <p>Base Strength: </p>
+                <div class="table-box-td-flexbox">
+                  <img src="https://cdn.steamstatic.com/apps/dota2/images/dota_react/icons/hero_strength.png" alt="">
+                  <p>Base Strength: </p>
+                </div>
               </td>
               <td>
-                <p>{{heroData().heroStats.base_str}}</p>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <p>Base Agility: </p>
-              </td>
-              <td>
-                <p>{{heroData().heroStats.base_agi}}</p>
+                <h3>{{heroData().heroStats.base_str}}</h3>
               </td>
             </tr>
             <tr>
               <td>
-                <p>Base intelligence: </p>
+                <div class="table-box-td-flexbox">
+                  <img src="https://cdn.steamstatic.com/apps/dota2/images/dota_react/icons/hero_agility.png" alt="">
+                  <p>Base Agility: </p>
+                </div>
               </td>
               <td>
-                <p>{{heroData().heroStats.base_int}}</p>
+                <h3>{{heroData().heroStats.base_agi}}</h3>
               </td>
             </tr>
             <tr>
               <td>
-                <p>Movement Speed: </p>
+                <div class="table-box-td-flexbox">
+                  <img src="https://cdn.steamstatic.com/apps/dota2/images/dota_react/icons/hero_intelligence.png" alt="">
+                  <p>Base intelligence: </p>
+                </div>
               </td>
               <td>
-                <p>{{heroData().heroStats.move_speed}}</p>
+                <h3>{{heroData().heroStats.base_int}}</h3>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-box-td-flexbox">
+                  <img src="https://cdn.steamstatic.com/apps/dota2/images/dota_react//heroes/stats/icon_movement_speed.png" alt="">
+                  <p>Movement Speed: </p>
+                </div>
+              </td>
+              <td>
+                <h3>{{heroData().heroStats.move_speed}}</h3>
               </td>
             </tr>
 
           </table>
         </div>
-
       </div>
     </div>
 
     <div class="hero-detail-component-one-box2">
-      <div>
-        <h1>Overall Winrate</h1>
-      </div>
-      <div>
-        <p>Total: </p>
-        <p>Total Wins: </p>
+      <app-doughnut-chart-component [totalWinsInput]="heroData().heroStats.pub_win" [TotalGamesInput]="heroData().heroStats.pub_pick"/>
+      <br>
+        <h2 id="doughnutWinrateTitleId">Overall Win-Lose Ratio</h2>
+      <div id="doughnutTotalWinsBox">
+        <table>
+          <tr>
+            <td> <p>Total Games: </p></td>
+            <td><p>{{heroData().heroStats.pub_pick}}</p></td>
+          </tr>
+          <tr>
+            <td> <p>Total Wins: </p> </td>
+            <td>{{heroData().heroStats.pub_win}}</td>
+          </tr>
+        </table>
       </div>
     </div>
   </mat-card>
@@ -68,7 +105,9 @@
       <mat-card>
         <mat-card-content>
           <div class="hero-detail-component-two-metrics-box">
-            <h1>{{heroData().winRate.toFixed(2)}}% </h1>
+            <h1 [ngStyle]="{'color': overallWinRateColorSet(heroData().winRate)}">
+              {{heroData().winRate.toFixed(2)}}%
+            </h1>
             <p>Overall Win Rate</p>
           </div>
         </mat-card-content>
@@ -86,8 +125,13 @@
       <mat-card>
         <mat-card-content>
           <div class="hero-detail-component-two-metrics-box">
-            <h1 [ngStyle]="{'color': textColor(heroData().pickGrowthRateChange) }" >{{heroData().pickGrowthRateChange.toFixed(2)}}%</h1>
-            <p>Pick Rate Changes</p>
+            <h2 >
+              <span [ngStyle]="{'color': growthRateColorSet(heroData().pickGrowthRateChange) }">
+                {{heroData().pickGrowthRateChange.toFixed(2)}}%
+              </span>
+               | <span [ngStyle]="{'color': growthRateColorSet(heroData().winGrowthRateChange) }">{{heroData().winGrowthRateChange.toFixed(2)}}% </span>
+               </h2>
+            <p>Pick and Win Rate Changes</p>
           </div>
         </mat-card-content>
       </mat-card>
@@ -114,13 +158,5 @@
     </div>
   </div>
 
-    <div class="hero-detail-component-four">
-      <h2>AI Summary</h2>
-      <div class="hero-detail-component-four-trendbox">
-        <mat-card>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque consequuntur facere itaque aut, enim repellat cum quas eveniet in est repellendus dicta odit molestias. Molestias quod suscipit eligendi placeat magnam.</p>
-        </mat-card>
-      </div>
-    </div>
 </div>
 

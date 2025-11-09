@@ -1,5 +1,5 @@
 import { Component, input, signal, ViewChild } from '@angular/core';
-import { ChartConfiguration, ChartType } from 'chart.js';
+import { ChartConfiguration } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
@@ -16,14 +16,17 @@ export class LineChartComponent {
   pub_pick_trend_array = signal<number[]>([]);
 
 
-  //definite assign operator (!) tells angular the 'chart' will get assigned later
+  /* definite assign operator (!) tells angular the 'chart' will get assigned later
+  chart is used to updated the line chart on ngOnChanegs */
   @ViewChild(BaseChartDirective) chart!: BaseChartDirective;
+
+  chartType: ChartConfiguration<'line'>['type'] = 'line';
+
 
   ngOnChanges(){
     //unwrapping value from an angular signal to a standard JS array to assign it to a property.
     this.pub_pick_trend_array.set(this.pub_pick_trend());
     this.pub_win_trend_array.set(this.pub_win_trend());
-    console.log(this.pub_win_trend_array());
     this.lineChartData.datasets[0].data = this.pub_win_trend_array();
     this.lineChartData.datasets[1].data = this.pub_pick_trend_array();
     this.chart?.update();
@@ -31,15 +34,15 @@ export class LineChartComponent {
 
 
   lineChartData: ChartConfiguration['data'] = {
-    labels: ['1','2','3','4','5','6', '7'],   // match array length
+    labels: ['1','2','3','4','5','6'],   // match array length
     datasets: [
       {
-        data: this.pub_win_trend_array(),
+        data: [],
         label: 'Win Trend',
         fill: false,
       },
       {
-        data: this.pub_pick_trend_array(),
+        data: [],
         label: 'Pick Trend',
         fill: false,
       },
@@ -49,14 +52,6 @@ export class LineChartComponent {
   lineChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     maintainAspectRatio: true,
-    scales:{
-      y:{
-        
-      }
-    }
   };
-
-  chartType: ChartType = 'line';
-
 
 }

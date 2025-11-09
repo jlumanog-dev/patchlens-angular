@@ -15,6 +15,11 @@ html {
     typography: Roboto,
     density: 0,
   ));
+  /* expansion panel for AI sumnary */
+    @include mat.expansion-overrides((
+      header-text-color: var(--text-primary),
+      header-description-color: var(--text-secondary)
+  ));
 
   /* Account mat-icon on top right corner */
   @include mat.fab-overrides((

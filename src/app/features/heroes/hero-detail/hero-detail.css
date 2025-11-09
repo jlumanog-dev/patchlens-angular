@@ -1,3 +1,34 @@
+
+
+/* this class isn't used by any container in the hero-detail.html
+but it stil applies somehow to create space between header description and mat-icon */
+.mat-expansion-panel-header-description  {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero-detail-component-ai-summary-container {
+  width: 70%;
+  margin: auto;
+  color: var(--text-primary);
+  background-color: var(--bg-dark);
+  border: 1px solid var(--bg-panel);
+}
+.hero-detail-component-ai-summary-content-box{
+  padding: 20px;
+}
+
+
+mat-card{
+    background: linear-gradient(79deg,rgba(201, 161, 74, 0.015) 0%, rgba(27, 27, 27, 0.662) 60%, rgba(201, 161, 74, 0.021) 100%);
+    padding: 17px;
+    flex-basis: 100%;
+    margin: 10px 5px;
+    border-radius: 20px;
+    border: 1px solid var(--bg-panel);
+    font-weight: 100;
+}
+
 .hero-detail-container h1, h2, p{
   font-weight: 100;
 }
@@ -7,9 +38,6 @@
   width: 70%;
   padding: 15px;
   margin: 1px auto;
-  /* background-color: var(--bg-dark); */
-  background: linear-gradient(79deg,rgba(201, 161, 74, 0.04) 0%, rgba(27, 27, 27, 1) 54%, rgba(201, 161, 74, 0.04) 100%);
-
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -26,6 +54,16 @@
 .hero-detail-component-one > .hero-detail-component-one-box1 > .hero-detail-component-one-box1-hero-stats > .name-role-box > h1, p{
   margin: 7px 0px;
 }
+
+.hero-detail-component-one > .hero-detail-component-one-box1 > .hero-detail-component-one-box1-hero-stats > .table-box{
+  background-color: var(--bg-dark);
+  border-radius: 20px;
+  border: 1px solid var(--bg-panel);
+  padding: 10px;
+  flex-basis: 100%;
+  font-weight: 100;
+}
+
 .hero-detail-component-one > .hero-detail-component-one-box1 > .hero-detail-component-one-box1-hero-stats > .table-box p{
   font-size: 15px;
 }
@@ -33,20 +71,52 @@
   width: 80%;
 }
 
+.hero-detail-component-one > .hero-detail-component-one-box1 > .hero-detail-component-one-box1-hero-stats > .table-box > table .table-box-td-flexbox{
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.hero-detail-component-one > .hero-detail-component-one-box1 > .hero-detail-component-one-box1-hero-stats > .table-box > table img{
+  height: 15%;
+  width: 15%;
+  display: block;
+  margin-right: 5px;
+}
+
 /* .hero-detail-component-one > .hero-detail-component-box2{
 
 } */
-.hero-detail-component-one > .hero-detail-component-one-box2 > div{
+.hero-detail-component-one > .hero-detail-component-one-box2{
   display: block;
   margin: 10px auto;
   width: 50%;
+}
+.hero-detail-component-one > .hero-detail-component-one-box2 > #doughnutWinrateTitleId{
+  text-align: center;
+  margin: 10px 0px;
+}
+.hero-detail-component-one > .hero-detail-component-one-box2 > #doughnutTotalWinsBox{
+  width: 70%;
+  margin: auto;
+  background-color: var(--bg-dark);
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid var(--bg-panel);
+}
+.hero-detail-component-one > .hero-detail-component-one-box2 > #doughnutTotalWinsBox > table{
+  width: 100%;
+}
+
+.hero-detail-component-one > .hero-detail-component-one-box2 >{
+  text-align: center;
 }
 
 
 
 .hero-detail-component-two{
   width: 70%;
-  margin: 30px auto;
+  margin: 50px auto;
   color: var(--text-primary);
 }
 
@@ -54,13 +124,7 @@
   display: flex;
   justify-content: space-around;
 }
-mat-card{
-    background: linear-gradient(79deg,rgba(201, 161, 74, 0.04) 0%, rgba(27, 27, 27, 1) 54%, rgba(201, 161, 74, 0.04) 100%);
-    padding: 17px;
-    flex-basis: 100%;
-    margin: 10px 5px;
-    border-radius: 20px;
-}
+
 .hero-detail-component-two > .hero-detail-component-two-metrics-container .hero-detail-component-two-metrics-box{
   text-align: center;
 }
@@ -68,16 +132,10 @@ mat-card{
 .hero-detail-component-three{
   width: 70%;
   padding: 15px;
-  margin: 1px auto;
+  margin: 0px auto;
   color: var(--text-primary);
 }
 
 /* .hero-detail-component-three > .hero-detail-component-three-trendbox{
 } */
-
-.hero-detail-component-four {
-  width: 70%;
-  margin: auto;
-  color: var(--text-primary);
-}
 
