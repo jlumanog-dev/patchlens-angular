@@ -19,11 +19,13 @@ export const routes: Routes = [
     children:[
       {
         path: '',
-        component: TabComponent
+        component: TabComponent,
+        canActivate: [authGuard],
       },
       {
         path: 'hero/:id',
         component: HeroDetail,
+        canActivate: [authGuard],
       }
     ]
 

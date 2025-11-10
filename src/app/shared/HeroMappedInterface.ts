@@ -22,6 +22,7 @@ export interface HeroMappedInterface{
   winRate: number,
   pickGrowthRateChange: number,
   winGrowthRateChange: number,
-  trendStdDev: number
+  trendStdDev: number,
+  disparityScore: number;
 
 }

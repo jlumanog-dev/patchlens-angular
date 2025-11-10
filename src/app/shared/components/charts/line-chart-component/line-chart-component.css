@@ -1,5 +1,5 @@
 .line-chart-box{
-  height: 80%;
+  height: 400px;
   width: 100%;
 }
 .line-chart-box > canvas{

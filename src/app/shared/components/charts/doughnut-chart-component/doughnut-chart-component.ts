@@ -22,7 +22,7 @@ export class DoughnutChartComponent {
 
   ngOnChanges(){
     this.totalWinsAndGames.set([(this.TotalGamesInput() - this.totalWinsInput()), this.totalWinsInput(), 0, 0]);
-    this.totalProWinsAndGames.set([0, 0, (this.totalProPickInput() - this.totalProWinInput()), this.totalProPickInput()]);
+    this.totalProWinsAndGames.set([0, 0, (this.totalProPickInput() - this.totalProWinInput()), this.totalProWinInput()]);
     this.doughnutChartDataset[0].data = this.totalWinsAndGames();
     this.doughnutChartDataset[1].data = this.totalProWinsAndGames();
     this.chart?.update();
@@ -53,7 +53,7 @@ export class DoughnutChartComponent {
     cutout: '65%',
     plugins:{
       legend: {
-        position: 'bottom',
+        position: 'right',
         labels:{
           padding: 20,
         }

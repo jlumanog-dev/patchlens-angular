@@ -41,7 +41,8 @@ export class TopHeroesView {
         winRate: 0,
         pickGrowthRateChange: 0,
         winGrowthRateChange: 0,
-        trendStdDev: 0
+        trendStdDev: 0,
+        disparityScore: 0
   }]);
 
 

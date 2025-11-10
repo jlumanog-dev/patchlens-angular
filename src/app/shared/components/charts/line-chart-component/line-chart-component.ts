@@ -51,7 +51,12 @@ export class LineChartComponent {
 
   lineChartOptions: ChartConfiguration['options'] = {
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
+    plugins:{
+      legend: {
+        maxHeight: 100
+      }
+    }
   };
 
 }

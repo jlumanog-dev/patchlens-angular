@@ -46,7 +46,8 @@ export class HeroDetail {
         winRate: 0,
         pickGrowthRateChange: 0,
         winGrowthRateChange: 0,
-        trendStdDev: 0
+        trendStdDev: 0,
+        disparityScore: 0
   });
 
   baseUrl = signal("http://cdn.dota2.com/");
@@ -57,7 +58,7 @@ export class HeroDetail {
 
 /*   this is for the typing effect to have control over the interval async process
   so that typing can stop and reset the text when the user
-  click the expansion-panel again to close it */
+  click the expansion-panel again to close it - manually stop async op using unsubscribe()*/
   typingEffectAsync?: Subscription;
 
   //MatExpansionPanel = used to close the expansion-panel when rendering another hero data.

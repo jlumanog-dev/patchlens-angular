@@ -81,18 +81,19 @@
     </div>
 
     <div class="hero-detail-component-one-box2">
-      <h2 id="doughnutWinrateTitleId">Win-Lose Chart Ratio</h2>
+      <h3 id="doughnutWinrateTitleId">Win-Lose Chart Ratio</h3>
+      <br>
       <app-doughnut-chart-component [totalProPickInput]="heroData().heroStats.pro_pick" [totalProWinInput]="heroData().heroStats.pro_win" [totalWinsInput]="heroData().heroStats.pub_win" [TotalGamesInput]="heroData().heroStats.pub_pick"/>
       <br>
       <div id="doughnutTotalWinsBox">
         <table>
           <tr>
-            <td> <p>Total Games: </p></td>
+            <td> <p>Total Pub Games: </p></td>
             <td><p>{{heroData().heroStats.pub_pick}}</p></td>
           </tr>
           <tr>
-            <td> <p>Total Wins: </p> </td>
-            <td>{{heroData().heroStats.pub_win}}</td>
+            <td> <p>Total Pro Games: </p> </td>
+            <td>{{heroData().heroStats.pro_pick}}</td>
           </tr>
         </table>
       </div>
@@ -116,8 +117,8 @@
       <mat-card>
         <mat-card-content>
           <div class="hero-detail-component-two-metrics-box">
-            <h1>{{heroData().winGrowthRateChange.toFixed(2)}}</h1>
-            <p>Win Rate Changes</p>
+            <h1>{{heroData().disparityScore.toFixed(2)}}</h1>
+            <p>Pro-to-Pub Disparity</p>
           </div>
         </mat-card-content>
       </mat-card>
