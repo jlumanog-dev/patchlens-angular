@@ -81,9 +81,9 @@
     </div>
 
     <div class="hero-detail-component-one-box2">
-      <app-doughnut-chart-component [totalWinsInput]="heroData().heroStats.pub_win" [TotalGamesInput]="heroData().heroStats.pub_pick"/>
+      <h2 id="doughnutWinrateTitleId">Win-Lose Chart Ratio</h2>
+      <app-doughnut-chart-component [totalProPickInput]="heroData().heroStats.pro_pick" [totalProWinInput]="heroData().heroStats.pro_win" [totalWinsInput]="heroData().heroStats.pub_win" [TotalGamesInput]="heroData().heroStats.pub_pick"/>
       <br>
-        <h2 id="doughnutWinrateTitleId">Overall Win-Lose Ratio</h2>
       <div id="doughnutTotalWinsBox">
         <table>
           <tr>
@@ -108,7 +108,7 @@
             <h1 [ngStyle]="{'color': overallWinRateColorSet(heroData().winRate)}">
               {{heroData().winRate.toFixed(2)}}%
             </h1>
-            <p>Overall Win Rate</p>
+            <p>Overall Win Rate (Pubs)</p>
           </div>
         </mat-card-content>
       </mat-card>

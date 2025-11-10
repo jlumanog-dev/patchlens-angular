@@ -88,9 +88,8 @@ mat-card{
 
 } */
 .hero-detail-component-one > .hero-detail-component-one-box2{
-  display: block;
-  margin: 10px auto;
-  width: 50%;
+  width: 60%;
+  margin: auto;
 }
 .hero-detail-component-one > .hero-detail-component-one-box2 > #doughnutWinrateTitleId{
   text-align: center;
