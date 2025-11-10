@@ -3,7 +3,7 @@
    header description and mat-icon via
    .mat-expansion-panel-header-description CSS class -->
   <mat-accordion>
-    <mat-expansion-panel (click)="expansionMethod()" hideToggle class="hero-detail-component-ai-summary-container">
+    <mat-expansion-panel #expand (click)="expansionMethod()" hideToggle class="hero-detail-component-ai-summary-container">
       <mat-expansion-panel-header >
         <mat-panel-title>AI Summary</mat-panel-title>
         <mat-panel-description>

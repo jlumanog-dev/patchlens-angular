@@ -12,12 +12,10 @@ export class DoughnutChartComponent {
 
   @ViewChild(BaseChartDirective) chart? : BaseChartDirective;
 
-  totalWinsInput = input(0);
-  /* totalWins = signal(0); */
-  TotalGamesInput = input(0);
-  /* totalGames = signal(0); */
-  totalWinsAndGames = signal<number[]>([]);
 
+  totalWinsInput = input(0);
+  TotalGamesInput = input(0);
+  totalWinsAndGames = signal<number[]>([]);
 
   ngOnChanges(){
     this.totalWinsAndGames.set([(this.TotalGamesInput() - this.totalWinsInput()), this.totalWinsInput()]);

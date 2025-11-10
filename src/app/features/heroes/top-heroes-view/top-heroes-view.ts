@@ -49,10 +49,6 @@ export class TopHeroesView {
     this.apiService.getTopHeroes().subscribe({
       next: (response : HeroMappedInterface[]) =>{
         this.heroes.set(response.slice(0, response.length));
-/*         for (let index = 0; index < response.length; index++) {
-          console.log(response[index]);
-        } */
-        console.log(this.heroes());
       },
 
       error: error =>{

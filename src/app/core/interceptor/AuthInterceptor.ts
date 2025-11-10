@@ -9,13 +9,10 @@ export function AuthInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn):
   console.log("interceptor inside");
   if(auth.isAuthenticated()){
     const token = localStorage.getItem("TOKEN");
-    console.log("is authenticated");
-    console.log(token);
     //clone the request and mutate header to attach token
     const reqWithHeader = req.clone({
       setHeaders: {Authorization: `Bearer ${token}`}
     });
-    console.log(reqWithHeader);
     return next(reqWithHeader);
   }
   return next(req);

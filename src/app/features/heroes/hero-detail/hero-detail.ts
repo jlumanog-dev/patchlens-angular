@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { ApiService } from '../../../core/services/api';
@@ -6,10 +6,9 @@ import { HeroMappedInterface } from '../../../shared/HeroMappedInterface';
 import { NgStyle } from '@angular/common';
 import { LineChartComponent } from '../../../shared/components/charts/line-chart-component/line-chart-component';
 import { DoughnutChartComponent } from '../../../shared/components/charts/doughnut-chart-component/doughnut-chart-component';
-import { ChangeDetectionStrategy } from '@angular/core';
-import { MatExpansionModule } from '@angular/material/expansion';
+import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansion';
 import { MatIconModule } from "@angular/material/icon";
-import { interval, Observable, Subscription, take } from 'rxjs';
+import { interval, Subscription, take } from 'rxjs';
 
 @Component({
   selector: 'app-hero-detail',
@@ -61,11 +60,15 @@ export class HeroDetail {
   click the expansion-panel again to close it */
   typingEffectAsync?: Subscription;
 
+  //MatExpansionPanel = used to close the expansion-panel when rendering another hero data.
+  @ViewChild('expand') mat!: MatExpansionPanel;
+
   ngOnInit(){
     this.getHeroMethod();
   }
 
   expansionMethod(){
+    console.log('calling expansionMethod()')
     this.typingEffectAsync?.unsubscribe(); // unsubscribe just in case the
     this.displayText = '';
     this.typingEffectAsync = interval(10).pipe(take(this.fullText.length)).subscribe(index => {
@@ -76,10 +79,9 @@ export class HeroDetail {
   getHeroMethod(){
     this.router.params.subscribe((param => {
       this.heroId.set(param['id']);
-      console.log(this.heroId());
       this.apiService.getHeroData(this.heroId()).subscribe(response =>{
-        console.log(response);
         this.heroData.set(response);
+        this.mat.close(); //manually closing the expansion-panel when rendering new hero in case it was open before
       });
     }))
 
