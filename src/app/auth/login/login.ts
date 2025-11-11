@@ -4,10 +4,13 @@ import { NgZone } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { authenticationService } from '../auth.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCard } from "@angular/material/card";
+import { MatAnchor } from "@angular/material/button";
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, FormsModule, MatFormFieldModule],
+  imports: [ReactiveFormsModule, FormsModule, MatFormFieldModule, MatInputModule, MatCard, MatAnchor],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
@@ -45,18 +48,30 @@ export class Login {
   }
 
   submitHandler(){
-    console.log(this.loginFormGroup.value);
     this.resetErrorLabel();
     if(this.loginFormGroup.invalid){
       if(this.loginFormGroup.get('username')?.invalid){
-        this.isUsernameInvalid.set(true);
-        this.usernameInvalidMessage.set("Please enter a valid username");
+        if(this.loginFormGroup.get('password')?.invalid){
+          this.isUsernameInvalid.set(true);
+          this.usernameInvalidMessage.set("Please enter a valid username")
+          this.isPasswordInvalid.set(true);
+          this.passwordInvalidMessage.set("Please enter a valid password");
+        }else{
+          this.isUsernameInvalid.set(true);
+          this.usernameInvalidMessage.set("Please enter a valid username")
+        }
       }
-      if(this.loginFormGroup.get('password')?.invalid){
+      else if(this.loginFormGroup.get('password')?.invalid){
         this.isPasswordInvalid.set(true);
         this.passwordInvalidMessage.set("Please enter a valid password");
+      }else{
+        this.isUsernameInvalid.set(true);
+        this.isPasswordInvalid.set(true);
+        this.usernameInvalidMessage.set("Please enter a valid username");
+        this.passwordInvalidMessage.set("Please enter a valid password");
       }
-    }else{
+    }
+    else{
 
         this.apiService.authenticate(this.loginFormGroup.value).subscribe({
           next: response =>{

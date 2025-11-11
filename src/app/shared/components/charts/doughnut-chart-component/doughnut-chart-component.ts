@@ -36,12 +36,12 @@ export class DoughnutChartComponent {
     {
       data: [0,0, 0, 0],
       label: "Pub Ranked Games",
-      backgroundColor: ['#c43d2ebb', '#6BBF59', '#f56985ff', '#1e88e5']
+      backgroundColor: ['#C43C2E', '#6BBF59', '#f56985ff', '#1e88e5']
     },
     {
       data: [0, 0, 0, 0],
       label: "Pro Games",
-      backgroundColor: ['#c43d2ebb', '#6BBF59', '#f56985ff', '#1e88e5'],
+      backgroundColor: ['#C43C2E', '#6BBF59', '#f56985ff', '#1e88e5'],
 
     }
   ];

@@ -6,54 +6,28 @@
 }
 
 .login-container {
-    background: #fff;
+    background: linear-gradient(255deg,rgba(183, 42, 26, 0.059) 0%, rgb(27, 27, 27) 50%, rgba(183, 42, 26, 0.048) 100%);
+    border: 1px solid var(--bg-panel);
     padding: 40px 30px;
     border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    color: var(--text-primary);
     width: 360px;
 }
 
 .login-container h2 {
     text-align: center;
     margin-bottom: 25px;
-    color: #333;
 }
-.login-container input {
-    width: 100%;
-    padding: 10px 12px;
-    box-sizing: border-box;
-    margin: 8px 0 3px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 15px;
+.mat-form-field-wrapper{
+  width: 100%;
 }
-.login-container button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
-.login-btn {
-    background-color: #007bff;
-    color: white;
-}
-.login-btn:hover {
-    background-color: #0056b3;
-}
-.register-btn {
-    background-color: #28a745;
-    color: white;
-    margin-top: 10px;
-}
-.register-btn:hover {
-    background-color: #1e7e34;
+.mat-form-field-input{
+  background-color: rgba(255, 0, 0, 0);
 }
 
 .error-label{
   /* background-color: green; */
-  height: 25px;
+  height: 20px;
 }
 .error-label > p{
   color: red;

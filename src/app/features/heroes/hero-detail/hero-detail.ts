@@ -1,5 +1,5 @@
 import { Component, computed, inject, signal, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { ApiService } from '../../../core/services/api';
 import { HeroMappedInterface } from '../../../shared/HeroMappedInterface';
@@ -17,7 +17,8 @@ import { interval, Subscription, take } from 'rxjs';
   styleUrl: './hero-detail.css'
 })
 export class HeroDetail {
-  router = inject(ActivatedRoute);
+  activatedRoute = inject(ActivatedRoute);
+  router = inject(Router);
   apiService = inject(ApiService);
 
   heroId = signal(0);
@@ -77,14 +78,19 @@ export class HeroDetail {
   }
 
   getHeroMethod(){
-    this.router.params.subscribe((param => {
+    this.activatedRoute.params.subscribe((param => {
       this.heroId.set(param['id']);
-      this.apiService.getHeroData(this.heroId()).subscribe(response =>{
-        this.heroData.set(response);
-        this.mat.close(); //manually closing the expansion-panel when rendering new hero in case it was open before
-      });
-    }))
-
+      this.apiService.getHeroData(this.heroId()).subscribe({
+          next: response =>{
+            this.heroData.set(response);
+            this.mat.close(); //manually closing the expansion-panel when rendering new hero in case it was open before
+          },
+          error: error =>{
+            console.log(error);
+            this.router.navigate(['/login']);
+          }
+        });
+      }));
   }
 
   overallWinRateColorSet(value: number){

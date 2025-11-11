@@ -11,9 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { BasicHeroDataInterface } from '../../BasicHeroData';
 import { FormControl } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { filter, map, Observable, startWith } from 'rxjs';
+import { map, Observable, startWith } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-import { MatSelectChange, MatSelect } from '@angular/material/select';
 
 @Component({
   selector: 'app-navbar',

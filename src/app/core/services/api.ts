@@ -40,6 +40,7 @@ export class ApiService{
   getTopHeroes(){
     return this.http.get<HeroMappedInterface[]>('http://localhost:8080/api/heroes/top-heroes', {responseType: 'json'}).pipe(catchError(error=>{
       console.log("FAILED TO RETRIEVE TOP HEROES");
+      this.authService.deleteToken();
       throw error;
     }));
   }
@@ -47,6 +48,7 @@ export class ApiService{
   getHeroData(heroId : number){
     return this.http.get<HeroMappedInterface>(`http://localhost:8080/api/heroes/${heroId}`, {responseType: 'json'}).pipe(catchError(error =>{
       console.log("FAILED TO RETRIEVE A HERO");
+      this.authService.deleteToken();
       throw error;
     }));
   }
