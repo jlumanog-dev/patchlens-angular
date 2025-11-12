@@ -50,6 +50,7 @@ export class TopHeroesView {
     this.apiService.getTopHeroes().subscribe({
       next: (response : HeroMappedInterface[]) =>{
         this.heroes.set(response.slice(0, response.length));
+        console.log(this.heroes());
       },
 
       error: error =>{
@@ -60,7 +61,7 @@ export class TopHeroesView {
   }
 
   textColor(value: number): string{
-      if(value > 0){
+      if(value >= 0){
         return "var(--success)";
       }
       return "var(--accent-red)";

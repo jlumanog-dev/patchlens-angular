@@ -14,7 +14,8 @@
   margin: 10px 0px;
 }
 mat-card{
-  background: linear-gradient(255deg,rgba(183, 42, 26, 0.078) 0%, rgb(27, 27, 27) 50%, rgba(183, 42, 26, 0.048) 100%);
+  background-color: var(--bg-dark);
+  border: 1px solid var(--bg-panel);
   flex-basis: auto;
   flex: 1;
   margin: 5px 0px;
