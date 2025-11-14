@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject, Signal } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIcon } from '@angular/material/icon';
 import { TopHeroesView } from '../heroes/top-heroes-view/top-heroes-view';
 import { HeroInsightView } from "../heroes/hero-insight-view/hero-insight-view";
+import { ROUTER_OUTLET_DATA } from '@angular/router';
 
 @Component({
   selector: 'app-tab-component',
@@ -12,5 +13,8 @@ import { HeroInsightView } from "../heroes/hero-insight-view/hero-insight-view";
 })
 export class TabComponent {
   initialTabIndex: number = 0;
+  ngOnInit(){
+    console.log("on tab-component");
 
+  }
 }

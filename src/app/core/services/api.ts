@@ -54,10 +54,16 @@ export class ApiService{
     }));
   }
 
-  getAllBasicHeroesData(){
-    return this.http.get<BasicHeroDataInterface[]>('http://localhost:8080/api/heroes/all-heroes', {responseType: 'json'}).pipe(catchError(error=>{
+  getAllHeroesData(){
+    return this.http.get<HeroMappedInterface[]>('http://localhost:8080/api/heroes/all-heroes', {responseType: 'json'}).pipe(catchError(error=>{
       throw error;
     }));
+  }
+
+  getHeroesPlayedByUser(){
+    return this.http.get<HeroesPlayedInterface[]>('http://localhost:8080/api/user/heroes', {responseType: 'json'}).pipe(catchError(error=>{
+      throw error;
+    }))
   }
 
 

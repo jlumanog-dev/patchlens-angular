@@ -13,6 +13,8 @@ import { MatOption } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { BasicHeroDataInterface } from '../../BasicHeroData';
+import { HeroMappedInterface } from '../../HeroMappedInterface';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-main',
@@ -46,7 +48,7 @@ export class Main {
         }
       });
 
-    this.apiService.getAllBasicHeroesData().subscribe({
+    this.apiService.getAllHeroesData().subscribe({
       next: (response : BasicHeroDataInterface[]) =>{
         this.heroes.set(response.slice(0, response.length));
       },

@@ -53,6 +53,7 @@ export class HeroDetail {
 
   baseUrl = signal("http://cdn.dota2.com/");
   fullPath = computed(() => this.baseUrl() + this.heroData().heroStats.img);
+  doughnutChartLabelSet : string[] = ["Total Loses", "Total Wins", "Total Loses (Pro)", "Total Wins (Pro)"];
 
   fullText: string = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt cum unde veniam eos perspiciatis! Odit atque tenetur ipsa nam non?';
   displayText = '';
