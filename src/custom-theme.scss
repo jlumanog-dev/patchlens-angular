@@ -15,8 +15,14 @@ html {
     typography: Roboto,
     density: 0,
   ));
+
+  @include mat.stepper-overrides((
+    container-color: rgba(0, 0, 0, 0),
+    header-done-state-icon-background-color: red,
+  ));
+
   /* expansion panel for AI sumnary */
-    @include mat.expansion-overrides((
+  @include mat.expansion-overrides((
       header-text-color: var(--text-primary),
       header-description-color: var(--text-secondary)
   ));

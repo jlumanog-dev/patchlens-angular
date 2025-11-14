@@ -1,46 +1,60 @@
 <div class="register-page">
   <div class="register-container">
-    <h1>PatchProject</h1>
-    <form (ngSubmit)="submitRegistration()" [formGroup]="fieldsFormGroup"  method="POST">
-      <label for="username">Username</label>
-      <input formControlName="username" type="text" id="username" name="username" required />
-      <div class="error-label">
-        <p>
-        @if(isUsernameInvalid()){
-          {{usernameInvalidMessage()}}
-        }&nbsp;
-        </p>
-      </div>
+    <h2>PatchLens</h2>
+    <form [formGroup]="registerFormGroup">
+      <mat-stepper #stepperRef [linear]="true">
+        <mat-step [stepControl]="registerFormGroup">
+          <!-- <form [formGroup]="usernameGroup"> -->
+            <ng-template matStepLabel>Username</ng-template>
+            <mat-form-field class="mat-form-field-wrapper">
+              <mat-label>Enter Username</mat-label>
+              <input type="text" matInput formControlName="username">
+              @if (registerFormGroup.get('username')?.invalid) {
+                <mat-error>Invalid Username</mat-error>
+              }
+            </mat-form-field>
+            <div>
+              <button matButton matStepperNext>Next</button>
+            </div>
+          <!-- </form> -->
+        </mat-step>
 
-      <label for="email">Email</label>
-      <input formControlName="email" type="email" id="email" name="email" required />
-      <div class="error-label">
-        <p>
-        @if(isEmailInvalid()){
-          {{emailInvalidMessage()}}
-        }&nbsp;
-        </p>
-      </div>
+        <mat-step [stepControl]="registerFormGroup">
+          <!-- <form [formGroup]="passwordGroup"> -->
+            <mat-form-field class="mat-form-field-wrapper">
+              <ng-template matStepLabel>Password</ng-template>
+              <mat-label>Enter Password</mat-label>
+              <input formControlName="password" type="password" matInput>
+              @if (registerFormGroup.get('password')?.invalid) {
+                <mat-error>Invalid Password</mat-error>
+              }
+            </mat-form-field>
+            <div>
+              <button matButton matStepperPrevious>Back</button>
+              <button matButton matStepperNext>Next</button>
+            </div>
+          <!-- </form> -->
+        </mat-step>
 
-      <label for="password">Password</label>
-      <input formControlName="password" type="password" id="password" name="password" minlength="6" required />
-      <div class="error-label">
-        <p>
-        @if(isPasswordInvalid()){
-          {{passwordInvalidMessage()}}
-        }&nbsp;
-        </p>
-      </div>
-
-      <label for="confirm-password">Confirm Password</label>
-      <input type="password" id="confirm-password" name="confirm-password" minlength="6" required />
-
-      <button type="submit">Create Account</button>
-
-      <div class="login-link">
-        Already have an account? <a href="/login">Log in</a>
-      </div>
+        <mat-step [stepControl]="registerFormGroup">
+          <!-- <form [formGroup]="emailGroup"> -->
+            <mat-form-field class="mat-form-field-wrapper">
+              <ng-template matStepLabel>Email</ng-template>
+              <mat-label>Enter Email</mat-label>
+              <input formControlName="email" type="email" matInput>
+              @if (registerFormGroup.get('email')?.invalid) {
+                <mat-error>Invalid Email</mat-error>
+              }
+            </mat-form-field>
+            <div>
+              <button matButton matStepperPrevious>Back</button>
+              <button matButton (click)="submitHandler()">Submit</button>
+            </div>
+          <!-- </form> -->
+        </mat-step>
+      </mat-stepper>
     </form>
+
   </div>
 
 </div>

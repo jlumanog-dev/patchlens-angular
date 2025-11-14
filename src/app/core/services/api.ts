@@ -20,10 +20,11 @@ export class ApiService{
     //http.post doesn't accept FormGroup or other kinds of objects that have "circular structure"
     let formObject = formData.value;
     console.log(formObject);
-    return this.http.post('http://localhost:8080/api/register', formObject).subscribe(response =>{
-      console.log("message inside sub");
-      console.log(response);
-    });
+    return this.http.post('http://localhost:8080/api/register', formObject).pipe(catchError(error => {
+      console.log("error response at api.ts");
+      console.log(error);
+      throw error;
+    }));
 
   }
 

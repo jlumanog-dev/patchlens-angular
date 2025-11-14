@@ -74,7 +74,7 @@ export class Login {
     else{
 
         this.apiService.authenticate(this.loginFormGroup.value).subscribe({
-          next: response =>{
+          next: (response : any) =>{
             console.log(response);
             this.authService.setToken(response.TOKEN);
             console.log(localStorage.getItem("TOKEN"));

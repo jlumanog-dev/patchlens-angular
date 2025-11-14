@@ -2,25 +2,10 @@
     <mat-card class="login-container">
         <h2>Login</h2>
         <form [formGroup]="loginFormGroup" (ngSubmit)="submitHandler()" method="post">
-           <!--  <label for="username"></label>
-            <mat-form-field>
-              <input matInput formControlName="username" name="username" placeholder="Enter Username" required>
-            </mat-form-field>
-
-            <input formControlName="password" type="password" id="password" name="password" placeholder="Enter password" required>
-            <div class="error-label">
-              @if(isPasswordInvalid()){
-                <p>{{passwordInvalidMessage()}}</p>
-              }
-            </div> -->
               <mat-form-field class="mat-form-field-wrapper">
                 <mat-label>Username</mat-label>
                 <input class="mat-form-field-input" matInput formControlName="username">
-<!--                   <div class="error-label">
-                    @if(isUsernameInvalid()){
-                      <p>{{usernameInvalidMessage()}}</p>
-                    }
-                  </div> -->
+
                   @if(isUsernameInvalid()){
                     <mat-error>{{usernameInvalidMessage()}}</mat-error>
                   }
