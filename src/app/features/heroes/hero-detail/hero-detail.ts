@@ -82,8 +82,9 @@ export class HeroDetail {
     this.activatedRoute.params.subscribe((param => {
       this.heroId.set(param['id']);
       this.apiService.getHeroData(this.heroId()).subscribe({
-          next: response =>{
+          next: (response : HeroMappedInterface) =>{
             this.heroData.set(response);
+            console.log(this.heroData());
             this.mat.close(); //manually closing the expansion-panel when rendering new hero in case it was open before
           },
           error: error =>{

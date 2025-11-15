@@ -37,11 +37,12 @@ export class DoughnutChartComponent {
 
 
   ngOnChanges(){
-    if(this.totalProWinInput() > 0 && this.totalWinsInput() > 0){
+    if(this.totalWinsInput() > 0){
       this.totalWinsAndGames.set([(this.TotalGamesInput() - this.totalWinsInput()), this.totalWinsInput(), 0, 0]);
       this.totalProWinsAndGames.set([0, 0, (this.totalProPickInput() - this.totalProWinInput()), this.totalProWinInput()]);
       this.doughnutChartDataset[0].data = this.totalWinsAndGames();
       this.doughnutChartDataset[1].data = this.totalProWinsAndGames();
+
     }else if(this.heroId() != undefined){
       let withWinValue : any = this.withWin();
       let withGamesValue : any = this.withGames();
