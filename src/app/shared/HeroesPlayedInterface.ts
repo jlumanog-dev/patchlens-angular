@@ -1,5 +1,6 @@
 interface HeroesPlayedInterface{
   hero_id?: number,
+  localized_name?: string,
   last_played?: number,
   games?: number,
   win?: number,

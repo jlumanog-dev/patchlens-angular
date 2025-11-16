@@ -29,8 +29,6 @@ export class DoughnutChartComponent {
   lastPlayed = input<number | undefined>(0);
   games = input<number | undefined>(0);
   win = input<number | undefined>(0);
-  withGames = input<number | undefined>(0);
-  withWin = input<number | undefined>(0);
   againstGames = input<number | undefined>(0);
   againstWins = input<number | undefined>(0);
 
@@ -41,18 +39,15 @@ export class DoughnutChartComponent {
       this.totalWinsAndGames.set([(this.TotalGamesInput() - this.totalWinsInput()), this.totalWinsInput(), 0, 0]);
       this.totalProWinsAndGames.set([0, 0, (this.totalProPickInput() - this.totalProWinInput()), this.totalProWinInput()]);
       this.doughnutChartDataset[0].data = this.totalWinsAndGames();
+      this.doughnutChartDataset[0].label = "Pub Games";
       this.doughnutChartDataset[1].data = this.totalProWinsAndGames();
+      this.doughnutChartDataset[1].label = "Pro Games";
 
     }else if(this.heroId() != undefined){
-      let withWinValue : any = this.withWin();
-      let withGamesValue : any = this.withGames();
-
-      let againstWinValue : any = this.againstWins();
-      let againstGamesValue : any = this.againstGames();
-      this.doughnutChartDataset[0].data = [withWinValue, withGamesValue];
-      this.doughnutChartDataset[0].label = "Games played with this hero";
-      this.doughnutChartDataset[1].data = [againstWinValue, againstGamesValue];
-      this.doughnutChartDataset[1].label = "Games played against this hero";
+      let win : any = this.win();
+      let games : any = this.games();
+      this.doughnutChartDataset[0].data = [games - win, win];
+      this.doughnutChartDataset[0].label = "";
     }
     this.chart?.update();
   }
@@ -71,7 +66,6 @@ export class DoughnutChartComponent {
       data: [0, 0, 0, 0],
       label: "Pro Games",
       backgroundColor: ['#C43C2E', '#6BBF59', '#f56985ff', '#1e88e5'],
-
     }
   ];
 

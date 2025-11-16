@@ -9,9 +9,11 @@ import { ApiService } from '../../../core/services/api';
   styleUrl: './hero-insight-view.css'
 })
 export class HeroInsightView {
+  //localizedName = signal<string | undefined>("");
   apiService = inject(ApiService);
   heroesPlayed = signal<HeroesPlayedInterface[]>([{
     hero_id: 0,
+    localized_name: "",
     last_played: 0,
     games: 0,
     win: 0,

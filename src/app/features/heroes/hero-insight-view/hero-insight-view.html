@@ -2,13 +2,17 @@
 
 
   <h1>Test</h1>
-  <app-doughnut-chart-component
-    [heroId]="heroesPlayed()[0].hero_id"
-    [lastPlayed]="heroesPlayed()[0].last_played"
-    [games]="heroesPlayed()[0].games"
-    [win]="heroesPlayed()[0].win"
-    [withGames]="heroesPlayed()[0].with_games"
-    [withWin]="heroesPlayed()[0].with_win"
-    [againstGames]="heroesPlayed()[0].against_games"
-    [againstWins]="heroesPlayed()[0].against_wins" />
+  <div>
+    <h3>{{heroesPlayed()[0].localized_name}}</h3>
+    <app-doughnut-chart-component
+      [heroId]="heroesPlayed()[0].hero_id"
+      [lastPlayed]="heroesPlayed()[0].last_played"
+      [games]="heroesPlayed()[0].games"
+      [win]="heroesPlayed()[0].win"
+      [againstGames]="heroesPlayed()[0].against_games"
+      [againstWins]="heroesPlayed()[0].against_wins"
+      [doughnutChartLabel]="['loses', 'Wins']"
+      />
+  </div>
+
 </div>
