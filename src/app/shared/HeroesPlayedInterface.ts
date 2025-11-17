@@ -7,5 +7,7 @@ interface HeroesPlayedInterface{
   with_games?: number,
   with_win?: number,
   against_games?: number,
-  against_wins?: number
+  against_wins?: number,
+  img?: string,
+  roles?: Array<string>
 }

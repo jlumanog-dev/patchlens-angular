@@ -1,0 +1,5 @@
+@media only screen and (min-width: 1200px) and (max-width: 1599px) {
+  .hero-insight-container > .hero-insight-heroes-played-flexbox > .hero-insight-heroes-played-box > mat-card .heroes-played-role{
+    font-size: 0.6rem;
+  }
+}

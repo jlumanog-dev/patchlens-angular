@@ -1,5 +1,6 @@
 <div class="hero-insight-container">
-  <h2>Your Most Played Heroes</h2>
+  <br>
+  <h3>Your Most Played Heroes</h3>
   <div class="hero-insight-heroes-played-flexbox">
 <!--
       @for (element of heroesPlayed() | slice:0:3; track element.hero_id; let i = $index) {
@@ -26,9 +27,22 @@
                     [againstGames]="heroesPlayed()[0].against_games"
                     [againstWins]="heroesPlayed()[0].against_wins"
                     [doughnutChartLabel]="['loses', 'Wins']" />
-          <div>
-            <h2>{{heroesPlayed()[0].localized_name}}</h2>
-          </div>
+          <mat-card>
+            <mat-card-header>
+              <div mat-card-avatar class="mat-card-avatar-class">
+                <img class="header-image" src="http://cdn.dota2.com/{{heroesPlayed()[0].img}}">
+              </div>
+              <div>
+                <h3>{{heroesPlayed()[0].localized_name}}</h3>
+                <p class="heroes-played-role">
+                  @for(element of heroesPlayed()[0].roles; track element){
+                    <span>{{element}},&nbsp;</span>
+                  }
+                </p>
+              </div>
+            </mat-card-header>
+
+          </mat-card>
         </div>
 
         <div class="hero-insight-heroes-played-box">
@@ -40,13 +54,25 @@
                     [againstGames]="heroesPlayed()[1].against_games"
                     [againstWins]="heroesPlayed()[1].against_wins"
                     [doughnutChartLabel]="['loses', 'Wins']" />
-            <div>
-              <h2>{{heroesPlayed()[1].localized_name}}</h2>
-            </div>
+            <mat-card>
+              <mat-card-header>
+                <div mat-card-avatar class="mat-card-avatar-class">
+                  <img class="header-image" src="http://cdn.dota2.com/{{heroesPlayed()[1].img}}">
+                </div>
+                <div>
+                  <h3>{{heroesPlayed()[1].localized_name}}</h3>
+                  <p class="heroes-played-role">
+                    @for(element of heroesPlayed()[1].roles; track element){
+                      <span>{{element}},&nbsp;</span>
+                    }
+                  </p>
+                </div>
+              </mat-card-header>
+            </mat-card>
         </div>
 
         <div class="hero-insight-heroes-played-box">
-            <app-doughnut-chart-component
+          <app-doughnut-chart-component
           [heroId]="heroesPlayed()[2].hero_id"
           [lastPlayed]="heroesPlayed()[2].last_played"
           [games]="heroesPlayed()[2].games"
@@ -54,9 +80,21 @@
           [againstGames]="heroesPlayed()[2].against_games"
           [againstWins]="heroesPlayed()[2].against_wins"
           [doughnutChartLabel]="['loses', 'Wins']" />
-          <div>
-            <h2>{{heroesPlayed()[2].localized_name}}</h2>
-          </div>
+          <mat-card>
+              <mat-card-header>
+                <div mat-card-avatar class="mat-card-avatar-class">
+                  <img class="header-image" src="http://cdn.dota2.com/{{heroesPlayed()[2].img}}">
+                </div>
+                <div>
+                  <h3>{{heroesPlayed()[2].localized_name}}</h3>
+                  <p class="heroes-played-role">
+                    @for(element of heroesPlayed()[2].roles; track element){
+                      <span>{{element}},&nbsp;</span>
+                    } 
+                  </p>
+                </div>
+              </mat-card-header>
+          </mat-card>
         </div>
   </div>
 </div>

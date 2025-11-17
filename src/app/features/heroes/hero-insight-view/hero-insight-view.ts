@@ -1,13 +1,14 @@
 import { Component, inject, signal } from '@angular/core';
 import { DoughnutChartComponent } from '../../../shared/components/charts/doughnut-chart-component/doughnut-chart-component';
 import { ApiService } from '../../../core/services/api';
-import { SlicePipe } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+/* import { SlicePipe } from '@angular/common'; */
 
 @Component({
   selector: 'app-hero-insight-view',
-  imports: [DoughnutChartComponent, SlicePipe],
+  imports: [DoughnutChartComponent, MatCardModule],
   templateUrl: './hero-insight-view.html',
-  styleUrl: './hero-insight-view.css'
+  styleUrls: ['./hero-insight-view.css', './hero-insight-view-minmax-smaller.css', 'hero-insight-view-larger.css']
 })
 export class HeroInsightView {
   //localizedName = signal<string | undefined>("");
