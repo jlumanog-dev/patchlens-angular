@@ -1,3 +1,11 @@
 .hero-insight-container{
   padding: 20px;
 }
+.hero-insight-container > .hero-insight-heroes-played-flexbox {
+  display: flex;
+  flex-wrap: wrap;
+}
+.hero-insight-container > .hero-insight-heroes-played-flexbox > .hero-insight-heroes-played-box {
+  width: 30%;
+  margin: auto;
+}

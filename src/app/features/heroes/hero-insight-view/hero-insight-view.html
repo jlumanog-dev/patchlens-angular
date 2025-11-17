@@ -1,18 +1,22 @@
 <div class="hero-insight-container">
+  <h2>Your Most Played Heroes</h2>
+  <div class="hero-insight-heroes-played-flexbox">
 
+      @for (element of heroesPlayed() | slice:0:3; track element.hero_id; let i = $index) {
+        <div class="hero-insight-heroes-played-box">
+          <app-doughnut-chart-component
+                  [heroId]="heroesPlayed()[$index].hero_id"
+                  [lastPlayed]="heroesPlayed()[$index].last_played"
+                  [games]="heroesPlayed()[$index].games"
+                  [win]="heroesPlayed()[$index].win"
+                  [againstGames]="heroesPlayed()[$index].against_games"
+                  [againstWins]="heroesPlayed()[$index].against_wins"
+                  [doughnutChartLabel]="['loses', 'Wins']" />
+          <div>
+            <h2>{{heroesPlayed()[$index].localized_name}}</h2>
+          </div>
+        </div>
 
-  <h1>Test</h1>
-  <div>
-    <h3>{{heroesPlayed()[0].localized_name}}</h3>
-    <app-doughnut-chart-component
-      [heroId]="heroesPlayed()[0].hero_id"
-      [lastPlayed]="heroesPlayed()[0].last_played"
-      [games]="heroesPlayed()[0].games"
-      [win]="heroesPlayed()[0].win"
-      [againstGames]="heroesPlayed()[0].against_games"
-      [againstWins]="heroesPlayed()[0].against_wins"
-      [doughnutChartLabel]="['loses', 'Wins']"
-      />
-  </div>
-
+      }
+    </div>
 </div>

@@ -83,12 +83,14 @@
     <div class="hero-detail-component-one-box2">
       <h3 id="doughnutWinrateTitleId">Win-Lose Chart Ratio</h3>
       <br>
-      <app-doughnut-chart-component
-      [doughnutChartLabel]="doughnutChartLabelSet"
-      [totalProPickInput]="heroData().heroStats.pro_pick"
-      [totalProWinInput]="heroData().heroStats.pro_win"
-      [totalWinsInput]="heroData().heroStats.pub_win"
-      [TotalGamesInput]="heroData().heroStats.pub_pick"/>
+      <div id="hero-detail-doughnut-chart">
+        <app-doughnut-chart-component
+        [doughnutChartLabel]="doughnutChartLabelSet"
+        [totalProPickInput]="heroData().heroStats.pro_pick"
+        [totalProWinInput]="heroData().heroStats.pro_win"
+        [totalWinsInput]="heroData().heroStats.pub_win"
+        [TotalGamesInput]="heroData().heroStats.pub_pick"/>
+      </div>
       <br>
       <div id="doughnutTotalWinsBox">
         <table>

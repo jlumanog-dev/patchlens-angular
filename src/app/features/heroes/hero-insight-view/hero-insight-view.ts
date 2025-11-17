@@ -1,10 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
 import { DoughnutChartComponent } from '../../../shared/components/charts/doughnut-chart-component/doughnut-chart-component';
 import { ApiService } from '../../../core/services/api';
+import { SlicePipe } from '@angular/common';
 
 @Component({
   selector: 'app-hero-insight-view',
-  imports: [DoughnutChartComponent],
+  imports: [DoughnutChartComponent, SlicePipe],
   templateUrl: './hero-insight-view.html',
   styleUrl: './hero-insight-view.css'
 })

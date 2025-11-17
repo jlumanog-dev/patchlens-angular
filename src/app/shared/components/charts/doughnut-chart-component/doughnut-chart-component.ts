@@ -72,7 +72,7 @@ export class DoughnutChartComponent {
   //had to specify 'doughnut' to access 'coutout' property
   doughnutChartOption : ChartConfiguration<'doughnut'>['options'] = {
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
     cutout: '65%',
     plugins:{
       legend: {

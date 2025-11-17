@@ -95,6 +95,10 @@ mat-card{
   text-align: center;
   margin: 10px 0px;
 }
+.hero-detail-component-one > .hero-detail-component-one-box2 > #hero-detail-doughnut-chart{
+  width: 80%;
+  margin: 0px auto;
+}
 .hero-detail-component-one > .hero-detail-component-one-box2 > #doughnutTotalWinsBox{
   width: 70%;
   margin: auto;
