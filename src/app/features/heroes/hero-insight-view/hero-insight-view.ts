@@ -22,6 +22,26 @@ export class HeroInsightView {
     with_win: 0,
     against_games: 0,
     against_wins: 0
+  }, {
+    hero_id: 0,
+    localized_name: "",
+    last_played: 0,
+    games: 0,
+    win: 0,
+    with_games: 0,
+    with_win: 0,
+    against_games: 0,
+    against_wins: 0
+  }, {
+    hero_id: 0,
+    localized_name: "",
+    last_played: 0,
+    games: 0,
+    win: 0,
+    with_games: 0,
+    with_win: 0,
+    against_games: 0,
+    against_wins: 0
   }]);
 
   ngOnInit(){
