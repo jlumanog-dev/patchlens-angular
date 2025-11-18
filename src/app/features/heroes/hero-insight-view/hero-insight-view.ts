@@ -2,11 +2,12 @@ import { Component, inject, signal } from '@angular/core';
 import { DoughnutChartComponent } from '../../../shared/components/charts/doughnut-chart-component/doughnut-chart-component';
 import { ApiService } from '../../../core/services/api';
 import { MatCardModule } from '@angular/material/card';
+import { NgStyle } from '@angular/common';
 /* import { SlicePipe } from '@angular/common'; */
 
 @Component({
   selector: 'app-hero-insight-view',
-  imports: [DoughnutChartComponent, MatCardModule],
+  imports: [DoughnutChartComponent, MatCardModule, NgStyle],
   templateUrl: './hero-insight-view.html',
   styleUrls: ['./hero-insight-view.css', './hero-insight-view-minmax-smaller.css', 'hero-insight-view-larger.css']
 })
@@ -45,11 +46,20 @@ export class HeroInsightView {
     against_wins: 0
   }]);
 
+  winRates = signal<number[]>([0,0,0]);
+
   ngOnInit(){
     this.apiService.getHeroesPlayedByUser().subscribe({
       next: (response: HeroesPlayedInterface[]) =>{
         this.heroesPlayed.set(response);
-        console.log(this.heroesPlayed());
+        console.log("winrate size: " + this.winRates.length);
+        for(let i = 0; i < 3; i++){
+          let wins = this.heroesPlayed()[i].win ?? 0;
+          let games = this.heroesPlayed()[i].games ?? 0;
+          this.winRates()[i] = (100 * (wins / games) );
+          console.log(this.heroesPlayed());
+        }
+
       },
       error: error=>{
         console.log("Error retreiving heroes played by user");
@@ -58,4 +68,13 @@ export class HeroInsightView {
     });
   }
 
+  textColor(value: number): string{
+    if(value >= 50){
+      return "var(--success)";
+    }else if(value >= 46){
+      return "var(--accent-gold)";
+    }else{
+      return "var(--accent-red)";
+    }
+  }
 }

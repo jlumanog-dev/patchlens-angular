@@ -63,7 +63,7 @@ export class TopHeroesView {
   textColor(value: number): string{
       if(value >= 0){
         return "var(--success)";
-      }
+      }else
       return "var(--accent-red)";
   }
 }

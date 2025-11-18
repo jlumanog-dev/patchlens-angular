@@ -19,7 +19,6 @@
 .hero-insight-container > .hero-insight-heroes-played-flexbox > .hero-insight-heroes-played-box > mat-card{
   background-color: var(--bg-dark);
   border: 1px solid var(--bg-panel);;
-  height: 150px;
 }
 
 .hero-insight-container > .hero-insight-heroes-played-flexbox > .hero-insight-heroes-played-box > mat-card .header-image{
