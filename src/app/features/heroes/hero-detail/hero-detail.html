@@ -158,7 +158,12 @@
     <div class="hero-detail-component-three-trendbox">
       <mat-card>
         @if(heroData().id != -1){
-          <app-line-chart-component [pub_pick_trend]="heroData().heroStats.pub_pick_trend" [pub_win_trend]="heroData().heroStats.pub_win_trend"/>
+          <app-line-chart-component
+          [pub_pick_trend]="heroData().heroStats.pub_pick_trend"
+          [pub_win_trend]="heroData().heroStats.pub_win_trend"
+          [lineChartLabel]="['1','2','3','4','5','6']"
+          [usedBy]="'hero-detail'"
+          />
         }
       </mat-card>
     </div>

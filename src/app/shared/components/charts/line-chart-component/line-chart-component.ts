@@ -9,11 +9,15 @@ import { BaseChartDirective } from 'ng2-charts';
   styleUrl: './line-chart-component.css'
 })
 export class LineChartComponent {
-  pub_win_trend = input<number[]>([]);
-  pub_win_trend_array = signal<number[]>([]);
+  usedBy = input('');
 
+  //inputs and signals for hero-detail
+  pub_win_trend = input<number[]>([]);
   pub_pick_trend = input<number[]>([]);
-  pub_pick_trend_array = signal<number[]>([]);
+  lineChartLabel = input<string[]>([]);
+
+  //inputs and signals for insights-view
+  
 
 
   /* definite assign operator (!) tells angular the 'chart' will get assigned later
@@ -24,17 +28,24 @@ export class LineChartComponent {
 
 
   ngOnChanges(){
-    //unwrapping value from an angular signal to a standard JS array to assign it to a property.
-    this.pub_pick_trend_array.set(this.pub_pick_trend());
-    this.pub_win_trend_array.set(this.pub_win_trend());
-    this.lineChartData.datasets[0].data = this.pub_win_trend_array();
-    this.lineChartData.datasets[1].data = this.pub_pick_trend_array();
-    this.chart?.update();
+
+    switch(this.usedBy()){
+      case 'hero-detail':
+          this.lineChartData.labels = [...this.lineChartLabel()];
+          this.lineChartData.datasets[0].data = [...this.pub_win_trend()];
+          this.lineChartData.datasets[1].data = [...this.pub_pick_trend()];
+          this.chart?.update();
+        break;
+      case 'insight-view':
+
+        break;
+    }
+
   }
 
 
   lineChartData: ChartConfiguration['data'] = {
-    labels: ['1','2','3','4','5','6'],   // match array length
+    labels: [],   // match array length
     datasets: [
       {
         data: [],
