@@ -49,7 +49,7 @@ export class HeroInsightView {
   winRates = signal<number[]>([0,0,0]);
 
   ngOnInit(){
-    this.apiService.getHeroesPlayedByUser().subscribe({
+/*     this.apiService.getHeroesPlayedByUser().subscribe({
       next: (response: HeroesPlayedInterface[]) =>{
         this.heroesPlayed.set(response);
         console.log("winrate size: " + this.winRates.length);
@@ -65,7 +65,7 @@ export class HeroInsightView {
         console.log("Error retreiving heroes played by user");
         console.log(error);
       }
-    });
+    }); */
   }
 
   textColor(value: number): string{

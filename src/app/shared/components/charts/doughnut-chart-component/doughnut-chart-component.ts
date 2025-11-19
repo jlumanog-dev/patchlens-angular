@@ -73,7 +73,7 @@ export class DoughnutChartComponent {
   doughnutChartOption : ChartConfiguration<'doughnut'>['options'] = {
     responsive: true,
     maintainAspectRatio: true,
-    cutout: '65%',
+    cutout: '40%',
     plugins:{
       legend: {
         position: 'right',

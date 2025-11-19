@@ -36,3 +36,6 @@
   font-size: 0.9em;
 }
 
+.hero-insight-container > .hero-insight-heroes-played-flexbox > .hero-insight-heroes-played-box > mat-card .mat-card-content-box{
+  text-align: center;
+}

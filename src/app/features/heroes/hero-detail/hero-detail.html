@@ -5,7 +5,7 @@
   <mat-accordion>
     <mat-expansion-panel #expand (click)="expansionMethod()" hideToggle class="hero-detail-component-ai-summary-container">
       <mat-expansion-panel-header >
-        <mat-panel-title>AI Summary</mat-panel-title>
+        <mat-panel-title>AI-enabled Insights</mat-panel-title>
         <mat-panel-description>
           Click to view a summary of {{heroData().localized_name}}'s Performance and Trend metrics
           <mat-icon>expand_circle_down</mat-icon>
@@ -81,8 +81,6 @@
     </div>
 
     <div class="hero-detail-component-one-box2">
-      <h3 id="doughnutWinrateTitleId">Win-Lose Chart Ratio</h3>
-      <br>
       <div id="hero-detail-doughnut-chart">
         <app-doughnut-chart-component
         [doughnutChartLabel]="doughnutChartLabelSet"
