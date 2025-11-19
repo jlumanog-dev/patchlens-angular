@@ -6,12 +6,12 @@ import { NgStyle } from '@angular/common';
 /* import { SlicePipe } from '@angular/common'; */
 
 @Component({
-  selector: 'app-hero-insight-view',
+  selector: 'app-insight-view',
   imports: [DoughnutChartComponent, MatCardModule, NgStyle],
-  templateUrl: './hero-insight-view.html',
-  styleUrls: ['./hero-insight-view.css', './hero-insight-view-minmax-smaller.css', 'hero-insight-view-larger.css']
+  templateUrl: './insight-view.html',
+  styleUrls: ['./insight-view.css', './insight-view-minmax-smaller.css', 'insight-view-larger.css']
 })
-export class HeroInsightView {
+export class InsightView {
   //localizedName = signal<string | undefined>("");
   apiService = inject(ApiService);
   heroesPlayed = signal<HeroesPlayedInterface[]>([{

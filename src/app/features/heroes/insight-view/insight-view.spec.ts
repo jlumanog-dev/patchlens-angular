@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeroInsightView } from './hero-insight-view';
+import { InsightView } from './insight-view';
 
-describe('HeroInsightView', () => {
-  let component: HeroInsightView;
-  let fixture: ComponentFixture<HeroInsightView>;
+describe('InsightView', () => {
+  let component: InsightView;
+  let fixture: ComponentFixture<InsightView>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeroInsightView]
+      imports: [InsightView]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HeroInsightView);
+    fixture = TestBed.createComponent(InsightView);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
