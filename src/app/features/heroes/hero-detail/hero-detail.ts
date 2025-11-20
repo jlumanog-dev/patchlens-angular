@@ -2,7 +2,7 @@ import { Component, computed, inject, signal, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { ApiService } from '../../../core/services/api';
-import { HeroMappedInterface } from '../../../shared/HeroMappedInterface';
+import { HeroesInterface } from '../../../shared/HeroesInterface';
 import { NgStyle } from '@angular/common';
 import { LineChartComponent } from '../../../shared/components/charts/line-chart-component/line-chart-component';
 import { DoughnutChartComponent } from '../../../shared/components/charts/doughnut-chart-component/doughnut-chart-component';
@@ -22,37 +22,37 @@ export class HeroDetail {
   apiService = inject(ApiService);
 
   heroId = signal(0);
-  heroData = signal<HeroMappedInterface>({
-        id: -1,
-        localized_name: "",
-        roles: [],
-        attack_type: "",
-        heroStats: {
-          id : -1,
-          localized_name : "",
-          move_speed : 0,
-          pub_pick : 0,
-          pub_pick_trend : [],
-          pub_win : 0,
-          pub_win_trend : [],
-          pro_pick: 0,
-          pro_win: 0,
-          img: "",
-          icon: "",
-          base_str: 0,
-          base_agi: 0,
-          base_int: 0,
+  heroData = signal<HeroesInterface>({
+      id: 0,
+      localized_name: "",
+      roles: [],
+      attack_type: "",
+      primary_attr: "",
 
-        },
-        winRate: 0,
-        pickGrowthRateChange: 0,
-        winGrowthRateChange: 0,
-        trendStdDev: 0,
-        disparityScore: 0
+      base_str: 0,
+      base_agi: 0,
+      base_int: 0,
+      move_speed: 0,
+
+      pub_pick_trend: [],
+      pub_win_trend: [],
+
+      pro_pick: 0,
+      pro_win: 0,
+      pub_pick: 0,
+      pub_win: 0,
+
+      winRate: 0,
+      pickGrowthRateChange: 0,
+      winGrowthRateChange: 0,
+      trendStdDev: 0,
+      disparityScore: 0,
+      img: "",
+      icon: ""
   });
 
   baseUrl = signal("http://cdn.dota2.com/");
-  fullPath = computed(() => this.baseUrl() + this.heroData().heroStats.img);
+  fullPath = computed(() => this.baseUrl() + this.heroData().img);
   doughnutChartLabelSet : string[] = ["Total Loses", "Total Wins", "Total Loses (Pro)", "Total Wins (Pro)"];
 
   fullText: string = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt cum unde veniam eos perspiciatis! Odit atque tenetur ipsa nam non?';
@@ -82,7 +82,7 @@ export class HeroDetail {
     this.activatedRoute.params.subscribe((param => {
       this.heroId.set(param['id']);
       this.apiService.getHeroData(this.heroId()).subscribe({
-          next: (response : HeroMappedInterface) =>{
+          next: (response : HeroesInterface) =>{
             this.heroData.set(response);
             console.log(this.heroData());
             this.mat.close(); //manually closing the expansion-panel when rendering new hero in case it was open before

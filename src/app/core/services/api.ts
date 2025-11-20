@@ -4,8 +4,7 @@ import { FormGroup } from "@angular/forms";
 import { UserInterface } from "../../shared/UserInterface";
 import { catchError } from "rxjs";
 import { authenticationService } from "../../auth/auth.service";
-import { HeroMappedInterface } from "../../shared/HeroMappedInterface";
-import { BasicHeroDataInterface } from "../../shared/BasicHeroData";
+import { HeroesInterface } from "../../shared/HeroesInterface";
 
 @Injectable({providedIn: 'root'})
 export class ApiService{
@@ -39,7 +38,7 @@ export class ApiService{
   }
 
   getTopHeroes(){
-    return this.http.get<HeroMappedInterface[]>('http://localhost:8080/api/heroes/top-heroes', {responseType: 'json'}).pipe(catchError(error=>{
+    return this.http.get<HeroesInterface[]>('http://localhost:8080/api/heroes/top-heroes', {responseType: 'json'}).pipe(catchError(error=>{
       console.log("FAILED TO RETRIEVE TOP HEROES");
       this.authService.deleteToken();
       throw error;
@@ -47,7 +46,7 @@ export class ApiService{
   }
 
   getHeroData(heroId : number){
-    return this.http.get<HeroMappedInterface>(`http://localhost:8080/api/heroes/${heroId}`, {responseType: 'json'}).pipe(catchError(error =>{
+    return this.http.get<HeroesInterface>(`http://localhost:8080/api/heroes/${heroId}`, {responseType: 'json'}).pipe(catchError(error =>{
       console.log("FAILED TO RETRIEVE A HERO");
       this.authService.deleteToken();
       throw error;
@@ -55,13 +54,13 @@ export class ApiService{
   }
 
   getAllHeroesData(){
-    return this.http.get<HeroMappedInterface[]>('http://localhost:8080/api/heroes/all-heroes', {responseType: 'json'}).pipe(catchError(error=>{
+    return this.http.get<HeroesInterface[]>('http://localhost:8080/api/heroes/all-heroes', {responseType: 'json'}).pipe(catchError(error=>{
       throw error;
     }));
   }
 
   getHeroesPlayedByUser(){
-    return this.http.get<HeroesPlayedInterface[]>('http://localhost:8080/api/user/heroes', {responseType: 'json'}).pipe(catchError(error=>{
+    return this.http.get<HeroesInterface[]>('http://localhost:8080/api/user/heroes', {responseType: 'json'}).pipe(catchError(error=>{
       throw error;
     }))
   }

@@ -38,7 +38,7 @@
                 </div>
               </td>
               <td>
-                <h3>{{heroData().heroStats.base_str}}</h3>
+                <h3>{{heroData().base_str}}</h3>
               </td>
             </tr>
             <tr>
@@ -49,7 +49,7 @@
                 </div>
               </td>
               <td>
-                <h3>{{heroData().heroStats.base_agi}}</h3>
+                <h3>{{heroData().base_agi}}</h3>
               </td>
             </tr>
             <tr>
@@ -60,7 +60,7 @@
                 </div>
               </td>
               <td>
-                <h3>{{heroData().heroStats.base_int}}</h3>
+                <h3>{{heroData().base_int}}</h3>
               </td>
             </tr>
             <tr>
@@ -71,7 +71,7 @@
                 </div>
               </td>
               <td>
-                <h3>{{heroData().heroStats.move_speed}}</h3>
+                <h3>{{heroData().move_speed}}</h3>
               </td>
             </tr>
 
@@ -84,21 +84,21 @@
       <div id="hero-detail-doughnut-chart">
         <app-doughnut-chart-component
         [doughnutChartLabel]="doughnutChartLabelSet"
-        [totalProPickInput]="heroData().heroStats.pro_pick"
-        [totalProWinInput]="heroData().heroStats.pro_win"
-        [totalWinsInput]="heroData().heroStats.pub_win"
-        [TotalGamesInput]="heroData().heroStats.pub_pick"/>
+        [totalProPickInput]="heroData().pro_pick"
+        [totalProWinInput]="heroData().pro_win"
+        [totalWinsInput]="heroData().pub_win"
+        [TotalGamesInput]="heroData().pub_pick"/>
       </div>
       <br>
       <div id="doughnutTotalWinsBox">
         <table>
           <tr>
             <td> <p>Total Pub Games: </p></td>
-            <td><p>{{heroData().heroStats.pub_pick}}</p></td>
+            <td><p>{{heroData().pub_pick}}</p></td>
           </tr>
           <tr>
             <td> <p>Total Pro Games: </p> </td>
-            <td>{{heroData().heroStats.pro_pick}}</td>
+            <td>{{heroData().pro_pick}}</td>
           </tr>
         </table>
       </div>
@@ -159,8 +159,8 @@
       <mat-card>
         @if(heroData().id != -1){
           <app-line-chart-component
-          [pub_pick_trend]="heroData().heroStats.pub_pick_trend"
-          [pub_win_trend]="heroData().heroStats.pub_win_trend"
+          [pub_pick_trend]="heroData().pub_pick_trend"
+          [pub_win_trend]="heroData().pub_win_trend"
           [lineChartLabel]="['1','2','3','4','5','6']"
           [usedBy]="'hero-detail'"
           />
