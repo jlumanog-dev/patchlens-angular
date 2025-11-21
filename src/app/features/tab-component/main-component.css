@@ -1,0 +1,38 @@
+
+.main-container{
+  display: grid;
+  grid-template-areas: "box1 box2";
+  grid-template-columns: 3fr 1fr;
+  color: var(--text-primary);
+  width: 90%;
+  margin: 5px auto;
+}
+
+.tab-container{
+  border-radius: 20px;
+  padding: 15px;
+  background-color: var(--bg-dark);
+  border: 1px solid var(--bg-panel);
+  grid-area: box1;
+  /* background: linear-gradient(79deg,rgba(201, 161, 74, 0.04) 0%, rgba(27, 27, 27, 1) 54%, rgba(201, 161, 74, 0.04) 100%); */
+}
+
+.tab-label{
+  color: var(--text-primary);
+  font-size: 15px;
+}
+.tab-label-icon{
+    color: var(--text-primary);
+}
+
+.hero-insight-container{
+  grid-area: box1;
+}
+
+/* .hero-insight-container > .hero-insight-view-box{
+
+} */
+
+/* .hero-insight-container > .top-heroes-view-box{
+  grid-area: box2;
+} */

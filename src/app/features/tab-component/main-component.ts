@@ -6,15 +6,14 @@ import { ROUTER_OUTLET_DATA } from '@angular/router';
 import { InsightView } from '../heroes/insight-view/insight-view';
 
 @Component({
-  selector: 'app-tab-component',
+  selector: 'app-main-component',
   imports: [MatTabsModule, MatIcon, TopHeroesView, InsightView],
-  templateUrl: './tab-component.html',
-  styleUrl: './tab-component.css'
+  templateUrl: './main-component.html',
+  styleUrl: './main-component.css'
 })
-export class TabComponent {
+export class MainComponent {
   initialTabIndex: number = 0;
   ngOnInit(){
-    console.log("on tab-component");
 
   }
 }

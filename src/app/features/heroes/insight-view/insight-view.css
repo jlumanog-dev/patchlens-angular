@@ -1,5 +1,8 @@
- h1, h2, h3, p{
+ h1, h2, h3{
   font-weight: 100;
+}
+p{
+    color: var(--text-secondary);
 }
 
 .hero-insight-container{
@@ -38,4 +41,5 @@
 
 .hero-insight-container > .hero-insight-heroes-played-flexbox > .hero-insight-heroes-played-box > mat-card .mat-card-content-box{
   text-align: center;
+  font-size: 15px;
 }
