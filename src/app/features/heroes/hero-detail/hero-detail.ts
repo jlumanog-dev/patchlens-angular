@@ -71,7 +71,7 @@ export class HeroDetail {
   }
 
   expansionMethod(){
-    this.typingEffectAsync?.unsubscribe(); // unsubscribe just in case the
+    this.typingEffectAsync?.unsubscribe(); // unsubscribe just in case
     this.displayText = '';
     this.typingEffectAsync = interval(10).pipe(take(this.fullText.length)).subscribe(index => {
       this.displayText += this.fullText[index];

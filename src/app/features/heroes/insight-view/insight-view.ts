@@ -3,6 +3,7 @@ import { DoughnutChartComponent } from '../../../shared/components/charts/doughn
 import { ApiService } from '../../../core/services/api';
 import { MatCardModule } from '@angular/material/card';
 import { NgStyle } from '@angular/common';
+import { RecentMatchAggregateInterface } from '../../../shared/RecentMatchAggregateInterface';
 /* import { SlicePipe } from '@angular/common'; */
 
 @Component({
@@ -46,6 +47,18 @@ export class InsightView {
     against_wins: 0
   }]);
 
+  recentMatchAggregate = signal<RecentMatchAggregateInterface>({
+    totalMatches: 0,
+    winRate: 0,
+    avgKDA: 0,
+    avgGPM: 0,
+    avgXPM: 0,
+    avgHeroDamage: 0,
+    avgTowerDamage: 0,
+    avgLastHit: 0,
+    avgLastHitPerMinute: 0
+  });
+
   winRates = signal<number[]>([0,0,0]);
 
   ngOnInit(){
@@ -66,6 +79,17 @@ export class InsightView {
         console.log(error);
       }
     });
+
+    this.apiService.getRecentMachesByUser().subscribe({
+      next: (response: RecentMatchAggregateInterface) =>{
+        console.log(response);
+        this.recentMatchAggregate.set(response);
+        console.log(this.recentMatchAggregate());
+      },
+      error: (error) =>{
+        console.log(error);
+      }
+    })
   }
 
   textColor(value: number): string{

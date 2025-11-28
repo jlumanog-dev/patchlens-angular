@@ -5,6 +5,7 @@ import { UserInterface } from "../../shared/UserInterface";
 import { catchError } from "rxjs";
 import { authenticationService } from "../../auth/auth.service";
 import { HeroesInterface } from "../../shared/HeroesInterface";
+import { RecentMatchAggregateInterface } from "../../shared/RecentMatchAggregateInterface";
 
 @Injectable({providedIn: 'root'})
 export class ApiService{
@@ -61,6 +62,11 @@ export class ApiService{
 
   getHeroesPlayedByUser(){
     return this.http.get<HeroesInterface[]>('http://localhost:8080/api/user/heroes', {responseType: 'json'}).pipe(catchError(error=>{
+      throw error;
+    }))
+  }
+  getRecentMachesByUser(){
+    return this.http.get<RecentMatchAggregateInterface>('http://localhost:8080/api/user/recentMatches', {responseType: 'json'}).pipe(catchError(error =>{
       throw error;
     }))
   }
