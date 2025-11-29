@@ -47,16 +47,50 @@ export class InsightView {
     against_wins: 0
   }]);
 
-  recentMatchAggregate = signal<RecentMatchAggregateInterface>({
-    totalMatches: 0,
-    winRate: 0,
-    avgKDA: 0,
-    avgGPM: 0,
-    avgXPM: 0,
-    avgHeroDamage: 0,
-    avgTowerDamage: 0,
-    avgLastHit: 0,
-    avgLastHitPerMinute: 0
+  recentMatches = signal<RecentMatchAggregateInterface>({
+      match_list: [
+        {
+          match_id: 0,
+          player_slot: 0,
+          radiant_win: false,
+          hero_id: 0,
+          start_time: 0,
+          duration: 0,
+          game_mode: 0,
+          lobby_type: 0,
+          kills: 0,
+          deaths: 0,
+          assists: 0,
+          average_rank: 0,
+          xp_per_min: 0,
+          gold_per_min: 0,
+          hero_damage: 0,
+          tower_damage: 0,
+          hero_healing: 0,
+          last_hits: 0,
+          cluster: 0,
+          hero_variant: 0,
+
+          kdaRatio: 0,
+          gpmXpmEfficiency: 0,
+          csPerMinEfficiency: 0,
+          heroDmgEfficiency: 0,
+          towerDmgEfficiency: 0,
+        }
+
+      ],
+
+      match_aggregate: {
+        totalMatches: 0,
+        winRate: 0,
+        avgKDA: 0,
+        avgGPM: 0,
+        avgXPM: 0,
+        avgHeroDamage: 0,
+        avgTowerDamage: 0,
+        avgLastHit: 0,
+        avgLastHitPerMinute: 0,
+      }
   });
 
   winRates = signal<number[]>([0,0,0]);
@@ -70,7 +104,6 @@ export class InsightView {
           let wins = this.heroesPlayed()[i].win ?? 0;
           let games = this.heroesPlayed()[i].games ?? 0;
           this.winRates()[i] = (100 * (wins / games) );
-          console.log(this.heroesPlayed());
         }
 
       },
@@ -83,8 +116,8 @@ export class InsightView {
     this.apiService.getRecentMachesByUser().subscribe({
       next: (response: RecentMatchAggregateInterface) =>{
         console.log(response);
-        this.recentMatchAggregate.set(response);
-        console.log(this.recentMatchAggregate());
+        this.recentMatches.set(response);
+        console.log(this.recentMatches());
       },
       error: (error) =>{
         console.log(error);
