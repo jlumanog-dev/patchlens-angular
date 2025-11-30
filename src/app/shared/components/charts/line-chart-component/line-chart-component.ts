@@ -60,8 +60,9 @@ export class LineChartComponent {
         this.chart?.update();
         break;
       case 'insight-view':
-        console.log(this.matchList()?.match_list);
-        this.matchList()?.match_list.forEach(element =>{
+        //Have to reverse the match_list. Somehow the latest match is at the first
+        //index after passing it here in this line chart
+        this.matchList()?.match_list.reverse().forEach(element =>{
           //skip the default values
           if(element.match_id == 0){
             return;
@@ -111,13 +112,13 @@ export class LineChartComponent {
           ]
         }
 
-        this.lineChartData.datasets[0].data = [...this.gpmEfficiency()];
+        this.lineChartData.datasets[0].data = [...this.gpmEfficiency()]
         this.lineChartData.datasets[0].label = 'GPM Efficiency';
 
-        this.lineChartData.datasets[1].data = [...this.csPerMinEfficiency()];
+        this.lineChartData.datasets[1].data = [...this.csPerMinEfficiency()]
         this.lineChartData.datasets[1].label = 'CS per Minute Efficiency';
 
-        this.lineChartData.datasets[2].data = [...this.KDARatio()];
+        this.lineChartData.datasets[2].data = [...this.KDARatio()]
         this.lineChartData.datasets[2].label = 'KDA Ratio per Match';
 
         //damage values are too big in comparison to other metrics
