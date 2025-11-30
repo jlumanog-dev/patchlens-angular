@@ -4,11 +4,12 @@ import { ApiService } from '../../../core/services/api';
 import { MatCardModule } from '@angular/material/card';
 import { NgStyle } from '@angular/common';
 import { RecentMatchAggregateInterface } from '../../../shared/RecentMatchAggregateInterface';
+import { LineChartComponent } from "../../../shared/components/charts/line-chart-component/line-chart-component";
 /* import { SlicePipe } from '@angular/common'; */
 
 @Component({
   selector: 'app-insight-view',
-  imports: [DoughnutChartComponent, MatCardModule, NgStyle],
+  imports: [DoughnutChartComponent, MatCardModule, NgStyle, LineChartComponent],
   templateUrl: './insight-view.html',
   styleUrls: ['./insight-view.css', './insight-view-minmax-smaller.css', 'insight-view-larger.css']
 })
@@ -117,7 +118,6 @@ export class InsightView {
       next: (response: RecentMatchAggregateInterface) =>{
         console.log(response);
         this.recentMatches.set(response);
-        console.log(this.recentMatches());
       },
       error: (error) =>{
         console.log(error);

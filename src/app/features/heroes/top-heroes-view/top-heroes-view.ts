@@ -40,4 +40,13 @@ export class TopHeroesView {
       }else
       return "var(--accent-red)";
   }
+  overallWinRateColorSet(value: number){
+    if(value >= 50){
+      return "var(--success)";
+    }else if(value >= 46){
+      return "var(--accent-gold)";
+    }else{
+      return "var(--accent-red)";
+    }
+  }
 }

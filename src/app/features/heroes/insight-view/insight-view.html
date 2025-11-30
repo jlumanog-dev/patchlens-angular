@@ -114,4 +114,10 @@
           </mat-card>
         </div>
   </div>
+  <br>
+
+  <div>
+    <h3>Recent Matches</h3>
+    <app-line-chart-component [usedBy]="'insight-view'" [matchList]="recentMatches()"/>
+  </div>
 </div>

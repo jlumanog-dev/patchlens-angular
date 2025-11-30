@@ -1,6 +1,8 @@
-import { Component, input, signal, ViewChild } from '@angular/core';
+import { ArrayType } from '@angular/compiler';
+import { Component, input, Signal, signal, ViewChild } from '@angular/core';
 import { ChartConfiguration } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import { RecentMatchAggregateInterface } from '../../../RecentMatchAggregateInterface';
 
 @Component({
   selector: 'app-line-chart-component',
@@ -17,7 +19,12 @@ export class LineChartComponent {
   lineChartLabel = input<string[]>([]);
 
   //inputs and signals for insights-view
-
+  matchList = input<RecentMatchAggregateInterface>();
+  matchLabels = signal<string[]>([]);
+  gpmEfficiency = signal<number[]>([]);
+  csPerMinEfficiency = signal<number[]>([]);
+  KDARatio = signal<number[]>([]);
+  heroDamageEfficiency = signal<number[]>([]);
 
 
   /* definite assign operator (!) tells angular the 'chart' will get assigned later
@@ -53,7 +60,70 @@ export class LineChartComponent {
         this.chart?.update();
         break;
       case 'insight-view':
+        console.log(this.matchList()?.match_list);
+        this.matchList()?.match_list.forEach(element =>{
+          //skip the default values
+          if(element.match_id == 0){
+            return;
+          }
+          if(element.radiant_win && element.player_slot <= 127){
+            this.matchLabels.update(currentLabels =>
+              [...currentLabels, 'Radiant (W)']
+            );
+          }else if(element.radiant_win == false && element.player_slot >= 128){
+            this.matchLabels.update(currentLabels =>
+              [...currentLabels, 'Dire (W)']
+            );
+          }else if (element.radiant_win && element.player_slot >= 128 ){
+            this.matchLabels.update(currentLabels =>
+              [...currentLabels, 'Dire (L)']
+            );
+          }else if(element.radiant_win == false && element.player_slot <= 127){
+            this.matchLabels.update(currentLabels =>
+              [...currentLabels, 'Radiant (L)']
+            );
+          }
+          this.gpmEfficiency?.update(currentGpmList => [...currentGpmList, element.gpmXpmEfficiency]);
+          this.csPerMinEfficiency?.update(currentCsPerMinList => [...currentCsPerMinList, element.csPerMinEfficiency]);
+          this.KDARatio?.update(currentKdaRatioList => [...currentKdaRatioList, element.kdaRatio]);
+          //this.heroDamageEfficiency?.push(element.heroDmgEfficiency);
+        })
+        console.log(this.matchLabels());
+        this.lineChartData = {
+          labels: [...this.matchLabels()],
+          datasets: [ {
+              data: [],
+              label: '',
+              fill: false,
+            },{
+              data: [],
+              label: '',
+              fill: false,
+            },{
+              data: [],
+              label: '',
+              fill: false,
+            },/* {
+              data: [],
+              label: '',
+              fill: false,
+            } */
+          ]
+        }
 
+        this.lineChartData.datasets[0].data = [...this.gpmEfficiency()];
+        this.lineChartData.datasets[0].label = 'GPM Efficiency';
+
+        this.lineChartData.datasets[1].data = [...this.csPerMinEfficiency()];
+        this.lineChartData.datasets[1].label = 'CS per Minute Efficiency';
+
+        this.lineChartData.datasets[2].data = [...this.KDARatio()];
+        this.lineChartData.datasets[2].label = 'KDA Ratio per Match';
+
+        //damage values are too big in comparison to other metrics
+        /* this.lineChartData.datasets[3].data = [...this.heroDamageEfficiency];
+        this.lineChartData.datasets[3].label = 'Hero Damage Efficiency'; */
+        this.chart?.update();
         break;
     }
 

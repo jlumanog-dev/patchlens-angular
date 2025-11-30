@@ -1,5 +1,5 @@
 <div class="top-heroes-view-container">
-  <h4>Top Performing Heroes on Pubs and Pro</h4>
+  <h4>Heroes w/ High Pro-to-Pub Score</h4>
   <div class="top-heroes-view-container-flexbox">
 
     @for (item of heroes(); track item) {
@@ -14,7 +14,7 @@
         <mat-card-content>
           <div>
             <br>
-            <h3>{{item.winRate.toFixed(2)}}%</h3>
+            <h3 [ngStyle]="{'color': overallWinRateColorSet(item.winRate)}">{{item.winRate.toFixed(2)}}%</h3>
             <p>Overall Win Rate</p>
           </div>
           <div>

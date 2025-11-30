@@ -11,10 +11,10 @@
 .tab-container{
   border-radius: 20px;
   padding: 15px;
-  background-color: var(--bg-dark);
+  /* background-color: var(--bg-dark); */
+  background: linear-gradient(79deg,rgba(201, 161, 74, 0.015) 0%, rgba(27, 27, 27, 0.662) 60%, rgba(201, 161, 74, 0.021) 100%);
   border: 1px solid var(--bg-panel);
   grid-area: box1;
-  /* background: linear-gradient(79deg,rgba(201, 161, 74, 0.04) 0%, rgba(27, 27, 27, 1) 54%, rgba(201, 161, 74, 0.04) 100%); */
 }
 
 .tab-label{
