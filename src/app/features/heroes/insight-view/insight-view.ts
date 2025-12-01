@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { DoughnutChartComponent } from '../../../shared/components/charts/doughnut-chart-component/doughnut-chart-component';
 import { ApiService } from '../../../core/services/api';
 import { MatCardModule } from '@angular/material/card';
@@ -48,51 +48,7 @@ export class InsightView {
     against_wins: 0
   }]);
 
-  recentMatches = signal<RecentMatchAggregateInterface>({
-      match_list: [
-        {
-          match_id: 0,
-          player_slot: 0,
-          radiant_win: false,
-          hero_id: 0,
-          start_time: 0,
-          duration: 0,
-          game_mode: 0,
-          lobby_type: 0,
-          kills: 0,
-          deaths: 0,
-          assists: 0,
-          average_rank: 0,
-          xp_per_min: 0,
-          gold_per_min: 0,
-          hero_damage: 0,
-          tower_damage: 0,
-          hero_healing: 0,
-          last_hits: 0,
-          cluster: 0,
-          hero_variant: 0,
-
-          kdaRatio: 0,
-          gpmXpmEfficiency: 0,
-          csPerMinEfficiency: 0,
-          heroDmgEfficiency: 0,
-          towerDmgEfficiency: 0,
-        }
-
-      ],
-
-      match_aggregate: {
-        totalMatches: 0,
-        winRate: 0,
-        avgKDA: 0,
-        avgGPM: 0,
-        avgXPM: 0,
-        avgHeroDamage: 0,
-        avgTowerDamage: 0,
-        avgLastHit: 0,
-        avgLastHitPerMinute: 0,
-      }
-  });
+  recentMatches = input<RecentMatchAggregateInterface>();
 
   winRates = signal<number[]>([0,0,0]);
 
@@ -100,7 +56,6 @@ export class InsightView {
     this.apiService.getHeroesPlayedByUser().subscribe({
       next: (response: HeroesPlayedInterface[]) =>{
         this.heroesPlayed.set(response);
-        console.log("winrate size: " + this.winRates.length);
         for(let i = 0; i < 3; i++){
           let wins = this.heroesPlayed()[i].win ?? 0;
           let games = this.heroesPlayed()[i].games ?? 0;
@@ -113,16 +68,10 @@ export class InsightView {
         console.log(error);
       }
     });
+  }
 
-    this.apiService.getRecentMachesByUser().subscribe({
-      next: (response: RecentMatchAggregateInterface) =>{
-        console.log(response);
-        this.recentMatches.set(response);
-      },
-      error: (error) =>{
-        console.log(error);
-      }
-    })
+  ngOnChanges(){
+    console.log(this.recentMatches());
   }
 
   textColor(value: number): string{

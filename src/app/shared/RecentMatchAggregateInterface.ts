@@ -21,7 +21,7 @@ export interface RecentMatchAggregateInterface {
       last_hits: number,
       cluster: number,
       hero_variant: number,
-
+      localized_name: string,
       kdaRatio: number,
       gpmXpmEfficiency: number,
       csPerMinEfficiency: number,
