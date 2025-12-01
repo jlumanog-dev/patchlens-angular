@@ -21,9 +21,9 @@ export class LineChartComponent {
   //inputs and signals for insights-view
   matchList = input<RecentMatchAggregateInterface>();
   matchLabels = signal<string[]>([]);
-  gpmEfficiency = signal<number[]>([]);
-  csPerMinEfficiency = signal<number[]>([]);
-  KDARatio = signal<number[]>([]);
+  gpm = signal<number[]>([]);
+  lastHits = signal<number[]>([]);
+  xpm = signal<number[]>([]);
   heroDamageEfficiency = signal<number[]>([]);
 
 
@@ -84,9 +84,10 @@ export class LineChartComponent {
               [...currentLabels, 'Radiant (L)']
             );
           }
-          this.gpmEfficiency?.update(currentGpmList => [...currentGpmList, element.gpmXpmEfficiency]);
-          this.csPerMinEfficiency?.update(currentCsPerMinList => [...currentCsPerMinList, element.csPerMinEfficiency]);
-          this.KDARatio?.update(currentKdaRatioList => [...currentKdaRatioList, element.kdaRatio]);
+          this.gpm?.update(currentGpmList => [...currentGpmList, element.gold_per_min]);
+          this.lastHits?.update(currentCsPerMinList => [...currentCsPerMinList, element.last_hits]);
+          this.xpm?.update(currentXpmList => [...currentXpmList, element.xp_per_min]);
+          //this.KDARatio?.update(currentKdaRatioList => [...currentKdaRatioList, element.kdaRatio]);
           //this.heroDamageEfficiency?.push(element.heroDmgEfficiency);
         })
         console.log(this.matchLabels());
@@ -104,22 +105,19 @@ export class LineChartComponent {
               data: [],
               label: '',
               fill: false,
-            },/* {
-              data: [],
-              label: '',
-              fill: false,
-            } */
+            }
           ]
         }
+        this.lineChartData.datasets[0].data = [...this.lastHits()]
+        this.lineChartData.datasets[0].label = 'Total Last hits';
+        this.lineChartData.datasets[1].data = [...this.gpm()]
+        this.lineChartData.datasets[1].label = 'Gold per Minute';
+        this.lineChartData.datasets[2].data = [...this.xpm()]
+        this.lineChartData.datasets[2].label = 'XP per Minute';
 
-        this.lineChartData.datasets[0].data = [...this.gpmEfficiency()]
-        this.lineChartData.datasets[0].label = 'GPM Efficiency';
 
-        this.lineChartData.datasets[1].data = [...this.csPerMinEfficiency()]
-        this.lineChartData.datasets[1].label = 'CS per Minute Efficiency';
-
-        this.lineChartData.datasets[2].data = [...this.KDARatio()]
-        this.lineChartData.datasets[2].label = 'KDA Ratio per Match';
+/*         this.lineChartData.datasets[2].data = [...this.KDARatio()]
+        this.lineChartData.datasets[2].label = 'KDA Ratio per Match'; */
 
         //damage values are too big in comparison to other metrics
         /* this.lineChartData.datasets[3].data = [...this.heroDamageEfficiency];
