@@ -1,6 +1,5 @@
 <div class="hero-insight-container">
   <br>
-  <h3>Your Most Played Heroes</h3>
   <div class="hero-insight-heroes-played-flexbox">
 <!--
       @for (element of heroesPlayed() | slice:0:3; track element.hero_id; let i = $index) {
@@ -19,23 +18,24 @@
         </div>
       } -->
         <div class="hero-insight-heroes-played-box">
-          <app-doughnut-chart-component
+<!--           <app-doughnut-chart-component
                     [heroId]="heroesPlayed()[0].hero_id"
                     [lastPlayed]="heroesPlayed()[0].last_played"
                     [games]="heroesPlayed()[0].games"
                     [win]="heroesPlayed()[0].win"
                     [againstGames]="heroesPlayed()[0].against_games"
                     [againstWins]="heroesPlayed()[0].against_wins"
-                    [doughnutChartLabel]="['loses', 'Wins']" />
+                    [doughnutChartLabel]="['loses', 'Wins']" /> -->
           <mat-card>
+
             <mat-card-header>
               <div mat-card-avatar class="mat-card-avatar-class">
-                <img class="header-image" src="http://cdn.dota2.com/{{heroesPlayed()[0].img}}">
+                <img class="header-image" src="http://cdn.dota2.com/{{mostPlayedHeroId().img}}">
               </div>
               <div>
-                <h3>{{heroesPlayed()[0].localized_name}}</h3>
+                <h3>{{mostPlayedHeroId().localized_name}}</h3>
                 <p class="heroes-played-role">
-                  @for(element of heroesPlayed()[0].roles; track element){
+                  @for(element of mostPlayedHeroId().roles; track element){
                     <span>{{element}},&nbsp;</span>
                   }
                 </p>
@@ -43,78 +43,102 @@
             </mat-card-header>
               <mat-card-content>
                 <div class="mat-card-content-box">
-                  <h2 [ngStyle]="{'color': textColor(winRates()[0])}" >{{winRates()[0].toFixed(2)}}%</h2>
-                  <p>Overall Win Rate</p>
+                  <h2>{{mostPlayedHeroId().averageKills.toFixed(2)}}</h2>
+                  <p>Avg. Kills</p>
+                </div>
+                <div class="mat-card-content-box">
+                  <h2>{{mostPlayedHeroId().averageDeaths.toFixed(2)}}</h2>
+                  <p>Avg. Deaths</p>
+                </div>
+                <div class="mat-card-content-box">
+                  <h2>{{mostPlayedHeroId().averageAssists.toFixed(2)}}</h2>
+                  <p>Avg. Assists</p>
                 </div>
               </mat-card-content>
           </mat-card>
         </div>
-
         <div class="hero-insight-heroes-played-box">
-            <app-doughnut-chart-component
-                    [heroId]="heroesPlayed()[1].hero_id"
-                    [lastPlayed]="heroesPlayed()[1].last_played"
-                    [games]="heroesPlayed()[1].games"
-                    [win]="heroesPlayed()[1].win"
-                    [againstGames]="heroesPlayed()[1].against_games"
-                    [againstWins]="heroesPlayed()[1].against_wins"
-                    [doughnutChartLabel]="['loses', 'Wins']" />
-            <mat-card>
-              <mat-card-header>
-                <div mat-card-avatar class="mat-card-avatar-class">
-                  <img class="header-image" src="http://cdn.dota2.com/{{heroesPlayed()[1].img}}">
-                </div>
-                <div>
-                  <h3>{{heroesPlayed()[1].localized_name}}</h3>
-                  <p class="heroes-played-role">
-                    @for(element of heroesPlayed()[1].roles; track element){
-                      <span>{{element}},&nbsp;</span>
-                    }
-                  </p>
-                </div>
-              </mat-card-header>
+<!--           <app-doughnut-chart-component
+                    [heroId]="heroesPlayed()[0].hero_id"
+                    [lastPlayed]="heroesPlayed()[0].last_played"
+                    [games]="heroesPlayed()[0].games"
+                    [win]="heroesPlayed()[0].win"
+                    [againstGames]="heroesPlayed()[0].against_games"
+                    [againstWins]="heroesPlayed()[0].against_wins"
+                    [doughnutChartLabel]="['loses', 'Wins']" /> -->
+          <mat-card>
+
+            <mat-card-header>
+              <div mat-card-avatar class="mat-card-avatar-class">
+                <img class="header-image" src="http://cdn.dota2.com/{{mostPlayedHeroId().img}}">
+              </div>
+              <div>
+                <h3>{{mostPlayedHeroId().localized_name}}</h3>
+                <p class="heroes-played-role">
+                  @for(element of mostPlayedHeroId().roles; track element){
+                    <span>{{element}},&nbsp;</span>
+                  }
+                </p>
+              </div>
+            </mat-card-header>
               <mat-card-content>
                 <div class="mat-card-content-box">
-                  <h2 [ngStyle]="{'color': textColor(winRates()[1])}">{{winRates()[1].toFixed(2)}}%</h2>
-                  <p>Overall Win Rate</p>
+                  <h2>{{mostPlayedHeroId().averageKills.toFixed(2)}}</h2>
+                  <p>Avg. Kills</p>
+                </div>
+                <div class="mat-card-content-box">
+                  <h2>{{mostPlayedHeroId().averageDeaths.toFixed(2)}}</h2>
+                  <p>Avg. Deaths</p>
+                </div>
+                <div class="mat-card-content-box">
+                  <h2>{{mostPlayedHeroId().averageAssists.toFixed(2)}}</h2>
+                  <p>Avg. Assists</p>
                 </div>
               </mat-card-content>
-            </mat-card>
+          </mat-card>
         </div>
-
         <div class="hero-insight-heroes-played-box">
-          <app-doughnut-chart-component
-          [heroId]="heroesPlayed()[2].hero_id"
-          [lastPlayed]="heroesPlayed()[2].last_played"
-          [games]="heroesPlayed()[2].games"
-          [win]="heroesPlayed()[2].win"
-          [againstGames]="heroesPlayed()[2].against_games"
-          [againstWins]="heroesPlayed()[2].against_wins"
-          [doughnutChartLabel]="['loses', 'Wins']" />
+<!--           <app-doughnut-chart-component
+                    [heroId]="heroesPlayed()[0].hero_id"
+                    [lastPlayed]="heroesPlayed()[0].last_played"
+                    [games]="heroesPlayed()[0].games"
+                    [win]="heroesPlayed()[0].win"
+                    [againstGames]="heroesPlayed()[0].against_games"
+                    [againstWins]="heroesPlayed()[0].against_wins"
+                    [doughnutChartLabel]="['loses', 'Wins']" /> -->
           <mat-card>
-              <mat-card-header>
-                <div mat-card-avatar class="mat-card-avatar-class">
-                  <img class="header-image" src="http://cdn.dota2.com/{{heroesPlayed()[2].img}}">
-                </div>
-                <div>
-                  <h3>{{heroesPlayed()[2].localized_name}}</h3>
-                  <p class="heroes-played-role">
-                    @for(element of heroesPlayed()[2].roles; track element){
-                      <span>{{element}},&nbsp;</span>
-                    }
-                  </p>
-                </div>
-              </mat-card-header>
+
+            <mat-card-header>
+              <div mat-card-avatar class="mat-card-avatar-class">
+                <img class="header-image" src="http://cdn.dota2.com/{{mostPlayedHeroId().img}}">
+              </div>
+              <div>
+                <h3>{{mostPlayedHeroId().localized_name}}</h3>
+                <p class="heroes-played-role">
+                  @for(element of mostPlayedHeroId().roles; track element){
+                    <span>{{element}},&nbsp;</span>
+                  }
+                </p>
+              </div>
+            </mat-card-header>
               <mat-card-content>
                 <div class="mat-card-content-box">
-                  <h2 [ngStyle]="{'color': textColor(winRates()[2])}">{{winRates()[2].toFixed(2)}}%</h2>
-                  <p>Overall Win Rate</p>
+                  <h2>{{mostPlayedHeroId().averageKills.toFixed(2)}}</h2>
+                  <p>Avg. Kills</p>
+                </div>
+                <div class="mat-card-content-box">
+                  <h2>{{mostPlayedHeroId().averageDeaths.toFixed(2)}}</h2>
+                  <p>Avg. Deaths</p>
+                </div>
+                <div class="mat-card-content-box">
+                  <h2>{{mostPlayedHeroId().averageAssists.toFixed(2)}}</h2>
+                  <p>Avg. Assists</p>
                 </div>
               </mat-card-content>
           </mat-card>
         </div>
   </div>
-  <br>
+  <br><br>
 
   <div>
     <h3>Recent Matches</h3>

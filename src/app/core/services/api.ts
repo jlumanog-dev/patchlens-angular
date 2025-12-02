@@ -61,7 +61,7 @@ export class ApiService{
   }
 
   getHeroesPlayedByUser(){
-    return this.http.get<HeroesInterface[]>('http://localhost:8080/api/user/heroes', {responseType: 'json'}).pipe(catchError(error=>{
+    return this.http.get<HeroesPlayedInterface>('http://localhost:8080/api/user/heroes', {responseType: 'json'}).pipe(catchError(error=>{
       throw error;
     }))
   }
