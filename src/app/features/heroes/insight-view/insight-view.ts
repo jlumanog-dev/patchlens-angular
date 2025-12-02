@@ -10,7 +10,7 @@ import { MostPlayedHeroesInterface } from '../../../shared/MostPlayedHeroesInter
 
 @Component({
   selector: 'app-insight-view',
-  imports: [DoughnutChartComponent, MatCardModule, NgStyle, LineChartComponent],
+  imports: [MatCardModule, LineChartComponent],
   templateUrl: './insight-view.html',
   styleUrls: ['./insight-view.css', './insight-view-minmax-smaller.css', 'insight-view-larger.css']
 })
@@ -46,12 +46,32 @@ export class InsightView {
   });
 
   mostPlayedHeroId = signal<MostPlayedHeroesInterface>({
-    localized_name: '',
-    averageKills: 0,
-    averageDeaths: 0,
-    averageAssists: 0,
-    img: '',
-    roles: []
+    heroes:[
+      {
+        localized_name: '',
+        averageKills: 0,
+        averageDeaths: 0,
+        averageAssists: 0,
+        img: '',
+        roles: []
+      },
+            {
+        localized_name: '',
+        averageKills: 0,
+        averageDeaths: 0,
+        averageAssists: 0,
+        img: '',
+        roles: []
+      },
+            {
+        localized_name: '',
+        averageKills: 0,
+        averageDeaths: 0,
+        averageAssists: 0,
+        img: '',
+        roles: []
+      },
+    ]
   });
 
   recentMatches = input<RecentMatchAggregateInterface>();
@@ -63,40 +83,71 @@ export class InsightView {
       next: (response: HeroesPlayedInterface) =>{
         this.heroesPlayed.set(response);
         console.log(response);
-        const heroId = Object.keys(response.frequencyHeroes).reduce((heroIdOne : any, heroIdTwo : any)=>
-          response.frequencyHeroes[heroIdOne] > response.frequencyHeroes[heroIdTwo] ? heroIdOne : heroIdTwo
+        //can now sort hero_id by their frequency in a descending order
+        const heroId = Object.keys(response.frequencyHeroes).sort((heroIdOne : any, heroIdTwo : any)=>
+          response.frequencyHeroes[heroIdTwo] - response.frequencyHeroes[heroIdOne]
         );
-        let avgKills : number = 0;
-        let avgDeaths : number = 0;
-        let avgAssists: number = 0;
-        let localizedName : string = '';
-        let numberOfMatches: number = 0;
-        let img : string = '';
-        let role : string[] = [];
-        response.recentMatches.forEach((object) => {
-          if(object.hero_id == Number(heroId)){
-            avgKills += object.kills;
-            avgDeaths += object.deaths;
-            avgAssists += object.assists;
-            localizedName = object.localized_name;
-            numberOfMatches += 1;
-            console.log("KILLS: " + avgKills);
-            console.log("numberOfMatch" + numberOfMatches);
-            img = object.img;
-            role = object.roles;
-          }
-        });
-        avgKills = avgKills / numberOfMatches;
-        avgDeaths = avgDeaths / numberOfMatches;
-        avgAssists = avgAssists / numberOfMatches;
-        this.mostPlayedHeroId.set({
-          localized_name: localizedName,
-          averageKills: avgKills,
-          averageDeaths: avgDeaths,
-          averageAssists: avgAssists,
-          img: img,
-          roles: role
-        })
+        console.log(heroId);
+
+        let topPlayedHeroesObject : MostPlayedHeroesInterface ={
+          heroes:[{
+              localized_name: '',
+              averageKills: 0,
+              averageDeaths: 0,
+              averageAssists: 0,
+              img: '',
+              roles: []
+            },
+                  {
+              localized_name: '',
+              averageKills: 0,
+              averageDeaths: 0,
+              averageAssists: 0,
+              img: '',
+              roles: []
+            },
+                  {
+              localized_name: '',
+              averageKills: 0,
+              averageDeaths: 0,
+              averageAssists: 0,
+              img: '',
+              roles: []
+            }]
+        };
+        for(let i = 0; i < 3; i++){
+          let avgKills : number = 0;
+          let avgDeaths : number = 0;
+          let avgAssists: number = 0;
+          let localizedName : string = '';
+          let numberOfMatches: number = 0;
+          let img : string = '';
+          let role : string[] = [];
+          response.recentMatches.forEach((object) => {
+            if(object.hero_id == Number(heroId[i])){
+              avgKills += object.kills;
+              avgDeaths += object.deaths;
+              avgAssists += object.assists;
+              localizedName = object.localized_name;
+              numberOfMatches += 1;
+              img = object.img;
+              role = object.roles;
+            }
+          });
+          avgKills = avgKills / numberOfMatches;
+          avgDeaths = avgDeaths / numberOfMatches;
+          avgAssists = avgAssists / numberOfMatches;
+          topPlayedHeroesObject.heroes[i] = ({
+            localized_name: localizedName,
+            averageKills: avgKills,
+            averageDeaths: avgDeaths,
+            averageAssists: avgAssists,
+            img: img,
+            roles: role
+          });
+        }
+
+        this.mostPlayedHeroId.set(topPlayedHeroesObject);
         //this.mostPlayedHeroId.set(response.recentMatches);
         console.log(this.mostPlayedHeroId());
       },
