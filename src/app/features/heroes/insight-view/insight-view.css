@@ -5,8 +5,24 @@ p{
     color: var(--text-secondary);
 }
 
+
+.hero-insight-component-ai-summary-container{
+  margin: auto;
+  color: var(--text-primary);
+  background-color: var(--bg-dark);
+  border: 1px solid var(--bg-panel);
+}
 .hero-insight-container{
   height: 80%;
+}
+/* .mat-expansion-panel-header-description isn't used but it makes the justify-content and align-items work */
+.hero-insight-container-expansion-panel .mat-expansion-panel-header-description{
+  justify-content: space-between;
+  align-items: center;
+}
+.hero-insight-container > .hero-insight-container-header-box{
+  padding: 5px 5px;
+  margin: 0px 0px 15px 0px;
 }
 .hero-insight-container > .hero-insight-heroes-played-flexbox {
   display: flex;
@@ -20,7 +36,7 @@ p{
 
 .hero-insight-container > .hero-insight-heroes-played-flexbox > .hero-insight-heroes-played-box > mat-card{
   background-color: var(--bg-dark);
-  border: 1px solid var(--bg-panel);;
+  border: 1px solid var(--bg-panel);
 }
 
 .hero-insight-container > .hero-insight-heroes-played-flexbox > .hero-insight-heroes-played-box > mat-card .header-image{
@@ -46,4 +62,25 @@ p{
 
 .hero-insight-container > .hero-insight-heroes-played-flexbox > .hero-insight-heroes-played-box > mat-card .mat-card-content-box{
   text-align: center;
+}
+
+.hero-insight-container > .aggregate-container{
+  margin: 25px 0px 0px 0px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 10em;
+}
+.hero-insight-container > .aggregate-container > .aggregate-box{
+  margin: 5px 10px;
+  color: var(--text-primary);
+  background-color: var(--bg-dark);
+  border: 1px solid var(--bg-panel);
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  align-items: center;
+  font-size: 0.9em;
+  height: 50px;
+  width: 20%;
 }

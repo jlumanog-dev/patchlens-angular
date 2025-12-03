@@ -51,7 +51,7 @@ export class MainComponent {
       match_aggregate: {
         totalMatches: 0,
         winRate: 0,
-        avgKDA: 0,
+        cumulativeKDA: 0,
         avgGPM: 0,
         avgXPM: 0,
         avgHeroDamage: 0,

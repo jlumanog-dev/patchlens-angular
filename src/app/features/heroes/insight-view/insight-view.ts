@@ -1,4 +1,4 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, inject, input, signal, ViewChild } from '@angular/core';
 import { DoughnutChartComponent } from '../../../shared/components/charts/doughnut-chart-component/doughnut-chart-component';
 import { ApiService } from '../../../core/services/api';
 import { MatCardModule } from '@angular/material/card';
@@ -6,11 +6,12 @@ import { NgStyle } from '@angular/common';
 import { RecentMatchAggregateInterface } from '../../../shared/RecentMatchAggregateInterface';
 import { LineChartComponent } from "../../../shared/components/charts/line-chart-component/line-chart-component";
 import { MostPlayedHeroesInterface } from '../../../shared/MostPlayedHeroesInterface';
-/* import { SlicePipe } from '@angular/common'; */
-
+import { interval, Subscription, take } from 'rxjs';
+import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-insight-view',
-  imports: [MatCardModule, LineChartComponent],
+  imports: [MatCardModule, LineChartComponent, MatExpansionModule, MatIconModule, NgStyle],
   templateUrl: './insight-view.html',
   styleUrls: ['./insight-view.css', './insight-view-minmax-smaller.css', 'insight-view-larger.css']
 })
@@ -73,6 +74,22 @@ export class InsightView {
       },
     ]
   });
+
+  fullText: string = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt cum unde veniam eos perspiciatis! Odit atque tenetur ipsa nam non?';
+  displayText = '';
+
+  typingEffectAsync?: Subscription;
+
+  @ViewChild('expand') mat!: MatExpansionPanel;
+
+
+  expansionMethod(){
+    this.typingEffectAsync?.unsubscribe(); // unsubscribe just in case
+    this.displayText = '';
+    this.typingEffectAsync = interval(10).pipe(take(this.fullText.length)).subscribe(index => {
+      this.displayText += this.fullText[index];
+    });
+  }
 
   recentMatches = input<RecentMatchAggregateInterface>();
 
@@ -161,13 +178,96 @@ export class InsightView {
   ngOnChanges(){
   }
 
-  textColor(value: 0): string{
-    if(value >= 50){
-      return "var(--success)";
-    }else if(value >= 46){
-      return "var(--accent-gold)";
-    }else{
-      return "var(--accent-red)";
-    }
+
+  overallWinRateColorSet(value: number | undefined){
+      if(value !== undefined){
+        if(value >= 50){
+              return "var(--success)";
+            }else if(value >= 46){
+              return "var(--accent-gold)";
+            }else{
+              return "var(--accent-red)";
+            }
+      }
+      return 0;
+  }
+
+  kdaColorSet(value: number | undefined){
+      if(value !== undefined){
+        if(value >= 4.0){
+              return "var(--success)";
+            }else if(value >= 2.0){
+              return "var(--accent-gold)";
+            }else{
+              return "var(--accent-red)";
+            }
+      }
+      return 0;
+  }
+
+
+  gpmColorSet(value: number | undefined){
+      if(value !== undefined){
+/*         if(value >= 500){
+              return "var(--success)";
+            }else if(value >= 350){
+              return "var(--accent-gold)";
+            }else{
+              return "var(--accent-red)";
+            } */
+        if(value >= 500){
+              return "var(--success)";
+        }else {
+          return "var(--accent-gold)";
+        }
+      }
+      return 0;
+  }
+  lastHitColorSet(value: number | undefined){
+      if(value !== undefined){
+/*         if(value >= 350){
+              return "var(--success)";
+            }else if(value >= 200){
+              return "var(--accent-gold)";
+            }else{
+              return "var(--accent-red)";
+            } */
+        if(value >= 350){
+          return "var(--success)";
+        }else{
+          return "var(--accent-gold)";
+        }
+      }
+      return 0;
+  }
+  avgPerMinlastHitColorSet(value: number | undefined){
+      if(value !== undefined){
+/*         if(value >= 6.5){
+              return "var(--success)";
+            }else if(value >= 4){
+              return "var(--accent-gold)";
+            }else{
+              return "var(--accent-red)";
+            } */
+           if(value >= 6.5){
+              return "var(--success)";
+            }else{
+              return "var(--accent-gold)";
+            }
+      }
+      return 0;
+  }
+
+  xpmColorSet(value: number | undefined){
+      if(value !== undefined){
+        if(value >= 6.5){
+              return "var(--success)";
+            }else if(value >= 4){
+              return "var(--accent-gold)";
+            }else{
+              return "var(--accent-red)";
+            }
+      }
+      return 0;
   }
 }

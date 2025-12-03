@@ -35,7 +35,7 @@ export interface RecentMatchAggregateInterface {
   match_aggregate: {
     totalMatches: number,
     winRate: number,
-    avgKDA: number,
+    cumulativeKDA: number,
     avgGPM: number,
     avgXPM: number,
     avgHeroDamage: number,

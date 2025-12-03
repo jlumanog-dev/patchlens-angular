@@ -1,5 +1,23 @@
 <div class="hero-insight-container">
   <br>
+    <mat-accordion class="hero-insight-container-expansion-panel" multi>
+      <mat-expansion-panel #expand (click)="expansionMethod()" hideToggle class="hero-insight-component-ai-summary-container">
+        <mat-expansion-panel-header>
+          <mat-panel-title>AI-enabled Insights</mat-panel-title>
+          <mat-panel-description>
+            Click to view a summary of your Performance
+            <mat-icon>expand_circle_down</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="hero-detail-component-ai-summary-content-box">
+          <p>{{displayText}}</p>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  <br><br>
+  <div class="hero-insight-container-header-box">
+    <h3>Most Played Heroes for the last 20 Matches</h3>
+  </div>
   <div class="hero-insight-heroes-played-flexbox">
 <!--
       @for (element of heroesPlayed() | slice:0:3; track element.hero_id; let i = $index) {
@@ -140,7 +158,39 @@
   <br><br>
 
   <div>
-    <h3>Recent Matches</h3>
+    <div class="hero-insight-container-header-box">
+      <h3>Recent Matches</h3>
+    </div>
     <app-line-chart-component [usedBy]="'insight-view'" [matchList]="recentMatches()"/>
+  </div>
+
+  <br><br><br>
+  <h3>Aggregate Data for Recent Matches</h3>
+  <div class="aggregate-container">
+    <div class="aggregate-box">
+      <h2 [ngStyle]="{'color': overallWinRateColorSet(recentMatches()?.match_aggregate?.winRate) }" >{{recentMatches()?.match_aggregate?.winRate?.toFixed(2)}}%</h2>
+      <p>Win Rate</p>
+    </div>
+    <div class="aggregate-box">
+      <h2 [ngStyle]="{'color': gpmColorSet(recentMatches()?.match_aggregate?.avgGPM)}">{{recentMatches()?.match_aggregate?.avgGPM?.toFixed(2)}}</h2>
+      <p>Avg. GPM</p>
+    </div>
+    <div class="aggregate-box">
+      <h2 [ngStyle]="{'color': kdaColorSet(recentMatches()?.match_aggregate?.cumulativeKDA)}" >{{recentMatches()?.match_aggregate?.cumulativeKDA?.toFixed(2)}}</h2>
+      <p>Cumulative. KDA</p>
+    </div>
+    <div class="aggregate-box">
+      <h2 [ngStyle]="{'color': lastHitColorSet(recentMatches()?.match_aggregate?.avgLastHit) }">{{recentMatches()?.match_aggregate?.avgLastHit?.toFixed(2)}}</h2>
+      <p>Avg. CS</p>
+    </div>
+    <div class="aggregate-box">
+      <h2 [ngStyle]="{'color':  avgPerMinlastHitColorSet(recentMatches()?.match_aggregate?.avgLastHitPerMinute)}">{{recentMatches()?.match_aggregate?.avgLastHitPerMinute?.toFixed(2)}}</h2>
+      <p>Overall CS per Minute</p>
+    </div>
+    <div class="aggregate-box">
+      <h2 [ngStyle]="{'color': xpmColorSet(recentMatches()?.match_aggregate?.avgXPM)}">{{recentMatches()?.match_aggregate?.avgXPM?.toFixed(2)}}</h2>
+      <p>Avg. XPM</p>
+    </div>
+
   </div>
 </div>
