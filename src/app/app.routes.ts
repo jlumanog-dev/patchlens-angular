@@ -4,7 +4,7 @@ import { Register } from './auth/register/register';
 import { Main } from './shared/components/main/main';
 import { authGuard } from './core/guards/auth-guard';
 import { guestGuard } from './core/guards/guest-guard';
-import { MainComponent } from './features/tab-component/main-component';
+import { MainComponent } from './features/main-component/main-component';
 import { HeroDetail } from './features/heroes/hero-detail/hero-detail';
 
 export const routes: Routes = [
