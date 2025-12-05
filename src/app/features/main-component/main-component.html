@@ -15,14 +15,13 @@
     <mat-tab>
       <ng-template mat-tab-label>
         <mat-icon class="tab-label-icon" >analytics</mat-icon>
-        <span class="tab-label">&nbsp;Matches</span>
+        <span class="tab-label">&nbsp;Analyze a Match</span>
       </ng-template>
-      <h2>Matches</h2>
-      @for (item of recentMatches().match_list; track item.match_id) {
-        <div>
-          <h3>{{item.localized_name}}</h3>
-        </div>
-      }
+      <div class="match-analyze-container">
+        <h2>Matches</h2>
+        <p>Under development</p>
+      </div>
+
     </mat-tab>
   </mat-tab-group>
 

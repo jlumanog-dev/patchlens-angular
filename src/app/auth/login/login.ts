@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCard } from "@angular/material/card";
 import { MatAnchor } from "@angular/material/button";
+import { customPasswordValidator } from '../../shared/password-validator';
 
 @Component({
   selector: 'app-login',
@@ -22,23 +23,18 @@ export class Login {
 
   router = inject(Router);
 
-  isUsernameInvalid = signal(false);
-  usernameInvalidMessage = signal('');
-
-  isPasswordInvalid = signal(false);
-  passwordInvalidMessage = signal('');
+  isPinInvalid = signal(false);
+  pinInvalidMessage = signal('');
 
   resetErrorLabel(){
-    this.usernameInvalidMessage.set('');
-    this.isUsernameInvalid.set(false);
 
-    this.passwordInvalidMessage.set('');
-    this.isPasswordInvalid.set(false);
+    this.pinInvalidMessage.set('');
+    this.isPinInvalid.set(false);
   }
   //reactive form
   loginFormGroup = new FormGroup({
-      username: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required])
+/*       username: new FormControl('', [Validators.required]),
+ */      pinField: new FormControl('', [Validators.required, customPasswordValidator])
   });
 
 
@@ -49,28 +45,12 @@ export class Login {
 
   submitHandler(){
     this.resetErrorLabel();
-    if(this.loginFormGroup.invalid){
-      if(this.loginFormGroup.get('username')?.invalid){
-        if(this.loginFormGroup.get('password')?.invalid){
-          this.isUsernameInvalid.set(true);
-          this.usernameInvalidMessage.set("Please enter a valid username")
-          this.isPasswordInvalid.set(true);
-          this.passwordInvalidMessage.set("Please enter a valid password");
-        }else{
-          this.isUsernameInvalid.set(true);
-          this.usernameInvalidMessage.set("Please enter a valid username")
-        }
-      }
-      else if(this.loginFormGroup.get('password')?.invalid){
-        this.isPasswordInvalid.set(true);
-        this.passwordInvalidMessage.set("Please enter a valid password");
-      }else{
-        this.isUsernameInvalid.set(true);
-        this.isPasswordInvalid.set(true);
-        this.usernameInvalidMessage.set("Please enter a valid username");
-        this.passwordInvalidMessage.set("Please enter a valid password");
-      }
+   if(this.loginFormGroup.invalid){
+    if(this.loginFormGroup.get('pinField')){
+      this.pinInvalidMessage.set('Please enter a valid PIN');
+      this.isPinInvalid.set(false);
     }
+   }
     else{
 
         this.apiService.authenticate(this.loginFormGroup.value).subscribe({
@@ -82,8 +62,8 @@ export class Login {
           },
           error: error => {
             console.log(error.error.message);
-            this.usernameInvalidMessage.set(error.error.message);
-            this.isUsernameInvalid.set(true);
+            this.pinInvalidMessage.set(error.error.message);
+            this.isPinInvalid.set(true);
           }
         });
     }

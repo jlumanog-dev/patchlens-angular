@@ -14,13 +14,19 @@ export class ApiService{
   private authService = inject(authenticationService);
 
   //attempt to register a new user
-  registerUser(formData: FormGroup){
+  registerUser(formData: FormGroup, personaName : string){
 
     //circular structure means object contains a reference to itself
     //http.post doesn't accept FormGroup or other kinds of objects that have "circular structure"
     let formObject = formData.value;
     console.log(formObject);
-    return this.http.post('http://localhost:8080/api/register', formObject).pipe(catchError(error => {
+    let jsonRequest ={
+      "pinField": formObject['pinGroup']['pinField'],
+      "playerIdField": formObject['playerIdGroup']['playerIdField'],
+      "personaName": personaName
+    }
+    console.log(jsonRequest)
+    return this.http.post('http://localhost:8080/api/register', jsonRequest, { headers: { 'Content-Type': 'application/json' } }).pipe(catchError(error => {
       console.log("error response at api.ts");
       console.log(error);
       throw error;
@@ -71,7 +77,11 @@ export class ApiService{
     }))
   }
 
-
+  getPlayerProfile(playerId: number){
+    return this.http.get(`https://api.opendota.com/api/players/${playerId}`, {responseType: 'json'}).pipe(catchError(error =>{
+      throw error;
+    }))
+  }
 
 
 

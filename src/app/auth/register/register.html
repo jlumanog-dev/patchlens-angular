@@ -1,59 +1,58 @@
 <div class="register-page">
   <div class="register-container">
     <h2>PatchLens</h2>
-    <form [formGroup]="registerFormGroup">
-      <mat-stepper #stepperRef [linear]="true">
-        <mat-step [stepControl]="registerFormGroup">
-          <!-- <form [formGroup]="usernameGroup"> -->
-            <ng-template matStepLabel>Username</ng-template>
+      <mat-stepper [linear]="true">
+        <mat-step [stepControl]="pinGroup">
+          <form [formGroup]="pinGroup">
             <mat-form-field class="mat-form-field-wrapper">
-              <mat-label>Enter Username</mat-label>
-              <input type="text" matInput formControlName="username">
-              @if (registerFormGroup.get('username')?.invalid) {
-                <mat-error>Invalid Username</mat-error>
+              <ng-template matStepLabel>PIN</ng-template>
+              <mat-label>Enter your PIN</mat-label>
+              <input formControlName="pinField" type="password" inputmode="numeric" matInput>
+              @if (pinGroup.get('pinField')?.invalid) {
+                <mat-error>{{pinGroup.get('pinField')?.errors?.['invalidError']}}</mat-error>
               }
             </mat-form-field>
             <div>
               <button matButton matStepperNext>Next</button>
             </div>
-          <!-- </form> -->
+          </form>
         </mat-step>
 
-        <mat-step [stepControl]="registerFormGroup">
-          <!-- <form [formGroup]="passwordGroup"> -->
+
+        <mat-step [stepControl]="pinVerifyGroup">
+          <form [formGroup]="pinVerifyGroup">
             <mat-form-field class="mat-form-field-wrapper">
-              <ng-template matStepLabel>Password</ng-template>
-              <mat-label>Enter Password</mat-label>
-              <input formControlName="password" type="password" matInput>
-              @if (registerFormGroup.get('password')?.invalid) {
-                <mat-error>Invalid Password</mat-error>
+              <ng-template matStepLabel>PIN Verify</ng-template>
+              <mat-label>Enter your PIN Again</mat-label>
+              <input formControlName="pinFieldVerify" type="password" inputmode="numeric" matInput>
+              @if (pinVerifyGroup.get('pinFieldVerify')?.invalid) {
+                <mat-error>{{pinVerifyGroup.get('pinFieldVerify')?.errors?.['invalidError']}}</mat-error>
               }
             </mat-form-field>
             <div>
               <button matButton matStepperPrevious>Back</button>
-              <button matButton matStepperNext>Next</button>
+              <button matButton matStepperNext (click)="nextStepHandler(pinVerifyGroup)">Next</button>
             </div>
-          <!-- </form> -->
+          </form>
         </mat-step>
 
-        <mat-step [stepControl]="registerFormGroup">
-          <!-- <form [formGroup]="emailGroup"> -->
+        <mat-step [stepControl]="playerIdGroup">
+          <form [formGroup]="playerIdGroup">
             <mat-form-field class="mat-form-field-wrapper">
-              <ng-template matStepLabel>Email</ng-template>
-              <mat-label>Enter Email</mat-label>
-              <input formControlName="email" type="email" matInput>
-              @if (registerFormGroup.get('email')?.invalid) {
-                <mat-error>Invalid Email</mat-error>
+              <ng-template matStepLabel>Player ID</ng-template>
+              <mat-label>Enter Player ID</mat-label>
+              <input  type="number" pattern="[0-9]*" inputmode="numeric" formControlName="playerIdField" matInput>
+              @if (playerIdGroup.get('playerIdField')?.invalid) {
+                <mat-error>Invalid Player ID</mat-error>
               }
             </mat-form-field>
             <div>
               <button matButton matStepperPrevious>Back</button>
               <button matButton (click)="submitHandler()">Submit</button>
             </div>
-          <!-- </form> -->
+          </form>
         </mat-step>
       </mat-stepper>
-    </form>
 
   </div>
 

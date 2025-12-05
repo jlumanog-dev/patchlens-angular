@@ -1,5 +1,8 @@
 export interface UserInterface{
-  username: string
   email: string,
-  steamId: number
+  personaName: string,
+  playerIdField: number,
+  role: string
 }
+
+

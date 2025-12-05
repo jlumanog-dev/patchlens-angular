@@ -36,3 +36,7 @@
 /* .hero-insight-container > .top-heroes-view-box{
   grid-area: box2;
 } */
+
+.match-analyze-container{
+  padding: 20px;
+}

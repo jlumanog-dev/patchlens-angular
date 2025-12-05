@@ -2,7 +2,7 @@
     <mat-card class="login-container">
         <h2>Login</h2>
         <form [formGroup]="loginFormGroup" (ngSubmit)="submitHandler()" method="post">
-              <mat-form-field class="mat-form-field-wrapper">
+<!--               <mat-form-field class="mat-form-field-wrapper">
                 <mat-label>Username</mat-label>
                 <input class="mat-form-field-input" matInput formControlName="username">
 
@@ -11,13 +11,13 @@
                   }
               </mat-form-field>
 
-              <br>
+              <br> -->
 
               <mat-form-field class="mat-form-field-wrapper">
-                <mat-label>Password</mat-label>
-                <input type="password" matInput formControlName="password">
-                @if(isPasswordInvalid()){
-                  <mat-error>{{passwordInvalidMessage()}}</mat-error>
+                <mat-label>PIN</mat-label>
+                <input type="password" matInput formControlName="pinField">
+                @if(isPinInvalid()){
+                  <mat-error>{{pinInvalidMessage()}}</mat-error>
                 }
               </mat-form-field>
 

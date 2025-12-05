@@ -29,7 +29,7 @@ export class Main {
     this.apiService.getUserData().subscribe({
         next: (response : UserInterface) =>{
           console.log(response);
-          this.username.set(response.username);
+          this.username.set(response.personaName);
           //this.username.set(response["username"]);
         },
         //Usually to check if JWT is expired

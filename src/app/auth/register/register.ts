@@ -1,15 +1,15 @@
 import { Component, inject, signal } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ApiService } from '../../core/services/api';
 import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import { customPasswordValidator } from '../../shared/password-validator';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { authenticationService } from '../auth.service';
 import { Router } from '@angular/router';
-
+import { customPinValidator } from '../../shared/pin-validator';
+import { customPinVerify } from '../../shared/pin-verify';
 @Component({
   selector: 'app-register',
   imports: [ReactiveFormsModule, MatStepperModule, MatInputModule, MatFormFieldModule, MatButtonModule],
@@ -27,49 +27,58 @@ export class Register {
   private router = inject(Router);
   private formBuilder = inject(FormBuilder);
 
-/*   usernameGroup = this.formBuilder.group({
-    usernameValidator: ['', [Validators.required, Validators.minLength(5)]]
-  });
-  passwordGroup = this.formBuilder.group({
-    passwordValidator: ['', [Validators.minLength(8), customPasswordValidator()]]
-  });
-  emailGroup = this.formBuilder.group({
-    emailValidator: ['', Validators.email]
-  }); */
+  pinSignalTemp = signal<string | null | undefined>(null);
+
+  pinGroup = this.formBuilder.group({ pinField: ['', [Validators.required, customPinValidator()]] })
+  pinVerifyGroup = this.formBuilder.group({ pinFieldVerify: ['', [Validators.required, customPinValidator(), customPinVerify(this.pinGroup)]] })
+  playerIdGroup = this.formBuilder.group({ playerIdField: ['', [Validators.required]] });
 
   registerFormGroup = this.formBuilder.group({
-    username: ['', [Validators.required, Validators.minLength(5)]],
-    password: ['', [Validators.minLength(8), customPasswordValidator()]],
-    email: ['', Validators.email]
+    pinGroup: this.pinGroup,
+    playerIdGroup: this.playerIdGroup
   });
 
 
-  nextStepHandler(formGroup: FormGroup, stepper: MatStepper){
-    if(formGroup.invalid){
+  nextStepHandler(formGroup: FormGroup){
+    if(this.pinGroup.get('pinField')?.value !== formGroup.value['pinFieldVerify']){
       formGroup.markAllAsTouched();
       return;
     }
-    stepper.next();
   }
 
   submitHandler(){
-/*     let registerFormGroup = this.formBuilder.group({
-      username: this.usernameGroup.get('usernameValidator'),
-      password: this.passwordGroup.get('passwordValidator'),
-      email: this.emailGroup.get('emailValidator')
-    }); */
-    console.log(this.registerFormGroup.controls);
-    this.apiService.registerUser(this.registerFormGroup).subscribe({
+    console.log(this.playerIdGroup.get('playerIdField')?.value);
+    console.log(this.registerFormGroup);
+
+
+
+    let personaName : string = "testingUser";
+    this.registerMethod(personaName);
+
+/*     this.apiService.getPlayerProfile(Number(this.playerIdGroup.get('playerIdField')?.value)).subscribe({
       next: (response: any) =>{
         console.log(response);
-        this.authService.setToken(response.TOKEN);
-        console.log(localStorage.getItem("TOKEN"));
-        this.router.navigate(['..']);
+        let personaName : string = response['profile']['personaname'];
+        this.registerMethod(personaName);
       },
       error: error =>{
-        console.log("error response at register.ts");
-        console.log(error);
+        console.log("error - player id doesn't exist");
       }
+    }); */
+  }
+
+  registerMethod(personaName: string){
+    this.apiService.registerUser(this.registerFormGroup, personaName).subscribe({
+          next: (response: any) =>{
+            console.log(response);
+            this.authService.setToken(response.TOKEN);
+            console.log(localStorage.getItem("TOKEN"));
+            //this.router.navigate(['..']);
+          },
+          error: error =>{
+            console.log("error response at register.ts");
+            console.log(error);
+          }
     });
   }
 
