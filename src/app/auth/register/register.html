@@ -40,7 +40,7 @@
           <form [formGroup]="playerIdGroup">
             <mat-form-field class="mat-form-field-wrapper">
               <ng-template matStepLabel>Player ID</ng-template>
-              <mat-label>Enter Player ID</mat-label>
+              <mat-label>Enter or Paste your Player ID</mat-label>
               <input  type="number" pattern="[0-9]*" inputmode="numeric" formControlName="playerIdField" matInput>
               @if (playerIdGroup.get('playerIdField')?.invalid) {
                 <mat-error>Invalid Player ID</mat-error>

@@ -47,33 +47,31 @@ export class Register {
   }
 
   submitHandler(){
-    console.log(this.playerIdGroup.get('playerIdField')?.value);
-    console.log(this.registerFormGroup);
-
-
-
     let personaName : string = "testingUser";
-    this.registerMethod(personaName);
 
-/*     this.apiService.getPlayerProfile(Number(this.playerIdGroup.get('playerIdField')?.value)).subscribe({
+    this.apiService.getPlayerProfile(this.playerIdGroup.get('playerIdField')?.value).subscribe({
       next: (response: any) =>{
-        console.log(response);
         let personaName : string = response['profile']['personaname'];
         this.registerMethod(personaName);
       },
       error: error =>{
         console.log("error - player id doesn't exist");
       }
-    }); */
+    });
   }
 
   registerMethod(personaName: string){
     this.apiService.registerUser(this.registerFormGroup, personaName).subscribe({
           next: (response: any) =>{
-            console.log(response);
-            this.authService.setToken(response.TOKEN);
-            console.log(localStorage.getItem("TOKEN"));
-            //this.router.navigate(['..']);
+            if(response['doesUserExists']){
+              console.log(response['MESSAGE']);
+            }else{
+              console.log(response);
+              this.authService.setToken(response.TOKEN);
+              console.log(localStorage.getItem("TOKEN"));
+              this.router.navigate(['..']);
+            }
+
           },
           error: error =>{
             console.log("error response at register.ts");

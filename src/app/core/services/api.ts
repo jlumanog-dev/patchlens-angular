@@ -77,7 +77,7 @@ export class ApiService{
     }))
   }
 
-  getPlayerProfile(playerId: number){
+  getPlayerProfile(playerId: any){
     return this.http.get(`https://api.opendota.com/api/players/${playerId}`, {responseType: 'json'}).pipe(catchError(error =>{
       throw error;
     }))
