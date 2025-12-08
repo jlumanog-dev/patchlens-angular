@@ -6,15 +6,18 @@ import { ROUTER_OUTLET_DATA } from '@angular/router';
 import { InsightView } from '../heroes/insight-view/insight-view';
 import { RecentMatchAggregateInterface } from '../../shared/RecentMatchAggregateInterface';
 import { ApiService } from '../../core/services/api';
+import { DoughnutChartComponent } from '../../shared/components/charts/doughnut-chart-component/doughnut-chart-component';
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-main-component',
-  imports: [MatTabsModule, MatIcon, TopHeroesView, InsightView],
+  imports: [MatTabsModule, MatIcon, TopHeroesView, InsightView, DoughnutChartComponent, MatCardModule],
   templateUrl: './main-component.html',
   styleUrl: './main-component.css'
 })
 export class MainComponent {
   apiService = inject(ApiService);
+  doughnutChartLabelSet : string[] = ["Total Lose", "Total Wins"];
   recentMatches = signal<RecentMatchAggregateInterface>({
       match_list: [
         {

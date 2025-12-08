@@ -8,10 +8,11 @@ import { MainComponent } from './features/main-component/main-component';
 import { HeroDetail } from './features/heroes/hero-detail/hero-detail';
 
 export const routes: Routes = [
+  /* {path: '', component: , title: "PatchLens"} */
   {path: 'login', component: Login, title: "Login Page", canActivate: [guestGuard]},
   {path: 'register', component: Register, title: "Register - Welcome",  canActivate: [guestGuard]},
   {
-    path: '',
+    path: 'dashboard',
     component: Main,
     title: "PatchLens",
     canActivate: [authGuard],

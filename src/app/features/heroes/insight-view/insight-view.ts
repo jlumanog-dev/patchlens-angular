@@ -175,10 +175,6 @@ export class InsightView {
     });
   }
 
-  ngOnChanges(){
-  }
-
-
   overallWinRateColorSet(value: number | undefined){
       if(value !== undefined){
         if(value >= 50){

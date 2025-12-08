@@ -1,4 +1,9 @@
-
+ h1, h2, h3{
+  font-weight: 100;
+}
+p{
+    color: var(--text-secondary);
+}
 .main-container{
   display: grid;
   grid-template-areas: "box1 box2";
@@ -24,19 +29,26 @@
 .tab-label-icon{
     color: var(--text-primary);
 }
-
-.hero-insight-container{
-  grid-area: box1;
-}
-
-/* .hero-insight-container > .hero-insight-view-box{
-
-} */
-
-/* .hero-insight-container > .top-heroes-view-box{
+.top-heroes-view-box{
   grid-area: box2;
-} */
+}
 
 .match-analyze-container{
   padding: 20px;
 }
+
+.top-heroes-view-box > h4{
+  font-weight: 100;
+  margin: 10px 15px;
+}
+
+.doughnut-chart-win-rate-box{
+  background: linear-gradient(79deg,rgba(201, 161, 74, 0.015) 0%, rgba(27, 27, 27, 0.662) 60%, rgba(201, 161, 74, 0.021) 100%);
+  border: 1px solid var(--bg-panel);
+  margin: 0px auto;
+  width: 85%;
+  border-radius: 20px;
+  padding: 15px
+}
+
+

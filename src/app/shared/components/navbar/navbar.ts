@@ -57,7 +57,7 @@ export class Navbar {
   }
 
   optionSelected(name: any) : void {
-    this.router.navigate(["/hero", name.id]);
+    this.router.navigate(["dashboard/hero", name.id]);
   }
 
 

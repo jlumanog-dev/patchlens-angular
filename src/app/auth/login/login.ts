@@ -58,7 +58,7 @@ export class Login {
             console.log(response);
             this.authService.setToken(response.TOKEN);
             console.log(localStorage.getItem("TOKEN"));
-            this.router.navigate(['..']);
+            this.router.navigate(['dashboard']);
           },
           error: error => {
             console.log(error.error.message);
