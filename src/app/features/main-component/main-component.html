@@ -24,17 +24,18 @@
     </mat-tab>
   </mat-tab-group>
   <div class="top-heroes-view-box">
-    
+
 <!--     <div class="dought-chart-win-rate-container">
       <div class="dought-chart-win-rate-box">
         <app-doughnut-chart-component [doughnutChartLabel]="doughnutChartLabelSet" [recentMatchesInput]="recentMatches()" />
       </div>
     </div> -->
-    <h4>Win-Loss Ratio (Last 20 Matches)</h4>
+    <h4>Win-Loss Ratio (Recent Matches)</h4>
+
     <div class="doughnut-chart-win-rate-box">
       <app-doughnut-chart-component [doughnutChartLabel]="doughnutChartLabelSet" [recentMatchesInput]="recentMatches()" />
     </div>
-    
+
     <app-top-heroes-view />
 
   </div>

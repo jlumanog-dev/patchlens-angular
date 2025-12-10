@@ -51,7 +51,7 @@ export class DoughnutChartComponent {
           else if(element.radiant_win == false && element.player_slot >= 128)
             win++;
       });
-      this.totalWinSet.set([win, (total - win), 0, 0]);
+      this.totalWinSet.set([(total - win), win, 0, 0]);
       this.doughnutChartDataset[0].data = this.totalWinSet();
     }
     this.chart?.update();
