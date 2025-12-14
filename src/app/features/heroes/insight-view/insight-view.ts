@@ -17,12 +17,15 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class InsightView {
   //localizedName = signal<string | undefined>("");
+
+  recentMatches = input<RecentMatchAggregateInterface>();
+  winRates = signal<0[]>([0,0,0]);
   apiService = inject(ApiService);
   heroesPlayed = signal<HeroesPlayedInterface>({
     frequencyHeroes: [
 
     ],
-    recentMatches: [{
+    fixedSetMatches: [{
         match_id: 0,
         player_slot: 0,
         radiant_win: false,
@@ -86,14 +89,11 @@ export class InsightView {
   expansionMethod(){
     this.typingEffectAsync?.unsubscribe(); // unsubscribe just in case
     this.displayText = '';
-    this.typingEffectAsync = interval(10).pipe(take(this.fullText.length)).subscribe(index => {
-      this.displayText += this.fullText[index];
+    this.typingEffectAsync = interval(10).pipe(take(this.recentMatches()?.insight[0].text?.length ?? 0)).subscribe(index => {
+      this.displayText += this.recentMatches()?.insight[0].text[index];
     });
   }
 
-  recentMatches = input<RecentMatchAggregateInterface>();
-
-  winRates = signal<0[]>([0,0,0]);
 
   ngOnInit(){
     this.apiService.getHeroesPlayedByUser().subscribe({
@@ -140,7 +140,7 @@ export class InsightView {
           let numberOfMatches: number = 0;
           let img : string = '';
           let role : string[] = [];
-          response.recentMatches.forEach((object) => {
+          response.fixedSetMatches.forEach((object) => {
             if(object.hero_id == Number(heroId[i])){
               avgKills += object.kills;
               avgDeaths += object.deaths;
@@ -165,7 +165,6 @@ export class InsightView {
         }
 
         this.mostPlayedHeroId.set(topPlayedHeroesObject);
-        //this.mostPlayedHeroId.set(response.recentMatches);
         console.log(this.mostPlayedHeroId());
       },
       error: error=>{

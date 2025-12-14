@@ -42,6 +42,9 @@ export interface RecentMatchAggregateInterface {
     avgTowerDamage: number,
     avgLastHit: number,
     avgLastHitPerMinute: number,
-  }
+  },
+  insight: [{
+    text: string
+  }]
 
 }

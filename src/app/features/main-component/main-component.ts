@@ -61,7 +61,10 @@ export class MainComponent {
         avgTowerDamage: 0,
         avgLastHit: 0,
         avgLastHitPerMinute: 0,
-      }
+      },
+      insight: [{
+        text: ""
+      }]
   });
   initialTabIndex: number = 0;
   ngOnInit(){

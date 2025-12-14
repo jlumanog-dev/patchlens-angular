@@ -2,7 +2,7 @@ interface HeroesPlayedInterface{
   frequencyHeroes: [
 
   ],
-  recentMatches: [{
+  fixedSetMatches: [{
     match_id: number,
       player_slot: number,
       radiant_win: boolean,
@@ -23,6 +23,6 @@ interface HeroesPlayedInterface{
       img: string,
       roles: string[],
       localized_name: string,
-    }]
+    }],
 
 }
