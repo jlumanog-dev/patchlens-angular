@@ -48,36 +48,36 @@ export class HeroDetail {
       trendStdDev: 0,
       disparityScore: 0,
       img: "",
-      icon: ""
+      icon: "",
+      insight: [{
+        text: ""
+      }]
   });
 
   baseUrl = signal("http://cdn.dota2.com/");
   fullPath = computed(() => this.baseUrl() + this.heroData().img);
   doughnutChartLabelSet : string[] = ["Total Loses", "Total Wins", "Total Loses (Pro)", "Total Wins (Pro)"];
 
-  fullText: string = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt cum unde veniam eos perspiciatis! Odit atque tenetur ipsa nam non?';
-  displayText = '';
-
 /*   this is for the typing effect to have control over the interval async process
   so that typing can stop and reset the text when the user
   click the expansion-panel again to close it - manually stop async op using unsubscribe()*/
   typingEffectAsync?: Subscription;
+  displayText = '';
 
   //MatExpansionPanel = used to close the expansion-panel when rendering another hero data.
   @ViewChild('expand') mat!: MatExpansionPanel;
 
-  ngOnInit(){
-    this.getHeroMethod();
-  }
-
   expansionMethod(){
     this.typingEffectAsync?.unsubscribe(); // unsubscribe just in case
     this.displayText = '';
-    this.typingEffectAsync = interval(10).pipe(take(this.fullText.length)).subscribe(index => {
-      this.displayText += this.fullText[index];
+    this.typingEffectAsync = interval(5).pipe(take(this.heroData()?.insight[0].text?.length ?? 0)).subscribe(index => {
+      this.displayText += this.heroData()?.insight[0].text[index];
     });
   }
 
+  ngOnInit(){
+    this.getHeroMethod();
+  }
   getHeroMethod(){
     this.activatedRoute.params.subscribe((param => {
       this.heroId.set(param['id']);

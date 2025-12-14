@@ -24,4 +24,7 @@ export interface HeroesInterface {
   disparityScore: number,
   img: string,
   icon: string,
+  insight: [{
+    text: string
+  }]
 }

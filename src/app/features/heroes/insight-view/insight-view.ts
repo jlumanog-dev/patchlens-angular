@@ -78,7 +78,6 @@ export class InsightView {
     ]
   });
 
-  fullText: string = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt cum unde veniam eos perspiciatis! Odit atque tenetur ipsa nam non?';
   displayText = '';
 
   typingEffectAsync?: Subscription;
