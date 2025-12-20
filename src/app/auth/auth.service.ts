@@ -11,10 +11,10 @@ export class authenticationService{
   authenticate(FormData: unknown) : Observable<any> {
     //let formObject = FormData.value;
     return this.http.post('http://localhost:8080/api/login', FormData).pipe(
-      catchError(error => {
+     /*  catchError(error => {
         console.error("Error fetching data:");
         return throwError(()=> error);
-      })
+      }) */
     );
   }
 

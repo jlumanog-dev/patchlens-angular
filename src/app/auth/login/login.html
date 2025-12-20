@@ -20,7 +20,11 @@
                   <mat-error>{{pinInvalidMessage()}}</mat-error>
                 }
               </mat-form-field>
-
+                @if(loginFormGroup.hasError('hasError')){
+                  <div class="error-label">
+                    <p>{{pinInvalidMessage()}}</p>
+                  </div>
+                }
             <br>
             <div>
               <button matButton type="submit" class="login-btn">Login</button>

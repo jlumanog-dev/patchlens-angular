@@ -42,11 +42,12 @@ export class HeroDetail {
       pub_pick: 0,
       pub_win: 0,
 
-      winRate: 0,
+      winRate: 0.000000,
       pickGrowthRateChange: 0,
       winGrowthRateChange: 0,
-      trendStdDev: 0,
-      disparityScore: 0,
+      trendStdDev: 0.000000,
+      disparityScore: 0.0000000 | NaN,
+
       img: "",
       icon: "",
       insight: [{

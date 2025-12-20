@@ -17,7 +17,40 @@ export class TopHeroesView {
   heroTwo = signal<topHeroesMapped>();
   heroThree = signal<topHeroesMapped>(); */
 
-  heroes = signal<HeroesInterface[]>([]);
+  heroes = signal<HeroesInterface[]>([{
+    id: 0,
+    localized_name: '',
+    roles: [],
+    attack_type: '',
+    primary_attr: '',
+
+    base_str: 0,
+    base_agi: 0,
+    base_int: 0,
+    move_speed: 0,
+
+    pub_pick_trend: [],
+    pub_win_trend: [],
+    pub_pick: 0,
+    pub_win: 0,
+    pro_pick: 0,
+    pro_win: 0,
+
+    winRate: 0.0000,
+    pickGrowthRateChange: 0,
+    winGrowthRateChange: 0,
+    trendStdDev: 0.000000,
+    disparityScore: 0.0000,
+
+    img: '',
+    icon: '',
+    insight: [
+      {
+        text: ''
+      }
+    ]
+  }
+]);
 
 
   constructor(){
