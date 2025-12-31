@@ -6,7 +6,7 @@ import { catchError } from "rxjs";
 import { authenticationService } from "../../auth/auth.service";
 import { HeroesInterface } from "../../shared/HeroesInterface";
 import { RecentMatchAggregateInterface } from "../../shared/RecentMatchAggregateInterface";
-import { environment } from "../../../environment/environment";
+import { environment } from "../../environment/environment";
 
 @Injectable({providedIn: 'root'})
 export class ApiService{
