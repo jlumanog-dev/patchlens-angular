@@ -6,6 +6,7 @@ import { catchError } from "rxjs";
 import { authenticationService } from "../../auth/auth.service";
 import { HeroesInterface } from "../../shared/HeroesInterface";
 import { RecentMatchAggregateInterface } from "../../shared/RecentMatchAggregateInterface";
+import { environment } from "../../../environment/environment";
 
 @Injectable({providedIn: 'root'})
 export class ApiService{
@@ -26,7 +27,7 @@ export class ApiService{
       "personaName": personaName
     }
     console.log(jsonRequest)
-    return this.http.post('http://localhost:8080/api/register', jsonRequest, { headers: { 'Content-Type': 'application/json' } }).pipe(catchError(error => {
+    return this.http.post(environment.apiBaseUrl + '/api/register', jsonRequest, { headers: { 'Content-Type': 'application/json' } }).pipe(catchError(error => {
       console.log("error response at api.ts");
       console.log(error);
       throw error;
@@ -37,7 +38,7 @@ export class ApiService{
   getUserData(){
     //map the response object to the UserInterface defined in shared folder to access dynamic properties
     //without the text editor complaining that no property exist
-    return this.http.get<UserInterface>('http://localhost:8080/api/user', {responseType: 'json'}).pipe(catchError(error => {
+    return this.http.get<UserInterface>(environment.apiBaseUrl  + '/api/user', {responseType: 'json'}).pipe(catchError(error => {
       console.log("JWT EXPIRED");
       this.authService.deleteToken();
       throw error;
@@ -45,7 +46,7 @@ export class ApiService{
   }
 
   getTopHeroes(){
-    return this.http.get<HeroesInterface[]>('http://localhost:8080/api/heroes/top-heroes', {responseType: 'json'}).pipe(catchError(error=>{
+    return this.http.get<HeroesInterface[]>(environment.apiBaseUrl + '/api/heroes/top-heroes', {responseType: 'json'}).pipe(catchError(error=>{
       console.log("FAILED TO RETRIEVE TOP HEROES");
       this.authService.deleteToken();
       throw error;
@@ -53,7 +54,7 @@ export class ApiService{
   }
 
   getHeroData(heroId : number){
-    return this.http.get<HeroesInterface>(`http://localhost:8080/api/heroes/${heroId}`, {responseType: 'json'}).pipe(catchError(error =>{
+    return this.http.get<HeroesInterface>(environment.apiBaseUrl + `/api/heroes/${heroId}`, {responseType: 'json'}).pipe(catchError(error =>{
       console.log("FAILED TO RETRIEVE A HERO");
       this.authService.deleteToken();
       throw error;
@@ -61,18 +62,18 @@ export class ApiService{
   }
 
   getAllHeroesData(){
-    return this.http.get<HeroesInterface[]>('http://localhost:8080/api/heroes/all-heroes', {responseType: 'json'}).pipe(catchError(error=>{
+    return this.http.get<HeroesInterface[]>(environment.apiBaseUrl + '/api/heroes/all-heroes', {responseType: 'json'}).pipe(catchError(error=>{
       throw error;
     }));
   }
 
   getHeroesPlayedByUser(){
-    return this.http.get<HeroesPlayedInterface>('http://localhost:8080/api/user/heroes', {responseType: 'json'}).pipe(catchError(error=>{
+    return this.http.get<HeroesPlayedInterface>(environment.apiBaseUrl + '/api/user/heroes', {responseType: 'json'}).pipe(catchError(error=>{
       throw error;
     }))
   }
   getRecentMachesByUser(){
-    return this.http.get<RecentMatchAggregateInterface>('http://localhost:8080/api/user/recentMatches', {responseType: 'json'}).pipe(catchError(error =>{
+    return this.http.get<RecentMatchAggregateInterface>(environment.apiBaseUrl + '/api/user/recentMatches', {responseType: 'json'}).pipe(catchError(error =>{
       throw error;
     }))
   }
