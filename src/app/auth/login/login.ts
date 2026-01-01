@@ -65,7 +65,7 @@ export class Login {
           this.loginFormGroup.setErrors({
             hasError: error.error.message
           })
-          this.pinInvalidMessage.set(error.error.message);
+          this.pinInvalidMessage.set("EC2 Instance currently inactive");
         }
       });
     }
